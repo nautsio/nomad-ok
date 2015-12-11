@@ -1,10 +1,13 @@
+#
+# The Nomad server nodes.
+#
 resource "google_compute_instance" "server_instance" {
   count = "${var.cluster_size}"
 
   machine_type = "n1-standard-1"
   zone = "${var.region}"
 
-  name = "nomad-server-${count.index}"
+  name = "nomad-${count.index}"
   description = "Nomad server node"
   tags = ["nomad", "server"]
 
@@ -28,6 +31,9 @@ resource "google_compute_instance" "server_instance" {
   }
 }
 
+#
+# The external DNS records for the Nomad servers.
+#
 resource "google_dns_record_set" "external_dns" {
   count = 3
 
@@ -38,6 +44,9 @@ resource "google_dns_record_set" "external_dns" {
   rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.nat_ip, count.index)}"]
 }
 
+#
+# The internal DNS records for the Nomad servers.
+#
 resource "google_dns_record_set" "internal_dns" {
   count = 3
 

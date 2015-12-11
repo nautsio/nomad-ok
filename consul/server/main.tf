@@ -4,7 +4,7 @@ resource "google_compute_instance" "server_instance" {
   machine_type = "n1-standard-1"
   zone = "${var.region}"
 
-  name = "consul-server-${count.index}"
+  name = "consul-${count.index}"
   description = "Consul server node"
   tags = ["consul", "server"]
 

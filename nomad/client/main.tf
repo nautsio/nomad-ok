@@ -15,14 +15,20 @@ resource "google_compute_autoscaler" "nomad-client-scaler" {
     }
 }
 
+#
+# Instance group manager that manages the Nomad client nodes.
+#
 resource "google_compute_instance_group_manager" "nomad-client-group" {
   description = "Group consisting of Nomad client nodes"
   name = "nomad-client-group"
   instance_template = "${google_compute_instance_template.nomad-client.self_link}"
-  base_instance_name = "nomad-client"
+  base_instance_name = "farm"
   zone = "${var.region}"
 }
 
+#
+# A template that is used to create the Nomad client nodes.
+#
 resource "google_compute_instance_template" "nomad-client" {
   name = "nomad-client"
   description = "Template for Nomad client nodes"

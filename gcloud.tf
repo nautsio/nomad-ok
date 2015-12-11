@@ -17,7 +17,7 @@ resource "google_dns_managed_zone" "external" {
 resource "google_dns_managed_zone" "internal" {
   name = "internal-zone"
   description = "Internal zone"
-  dns_name = "internal.nauts.io."
+  dns_name = "int.nauts.io."
 }
 
 module "nomad-client" {
