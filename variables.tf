@@ -14,3 +14,9 @@ variable "nomad_server" {
     "cluster_size" = 3
   }
 }
+
+variable "consul_server" {
+  default = {
+    "cluster_size" = 3
+  }
+}

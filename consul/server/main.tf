@@ -1,12 +1,12 @@
-resource "google_compute_instance" "nomad-server" {
+resource "google_compute_instance" "consul-server" {
   count = "${var.cluster_size}"
 
   machine_type = "n1-standard-1"
   zone = "${var.region}"
 
-  name = "nomad-server-${count.index}"
-  description = "Nomad server node"
-  tags = ["nomad", "server"]
+  name = "consul-server-${count.index}"
+  description = "Consul server node"
+  tags = ["consul", "server"]
 
   scheduling {
     automatic_restart = true
@@ -28,12 +28,12 @@ resource "google_compute_instance" "nomad-server" {
   }
 }
 
-resource "google_dns_record_set" "nomad-server-dns" {
+resource "google_dns_record_set" "consul-server-dns" {
   count = 3
 
   managed_zone = "${var.dns_zone}"
-  name = "${element(google_compute_instance.nomad-server.*.name, count.index)}.${var.dns_name}"
+  name = "${element(google_compute_instance.consul-server.*.name, count.index)}.${var.dns_name}"
   type = "A"
   ttl = 300
-  rrdatas = ["${element(google_compute_instance.nomad-server.*.network_interface.0.access_config.0.nat_ip, count.index)}"]
+  rrdatas = ["${element(google_compute_instance.consul-server.*.network_interface.0.access_config.0.nat_ip, count.index)}"]
 }
