@@ -4,8 +4,8 @@
 provider "google" {
   account_file = ""
   credentials = "${file(\"account.json\")}"
-  project = "innovation-day-nomad"
-  region = "europe-west1-b"
+  project = "${var.project}"
+  region = "${var.region}"
 }
 
 module "nomad-client" {
