@@ -1,3 +1,7 @@
+variable "project" {
+  default = "innovation-day-nomad"
+}
+
 variable "region" {
   default = "europe-west1-b"
 }
