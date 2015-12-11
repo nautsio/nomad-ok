@@ -6,6 +6,18 @@ variable "region" {
   default = "europe-west1-b"
 }
 
+variable "external" {
+  default = {
+    "dns_name" = "gcloud.nauts.io."
+  }
+}
+
+variable "internal" {
+  default = {
+    "dns_name" = "local."
+  }
+}
+
 variable "nomad_client" {
   default = {
     "min_cluster_size" = 3
