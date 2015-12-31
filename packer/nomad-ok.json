@@ -1,0 +1,11 @@
+{
+  "builders": [{
+    "type": "googlecompute",
+    "account_file": "account.json",
+    "project_id": "lunar-geography-114810",
+    "source_image": "debian-8-jessie-v20151104",
+    "image_name": "debian-8-jessie-nomad-ok",
+    "instance_name": "debian-8-jessie-nomad-ok",
+    "zone": "europe-west1-b"
+  }]
+}
