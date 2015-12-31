@@ -19,17 +19,6 @@ rm  -f /etc/udev/rules.d/70-persistent-net.rules
 rm -rf /dev/.udev/
 rm -f /lib/udev/rules.d/75-persistent-net-generator.rules
 
-cat <<EOF > /etc/fstab
-# /etc/fstab: static file system information.
-#
-# Use 'blkid' to print the universally unique identifier for a
-# device; this may be used with UUID= as a more robust way to name devices
-# that works even if disks are added and removed. See fstab(5).
-#
-# <file system> <mount point>   <type>          <options>                        <dump>  <pass>
-/dev/sda1       /               ext4    defaults,relatime,discard,errors=panic      0       1
-EOF
-
 sync
 
 fstrim -v / || echo dummy
