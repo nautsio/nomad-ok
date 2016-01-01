@@ -4,4 +4,4 @@ set -e
 
 # Install tools.
 apt-get update
-apt-get install -y curl jq
+apt-get install -y curl jq unzip
