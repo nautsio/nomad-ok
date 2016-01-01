@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=/usr/bin/nomad-config-ip
 ExecStart=/usr/bin/nomad agent -config=/etc/nomad.d
 
 [Install]
