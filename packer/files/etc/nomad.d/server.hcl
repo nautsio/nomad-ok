@@ -6,5 +6,7 @@ server {
 
   # Scheduler configuration.
   num_schedulers = 1
-  enabled_schedulers = ["service", "batch"]
+
+  # join other servers
+  retry_join = [ "nomad-0", "nomad-1", "nomad-2" ]
 }
