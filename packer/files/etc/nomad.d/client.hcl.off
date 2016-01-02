@@ -1,8 +1,8 @@
 client {
   enabled = true
-  network_interface = "eth1"
+  network_interface = "eth0"
   # network_speed = 1000
-  servers = ["ddd-01:4646", "ddd-02:4646", "ddd-03:4646"]
+  servers = ["nomad-0:4647", "nomad-1:4647", "nomad-2:4647"]
 
   # Filtering
   # node_class = "general"
