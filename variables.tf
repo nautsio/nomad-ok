@@ -6,6 +6,10 @@ variable "region" {
   default = "europe-west1-b"
 }
 
+variable "disk_image" {
+  default = "nomad-ok-1451775321"
+}
+
 variable "external" {
   default = {
     "dns_name" = "gcloud.nauts.io."

@@ -14,7 +14,7 @@ resource "google_compute_instance" "server_instance" {
   }
 
   disk {
-    image = "debian-8-jessie-v20151104"
+    image = "${var.disk_image}"
   }
 
   disk {

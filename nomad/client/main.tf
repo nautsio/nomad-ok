@@ -42,7 +42,7 @@ resource "google_compute_instance_template" "nomad-client" {
   }
 
   disk {
-    source_image = "debian-8-jessie-v20151104"
+    source_image = "${var.disk_image}"
     auto_delete = true
     boot = true
   }
