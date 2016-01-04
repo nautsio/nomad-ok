@@ -7,7 +7,7 @@ variable "region" {
 }
 
 variable "disk_image" {
-  default = "nomad-ok-1451775321"
+  default = "nomad-ok-1451944398"
 }
 
 variable "external" {
