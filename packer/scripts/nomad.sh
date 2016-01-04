@@ -13,8 +13,5 @@ mv /tmp/etc/nomad.d /etc/nomad.d
 # Set ownership and rights on Nomad directories.
 install -o root -g root -m 755 -d /etc/nomad.d /var/local/nomad
 install -o root -g root -m 644 /tmp/etc/systemd/system/nomad.service /etc/systemd/system/nomad.service
-install -o root -g root -m 755 /tmp/usr/bin/nomad-config-ip /usr/bin/nomad-config-ip
 
-# Enable the daemon.
-systemctl daemon-reload
-systemctl enable nomad
+# Do not enable daemon: nomad is started by gcloud startup-script after configuration
