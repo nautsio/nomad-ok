@@ -1,6 +1,5 @@
 # Location
 region = "global"
-datacenter = "dc1"
 
 # Logging
 enable_debug = true
@@ -10,6 +9,7 @@ log_level = "INFO"
 
 # Node
 data_dir = "/var/local/nomad"
+bind_addr="0.0.0.0"
 ports {
   http = 4646
   rpc = 4647
