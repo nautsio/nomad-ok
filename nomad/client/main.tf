@@ -51,4 +51,8 @@ resource "google_compute_instance_template" "nomad-client" {
     network = "default"
     access_config {}
   }
+
+  metadata {
+    startup-script = "${file(\"nomad/client/startup_script.sh\")}"
+  }
 }

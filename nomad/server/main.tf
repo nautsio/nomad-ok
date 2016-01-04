@@ -29,6 +29,8 @@ resource "google_compute_instance" "server_instance" {
     network = "default"
     access_config {}
   }
+
+  metadata_startup_script = "${file(\"nomad/server/startup_script.sh\")}"
 }
 
 #
