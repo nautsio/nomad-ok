@@ -30,7 +30,7 @@ module "nomad-client" {
 
 module "nomad-server" {
   source = "./nomad/server"
-  region = "${var.region}"
+  zones = "${var.zones}"
   external_dns_zone = "${google_dns_managed_zone.external.name}"
   external_dns_name = "${google_dns_managed_zone.external.dns_name}"
   internal_dns_zone = "${google_dns_managed_zone.internal.name}"

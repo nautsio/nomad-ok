@@ -5,7 +5,7 @@ resource "google_compute_instance" "server_instance" {
   count = "${var.cluster_size}"
 
   machine_type = "n1-standard-1"
-  zone = "${var.region}"
+  zone = "${element(split(",", var.zones), count.index)}"
 
   name = "nomad-${count.index}"
   description = "Nomad server node"
