@@ -37,7 +37,7 @@ resource "google_compute_instance" "server_instance" {
 # The external DNS records for the Nomad servers.
 #
 resource "google_dns_record_set" "external_dns" {
-  count = 3
+  count = "${var.cluster_size}"
 
   managed_zone = "${var.external_dns_zone}"
   name = "${element(google_compute_instance.server_instance.*.name, count.index)}.${var.external_dns_name}"
@@ -50,7 +50,7 @@ resource "google_dns_record_set" "external_dns" {
 # The internal DNS records for the Nomad servers.
 #
 resource "google_dns_record_set" "internal_dns" {
-  count = 3
+  count = "${var.cluster_size}"
 
   managed_zone = "${var.internal_dns_zone}"
   name = "${element(google_compute_instance.server_instance.*.name, count.index)}.${var.internal_dns_name}"
