@@ -3,8 +3,8 @@
 set -e
 
 # pull both explicit versions & latest
-docker pull redis:3.0.5
-docker pull redis:latest
-docker pull mvanholsteijn/paas-monitor:9c3fcd7
-docker pull mvanholsteijn/paas-monitor:latest
+docker pull redis
+#docker pull mvanholsteijn/paas-monitor
 docker pull jess/stress
+docker pull sysdig/agent
+docker pull gliderlabs/consul-server

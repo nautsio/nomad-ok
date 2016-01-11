@@ -25,6 +25,7 @@
       "scripts": [
         "scripts/packages.sh",
         "scripts/docker.sh",
+        "scripts/docker-pull.sh",
         "scripts/nomad.sh"
       ]
     }
