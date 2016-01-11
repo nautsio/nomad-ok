@@ -28,8 +28,9 @@ variable "internal" {
 
 variable "nomad_client" {
   default = {
-    "min_cluster_size" = 3
-    "max_cluster_size" = 6
+    "groups" = 2
+    "min_cluster_size" = 2
+    "max_cluster_size" = 4
   }
 }
 

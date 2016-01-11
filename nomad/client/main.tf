@@ -2,28 +2,32 @@
 # Auto scaling group consisting of Nomad client nodes.
 #
 resource "google_compute_autoscaler" "nomad-client-scaler" {
-    name = "nomad-client-scaler"
-    zone = "${var.region}"
-    target = "${google_compute_instance_group_manager.nomad-client-group.self_link}"
-    autoscaling_policy = {
-        min_replicas = "${var.min_cluster_size}"
-        max_replicas = "${var.max_cluster_size}"
-        cooldown_period = 60
-        cpu_utilization = {
-            target = 0.75
-        }
+  count = "${var.groups}"
+  name = "nomad-client-scaler-${count.index}"
+  zone = "${element(split(",", var.zones), count.index)}"
+
+  target = "${element(google_compute_instance_group_manager.nomad-client-group.*.self_link, count.index)}"
+  autoscaling_policy = {
+    min_replicas = "${var.min_cluster_size}"
+    max_replicas = "${var.max_cluster_size}"
+    cooldown_period = 60
+    cpu_utilization = {
+      target = 0.75
     }
+  }
 }
 
 #
 # Instance group manager that manages the Nomad client nodes.
 #
 resource "google_compute_instance_group_manager" "nomad-client-group" {
+  count = "${var.groups}"
+  name = "nomad-client-scaler-${count.index}"
+  zone = "${element(split(",", var.zones), count.index)}"
+
   description = "Group consisting of Nomad client nodes"
-  name = "nomad-client-group"
   instance_template = "${google_compute_instance_template.nomad-client.self_link}"
   base_instance_name = "farm"
-  zone = "${var.region}"
 }
 
 #

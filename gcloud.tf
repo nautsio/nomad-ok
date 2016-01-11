@@ -22,7 +22,8 @@ resource "google_dns_managed_zone" "internal" {
 
 module "nomad-client" {
   source = "./nomad/client"
-  region = "${var.region}"
+  zones = "${var.zones}"
+  groups = "${var.nomad_client.groups}"
   min_cluster_size = "${var.nomad_client.min_cluster_size}"
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
   disk_image = "${var.disk_image}"
