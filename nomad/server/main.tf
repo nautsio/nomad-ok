@@ -53,7 +53,7 @@ resource "google_dns_record_set" "internal_dns" {
   count = "${var.cluster_size}"
 
   managed_zone = "${var.internal_dns_zone}"
-  name = "${element(google_compute_instance.server_instance.*.name, count.index)}.${var.internal_dns_name}"
+  name = "${element(google_compute_instance.server_instance.*.name, count.index)}.${element(google_compute_instance.server_instance.*.zone, count.index)}.${var.internal_dns_name}"
   type = "A"
   ttl = 300
   rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.address, count.index)}"]
