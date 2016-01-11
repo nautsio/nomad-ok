@@ -14,9 +14,6 @@ advertise {
 
 client {
   node_class = "system"
-  options = {
-    "driver.raw_exec.enable" = "1"
-  }
 }
 
 server {
