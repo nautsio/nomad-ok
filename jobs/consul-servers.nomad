@@ -1,5 +1,5 @@
 job "consul-servers" {
-	datacenters = ["sys1"]
+	datacenters = ["sys1", "dc1"]
 	type = "system"
 
 	constraint {
@@ -12,21 +12,60 @@ job "consul-servers" {
 		max_parallel = 1
 	}
 
-	group "consul" {
+	group "server" {
 		restart {
 			interval = "5m"
 			attempts = 10
 			delay = "25s"
 		}
 
-		task "server" {
+		constraint {
+			attribute = "$node.datacenter"
+			value = "sys1"
+		}
+
+		task "agent" {
 			driver = "docker"
 
 			config {
 				image = "gliderlabs/consul-server:latest"
 				network_mode="host"
 				command = "-server"
-				args=["-bootstrap-expect", "3", "-join", "nomad-0"]
+				args=["-bootstrap-expect", "3", "-retry-join", "nomad-0"]
+			}
+
+			resources {
+				cpu = 500 # 500 Mhz
+				memory = 256 # 256MB
+				network {
+					mbits = 10
+					port "db" {
+					}
+				}
+			}
+		}
+	}
+
+	group "client" {
+		restart {
+			interval = "5m"
+			attempts = 10
+			delay = "25s"
+		}
+
+		constraint {
+			attribute = "$node.datacenter"
+			value = "dc1"
+		}
+
+		task "agent" {
+			driver = "docker"
+
+			config {
+				image = "gliderlabs/consul-agent:latest"
+				network_mode="host"
+				command = "-retry-join"
+				args=["nomad-0"]
 			}
 
 			resources {
