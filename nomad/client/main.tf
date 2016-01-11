@@ -27,7 +27,7 @@ resource "google_compute_instance_group_manager" "nomad-client-group" {
 
   description = "Group consisting of Nomad client nodes"
   instance_template = "${google_compute_instance_template.nomad-client.self_link}"
-  base_instance_name = "farm"
+  base_instance_name = "farm-${count.index}-"
 }
 
 #
