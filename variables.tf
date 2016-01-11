@@ -11,7 +11,7 @@ variable "zones" {
 }
 
 variable "disk_image" {
-  default = "nomad-ok-1451944398"
+  default = "nomad-ok-1452554679"
 }
 
 variable "external" {
