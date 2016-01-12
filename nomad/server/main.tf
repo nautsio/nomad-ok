@@ -4,7 +4,7 @@
 resource "google_compute_instance" "server_instance" {
   count = "${var.cluster_size}"
 
-  machine_type = "n1-standard-1"
+  machine_type = "${var.machine_type}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   name = "nomad-${count.index}"
@@ -31,6 +31,12 @@ resource "google_compute_instance" "server_instance" {
   }
 
   metadata_startup_script = "${file(\"nomad/server/startup_script.sh\")}"
+}
+
+resource "google_compute_project_metadata" "project_metadata" {
+  metadata {
+    nomad_servers = "${join(",", google_compute_instance.server_instance.*.name)}"
+  }
 }
 
 #

@@ -27,6 +27,7 @@ module "nomad-client" {
   min_cluster_size = "${var.nomad_client.min_cluster_size}"
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
   disk_image = "${var.disk_image}"
+  machine_type = "${var.nomad_client.machine_type}"
 }
 
 module "nomad-server" {
@@ -38,6 +39,7 @@ module "nomad-server" {
   internal_dns_name = "${google_dns_managed_zone.internal.dns_name}"
   cluster_size = "${var.nomad_server.cluster_size}"
   disk_image = "${var.disk_image}"
+  machine_type = "${var.nomad_server.machine_type}"
 }
 
 #module "consul-server" {

@@ -37,7 +37,7 @@ resource "google_compute_instance_template" "nomad-client" {
   name = "nomad-client"
   description = "Template for Nomad client nodes"
   instance_description = "Nomad client node"
-  machine_type = "n1-standard-1"
+  machine_type = "${var.machine_type}"
   tags = ["nomad", "client"]
 
   scheduling {
