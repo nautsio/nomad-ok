@@ -1,4 +1,4 @@
 image: nomad-ok.json
 	packer -machine-readable build $< | tee packer-build.out
-
-#1451944610,googlecompute,artifact,0,id,nomad-ok-1451944398
+	grep -oP 'googlecompute,artifact,0,id,\K\S+' packer-build.out | tee image
+	perl -pi -e "s/nomad-ok-\d+/$(cat packer/image)/" variables.tf
