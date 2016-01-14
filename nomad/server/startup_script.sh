@@ -28,6 +28,11 @@ server {
   # join other servers
   retry_join = [ "nomad-0", "nomad-1", "nomad-2" ]
 }
+
+telemetry {
+  statsite_address = "localhost:8125"
+}
+
 EOF
 
 systemctl restart nomad

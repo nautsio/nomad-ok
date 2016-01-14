@@ -7,9 +7,10 @@ datacenter = "dc1"
 
 client {
   node_class = "docker"
-  options = {
-    "driver.raw_exec.enable" = "1"
-  }
+}
+
+telemetry {
+  statsite_address = "localhost:8125"
 }
 EOF
 
