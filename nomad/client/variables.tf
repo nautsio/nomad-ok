@@ -1,3 +1,4 @@
+variable "instance" {}
 variable "zones" {}
 variable "groups" {}
 variable "min_cluster_size" {}

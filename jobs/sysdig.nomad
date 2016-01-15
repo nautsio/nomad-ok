@@ -1,6 +1,6 @@
 job "sysdig" {
 	datacenters = ["sys1", "dc1"]
-	type = "service"
+	type = "system"
 
 	constraint {
 		attribute = "$attr.kernel.name"
@@ -24,12 +24,24 @@ job "sysdig" {
 
 			config {
 				command = "/usr/bin/docker"
-				args=["run", "--name", "sysdig-agent", "--privileged", "--net", "host",
-							"--pid", "host", "-e", "ACCESS_KEY=7535a00e-58aa-4073-b55e-eb0ccd22c410",
- 							"-e", "TAGS=nomad", "-v", "/var/run/docker.sock:/host/var/run/docker.sock",
- 							"-v", "/dev:/host/dev", "-v", "/proc:/host/proc:ro", "-v", "/boot:/host/boot:ro",
- 							"-v", "/lib/modules:/host/lib/modules:ro", "-v", "/usr:/host/usr:ro",
+				args=["run",
+							"--privileged",
+							"--net", "host",
+							"--pid", "host",
+ 							"-e", "ACCESS_KEY",
+							"-e", "TAGS",
+							"-v", "/var/run/docker.sock:/host/var/run/docker.sock",
+ 							"-v", "/dev:/host/dev",
+							"-v", "/proc:/host/proc:ro",
+							"-v", "/boot:/host/boot:ro",
+ 							"-v", "/lib/modules:/host/lib/modules:ro",
+							"-v", "/usr:/host/usr:ro",
  							"sysdig/agent"]
+			}
+
+			env {
+					TAGS="nomad.dc:$node.datacenter,zone:$attr.platform.gce.zone"
+					ACCESS_KEY="7535a00e-58aa-4073-b55e-eb0ccd22c410"
 			}
 
 			resources {

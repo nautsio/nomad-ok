@@ -7,7 +7,7 @@ resource "google_compute_instance" "server_instance" {
   machine_type = "${var.machine_type}"
   zone = "${element(split(",", var.zones), count.index)}"
 
-  name = "nomad-${count.index}"
+  name = "${var.instance}-nomad-${count.index}"
   description = "Nomad server node"
   tags = ["nomad", "server"]
 
@@ -33,11 +33,11 @@ resource "google_compute_instance" "server_instance" {
   metadata_startup_script = "${file(\"nomad/server/startup_script.sh\")}"
 }
 
-resource "google_compute_project_metadata" "project_metadata" {
-  metadata {
-    nomad_servers = "${join(",", google_compute_instance.server_instance.*.name)}"
-  }
-}
+#resource "google_compute_project_metadata" "project_metadata" {
+#  metadata {
+#    nomad_servers = "${join(",", google_compute_instance.server_instance.*.name)}"
+#  }
+#}
 
 #
 # The external DNS records for the Nomad servers.

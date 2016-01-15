@@ -24,14 +24,17 @@ job "consul-servers" {
 			value = "sys1"
 		}
 
-		task "agent" {
+		task "consul-server" {
 			driver = "docker"
 
 			config {
 				image = "gliderlabs/consul-server:latest"
 				network_mode="host"
 				command = "-server"
-				args=["-bootstrap-expect", "3", "-retry-join", "nomad-0"]
+				args=["-bootstrap-expect", "3",
+							"-retry-join", "default-nomad-0",
+							"-retry-join", "default-nomad-1",
+							"-retry-join", "default-nomad-2"]
 			}
 
 			resources {
@@ -39,7 +42,8 @@ job "consul-servers" {
 				memory = 256 # 256MB
 				network {
 					mbits = 10
-					port "db" {
+					port "consul-http" {
+						static="8500"
 					}
 				}
 			}
@@ -58,14 +62,16 @@ job "consul-servers" {
 			value = "dc1"
 		}
 
-		task "agent" {
+		task "consul-client" {
 			driver = "docker"
 
 			config {
 				image = "gliderlabs/consul-agent:latest"
 				network_mode="host"
 				command = "-retry-join"
-				args=["nomad-0"]
+				args=["default-nomad-0",
+							"-retry-join", "default-nomad-1",
+							"-retry-join", "default-nomad-2"]
 			}
 
 			resources {
@@ -73,7 +79,8 @@ job "consul-servers" {
 				memory = 256 # 256MB
 				network {
 					mbits = 10
-					port "db" {
+					port "consul-http" {
+						static="8500"
 					}
 				}
 			}

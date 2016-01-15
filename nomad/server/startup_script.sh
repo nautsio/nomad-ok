@@ -13,6 +13,7 @@ advertise {
 }
 
 client {
+  servers = ["default-nomad-0:4647", "default-nomad-1:4647", "default-nomad-2:4647"]
   node_class = "system"
 }
 
@@ -26,13 +27,12 @@ server {
   num_schedulers = 1
 
   # join other servers
-  retry_join = [ "nomad-0", "nomad-1", "nomad-2" ]
+  retry_join = [ "default-nomad-0", "default-nomad-1", "default-nomad-2" ]
 }
 
 telemetry {
   statsite_address = "localhost:8125"
 }
-
 EOF
 
 systemctl restart nomad

@@ -6,7 +6,7 @@ module "nomad-client" {
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
   disk_image = "${var.disk_image}"
   machine_type = "${var.nomad_client.machine_type}"
-#  instance = "${var.instance}"
+  instance = "${var.instance}"
 }
 
 module "nomad-server" {
@@ -19,5 +19,5 @@ module "nomad-server" {
   cluster_size = "${var.nomad_server.cluster_size}"
   disk_image = "${var.disk_image}"
   machine_type = "${var.nomad_server.machine_type}"
-#  instance = "${var.instance}"
+  instance = "${var.instance}"
 }

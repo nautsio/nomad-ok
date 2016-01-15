@@ -26,6 +26,10 @@ variable "internal" {
   }
 }
 
+variable "instance" {
+  default = "default"
+}
+
 variable "nomad_client" {
   default = {
     "groups" = 2

@@ -3,7 +3,7 @@
 #
 resource "google_compute_autoscaler" "nomad-client-scaler" {
   count = "${var.groups}"
-  name = "nomad-client-scaler-${count.index}"
+  name = "${var.instance}-nomad-client-scaler-${count.index}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   target = "${element(google_compute_instance_group_manager.nomad-client-group.*.self_link, count.index)}"
@@ -22,19 +22,19 @@ resource "google_compute_autoscaler" "nomad-client-scaler" {
 #
 resource "google_compute_instance_group_manager" "nomad-client-group" {
   count = "${var.groups}"
-  name = "nomad-client-scaler-${count.index}"
+  name = "${var.instance}-nomad-client-scaler-${count.index}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   description = "Group consisting of Nomad client nodes"
   instance_template = "${google_compute_instance_template.nomad-client.self_link}"
-  base_instance_name = "farm-${count.index}"
+  base_instance_name = "${var.instance}-farm-${count.index}"
 }
 
 #
 # A template that is used to create the Nomad client nodes.
 #
 resource "google_compute_instance_template" "nomad-client" {
-  name = "nomad-client"
+  name = "${var.instance}-nomad-client"
   description = "Template for Nomad client nodes"
   instance_description = "Nomad client node"
   machine_type = "${var.machine_type}"

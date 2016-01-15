@@ -1,3 +1,4 @@
+variable "instance" {}
 variable "zones" {}
 variable "cluster_size" {}
 variable "disk_image" {}
