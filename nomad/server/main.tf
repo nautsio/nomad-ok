@@ -1,6 +1,13 @@
 #
 # The Nomad server nodes.
 #
+resource "template_file" "startup_script_template" {
+  template = "${file(\"nomad/server/startup_script.sh.tpl\")}"
+  vars {
+    prefix = "${var.instance}-"
+  }
+}
+
 resource "google_compute_instance" "server_instance" {
   count = "${var.cluster_size}"
 
@@ -30,7 +37,7 @@ resource "google_compute_instance" "server_instance" {
     access_config {}
   }
 
-  metadata_startup_script = "${file(\"nomad/server/startup_script.sh\")}"
+  metadata_startup_script = "${template_file.startup_script_template.rendered}"
 }
 
 #resource "google_compute_project_metadata" "project_metadata" {

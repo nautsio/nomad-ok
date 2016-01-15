@@ -30,6 +30,13 @@ resource "google_compute_instance_group_manager" "nomad-client-group" {
   base_instance_name = "${var.instance}-farm-${count.index}"
 }
 
+resource "template_file" "startup_script_template" {
+  template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
+  vars {
+    prefix = "${var.instance}-"
+  }
+}
+
 #
 # A template that is used to create the Nomad client nodes.
 #
@@ -57,6 +64,6 @@ resource "google_compute_instance_template" "nomad-client" {
   }
 
   metadata {
-    startup-script = "${file(\"nomad/client/startup_script.sh\")}"
+    startup-script = "${template_file.startup_script_template.rendered}"
   }
 }
