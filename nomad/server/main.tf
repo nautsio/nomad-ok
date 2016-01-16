@@ -4,7 +4,7 @@
 resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/server/startup_script.sh.tpl\")}"
   vars {
-    prefix = "${var.instance}-"
+    prefix = "${var.stack}-"
     ssh_key = "${var.ssh_key}"
   }
 }
@@ -15,7 +15,7 @@ resource "google_compute_instance" "server_instance" {
   machine_type = "${var.machine_type}"
   zone = "${element(split(",", var.zones), count.index)}"
 
-  name = "${var.instance}-nomad-${count.index}"
+  name = "${var.stack}-nomad-${count.index}"
   description = "Nomad server node"
   tags = ["nomad", "server"]
 

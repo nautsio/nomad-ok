@@ -1,4 +1,4 @@
-variable "instance" {}
+variable "stack" {}
 variable "zones" {}
 variable "groups" {}
 variable "min_cluster_size" {}

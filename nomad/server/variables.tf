@@ -1,4 +1,4 @@
-variable "instance" {}
+variable "stack" {}
 variable "zones" {}
 variable "cluster_size" {}
 variable "disk_image" {}

@@ -3,7 +3,7 @@
 #
 resource "google_compute_autoscaler" "nomad-client-scaler" {
   count = "${var.groups}"
-  name = "${var.instance}-nomad-client-scaler-${count.index}"
+  name = "${var.stack}-nomad-client-scaler-${count.index}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   target = "${element(google_compute_instance_group_manager.nomad-client-group.*.self_link, count.index)}"
@@ -22,18 +22,18 @@ resource "google_compute_autoscaler" "nomad-client-scaler" {
 #
 resource "google_compute_instance_group_manager" "nomad-client-group" {
   count = "${var.groups}"
-  name = "${var.instance}-nomad-client-group-${count.index}"
+  name = "${var.stack}-nomad-client-group-${count.index}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   description = "Group consisting of Nomad client nodes"
   instance_template = "${google_compute_instance_template.nomad-client.self_link}"
-  base_instance_name = "${var.instance}-farm-${count.index}"
+  base_instance_name = "${var.stack}-farm-${count.index}"
 }
 
 resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
   vars {
-    prefix = "${var.instance}-"
+    prefix = "${var.stack}-"
     ssh_key = "${var.ssh_key}"
   }
 }
@@ -42,7 +42,7 @@ resource "template_file" "startup_script_template" {
 # A template that is used to create the Nomad client nodes.
 #
 resource "google_compute_instance_template" "nomad-client" {
-  name = "${var.instance}-nomad-client"
+  name = "${var.stack}-nomad-client"
   description = "Template for Nomad client nodes"
   instance_description = "Nomad client node"
   machine_type = "${var.machine_type}"

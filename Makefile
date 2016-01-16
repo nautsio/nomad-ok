@@ -16,6 +16,9 @@ ssh-key: $(STACK_DIR)/ssh-key
 $(STACK_DIR)/ssh-key:
 	ssh-keygen -t rsa -f $@ -N '' -C user@$(STACK)
 
+get:
+	terraform get
+
 plan: stack-dir ssh-key
 	terraform plan -module-depth=-1 $(TF_FLAGS)
 

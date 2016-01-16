@@ -26,7 +26,7 @@ variable "internal" {
   }
 }
 
-variable "instance" {
+variable "stack" {
   default = "default"
 }
 
