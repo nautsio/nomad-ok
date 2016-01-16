@@ -1,24 +1,24 @@
-module "networks" {
+module "network" {
   source = "./network"
 
-  stack = "${var.stack}"
+  name = "${var.stack}"
   range = "10.20.30.0/24"
 }
 
 module "external_dns" {
   source = "./dns"
 
-  name = "external-zone"
+  name = "${format("%s-external-zone", var.stack)}"
   description = "External zone"
-  domain = "gce.nauts.io."
+  domain = "${format("%s.%s", var.stack, var.external_domain)}"
 }
 
 module "internal_dns" {
   source = "./dns"
 
-  name = "internal-zone"
+  name = "${format("%s-internal-zone", var.stack)}"
   description = "Internal zone"
-  domain = "int.nauts.io."
+  domain = "${format("%s.%s", var.stack, var.internal_domain)}"
 }
 
 module "nomad_client" {
@@ -33,6 +33,7 @@ module "nomad_client" {
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
   machine_type = "${var.nomad_client.machine_type}"
   disk_image = "${var.disk_image}"
+  network = "${module.network.name}"
 }
 
 module "nomad_server" {
@@ -51,4 +52,5 @@ module "nomad_server" {
   cluster_size = "${var.nomad_server.cluster_size}"
   machine_type = "${var.nomad_server.machine_type}"
   disk_image = "${var.disk_image}"
+  network = "${module.network.name}"
 }

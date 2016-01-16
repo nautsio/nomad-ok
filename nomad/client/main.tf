@@ -60,7 +60,7 @@ resource "google_compute_instance_template" "nomad_client" {
   }
 
   network_interface {
-    network = "default"
+    network = "${var.network}"
     access_config {}
   }
 

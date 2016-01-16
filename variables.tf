@@ -14,16 +14,12 @@ variable "disk_image" {
   default = "nomad-ok-1452903405"
 }
 
-variable "external" {
-  default = {
-    "dns_name" = "gcloud.nauts.io."
-  }
+variable "external_domain" {
+  default = "gce.nauts.io."
 }
 
-variable "internal" {
-  default = {
-    "dns_name" = "local."
-  }
+variable "internal_domain" {
+  default = "local."
 }
 
 variable "stack" {

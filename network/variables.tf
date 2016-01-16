@@ -1,5 +1,2 @@
-variable "stack" {
-  default = "default"
-}
-
+variable "name" {}
 variable "range" {}
