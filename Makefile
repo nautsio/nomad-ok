@@ -1,32 +1,32 @@
-INSTANCE=default
-INSTANCE_DIR=instances/$(INSTANCE)
-STATE_FILE=$(INSTANCE_DIR)/terraform.tfstate
+STACK=eveld
+STACK_DIR=stacks/$(STACK)
+STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
-TF_FLAGS=-state $(STATE_FILE) -var 'instance=$(INSTANCE)' -var "ssh_key=$$(cat $(INSTANCE_DIR)/ssh-key.pub)" $(TF_DIR)
+TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
 
-.PHONY: instance-dir ssh-key plan apply show refresh destroy
+.PHONY: stack-dir ssh-key plan apply show refresh destroy
 
-instance-dir: $(INSTANCE_DIR)
+stack-dir: $(STACK_DIR)
 
-$(INSTANCE_DIR):
+$(STACK_DIR):
 	install -d $@
 
-ssh-key: $(INSTANCE_DIR)/ssh-key
+ssh-key: $(STACK_DIR)/ssh-key
 
-$(INSTANCE_DIR)/ssh-key:
-	ssh-keygen -t rsa -f $@ -N '' -C user@$(INSTANCE)
+$(STACK_DIR)/ssh-key:
+	ssh-keygen -t rsa -f $@ -N '' -C user@$(STACK)
 
-plan: instance-dir ssh-key
+plan: stack-dir ssh-key
 	terraform plan -module-depth=-1 $(TF_FLAGS)
 
-apply: instance-dir ssh-key
+apply: stack-dir ssh-key
 	terraform apply $(TF_FLAGS)
 
-show: instance-dir
+show: stack-dir
 	terraform show $(TF_FLAGS)
 
-refresh: instance-dir
+refresh: stack-dir
 	terraform refresh $(TF_FLAGS)
 
-destroy: instance-dir
+destroy: stack-dir
 	terraform destroy $(TF_FLAGS)

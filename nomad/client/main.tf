@@ -22,7 +22,7 @@ resource "google_compute_autoscaler" "nomad-client-scaler" {
 #
 resource "google_compute_instance_group_manager" "nomad-client-group" {
   count = "${var.groups}"
-  name = "${var.instance}-nomad-client-scaler-${count.index}"
+  name = "${var.instance}-nomad-client-group-${count.index}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   description = "Group consisting of Nomad client nodes"

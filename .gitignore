@@ -3,3 +3,4 @@ account.json
 *.tfstate
 *.tfstate.backup
 terraform.tfvars
+stacks
