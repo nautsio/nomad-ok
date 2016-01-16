@@ -4,6 +4,8 @@ STATE_FILE=$(INSTANCE_DIR)/terraform.tfstate
 TF_DIR=.
 TF_FLAGS=-state $(STATE_FILE) -var 'instance=$(INSTANCE)' -var "ssh_key=$$(cat $(INSTANCE_DIR)/ssh-key.pub)" $(TF_DIR)
 
+.PHONY: instance-dir ssh-key plan apply show refresh destroy
+
 instance-dir: $(INSTANCE_DIR)
 
 $(INSTANCE_DIR):
