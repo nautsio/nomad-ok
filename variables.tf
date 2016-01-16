@@ -11,7 +11,7 @@ variable "zones" {
 }
 
 variable "disk_image" {
-  default = "nomad-ok-1452554679"
+  default = "nomad-ok-1452903405"
 }
 
 variable "external" {
@@ -28,6 +28,10 @@ variable "internal" {
 
 variable "instance" {
   default = "default"
+}
+
+variable "ssh_key" {
+  default = ""
 }
 
 variable "nomad_client" {

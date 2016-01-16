@@ -1,0 +1,950 @@
+1452903405,,ui,say,googlecompute output will be in this color.
+1452903405,,ui,say,
+1452903405,,ui,say,==> googlecompute: Checking image does not exist...
+1452903406,,ui,say,==> googlecompute: Creating temporary SSH key for instance...
+1452903406,,ui,say,==> googlecompute: Creating instance...
+1452903406,,ui,message,    googlecompute: Loading zone: europe-west1-b
+1452903406,,ui,message,    googlecompute: Loading image: debian-8-jessie-v20151104 in project innovation-day-nomad
+1452903407,,ui,message,    googlecompute: Loading machine type: n1-standard-1
+1452903407,,ui,message,    googlecompute: Loading network: default
+1452903407,,ui,message,    googlecompute: Requesting instance creation...
+1452903409,,ui,message,    googlecompute: Waiting for creation operation to complete...
+1452903444,,ui,message,    googlecompute: Instance has been created!
+1452903444,,ui,say,==> googlecompute: Waiting for the instance to become running...
+1452903445,,ui,message,    googlecompute: IP: 130.211.84.0
+1452903445,,ui,say,==> googlecompute: Waiting for SSH to become available...
+1452903465,,ui,say,==> googlecompute: Connected to SSH!
+1452903465,,ui,say,==> googlecompute: Uploading files/ => /tmp
+1452903466,,ui,say,==> googlecompute: Provisioning with shell script: scripts/packages.sh
+1452903466,,ui,message,    googlecompute: Get:1 http://security.debian.org jessie/updates InRelease [63.1 kB]
+1452903466,,ui,message,    googlecompute: Get:2 http://security.debian.org jessie/updates/main amd64 Packages [190 kB]
+1452903466,,ui,message,    googlecompute: Get:3 http://security.debian.org jessie/updates/main Translation-en [102 kB]
+1452903466,,ui,message,    googlecompute: Ign http://httpredir.debian.org jessie InRelease
+1452903466,,ui,message,    googlecompute: Get:4 http://httpredir.debian.org jessie-updates InRelease [136 kB]
+1452903467,,ui,message,    googlecompute: Ign http://http.debian.net jessie InRelease
+1452903467,,ui,message,    googlecompute: Get:5 http://http.debian.net jessie-backports InRelease [166 kB]
+1452903467,,ui,message,    googlecompute: Get:6 http://httpredir.debian.org jessie-backports InRelease [166 kB]
+1452903467,,ui,message,    googlecompute: Hit http://http.debian.net jessie Release.gpg
+1452903467,,ui,message,    googlecompute: Get:7 http://http.debian.net jessie-backports/main Sources/DiffIndex [27.8 kB]
+1452903468,,ui,message,    googlecompute: Get:8 http://http.debian.net jessie-backports/main amd64 Packages/DiffIndex [26.4 kB]
+1452903468,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release.gpg
+1452903468,,ui,message,    googlecompute: Get:9 http://http.debian.net jessie-backports/main Translation-en/DiffIndex [14.1 kB]
+1452903468,,ui,message,    googlecompute: Get:10 http://httpredir.debian.org jessie-updates/main amd64 Packages/DiffIndex [367 B]
+1452903468,,ui,message,    googlecompute: Get:11 http://httpredir.debian.org jessie-updates/main Translation-en [2%!(PACKER_COMMA)506 B]
+1452903468,,ui,message,    googlecompute: Hit http://http.debian.net jessie Release
+1452903468,,ui,message,    googlecompute: Get:12 http://httpredir.debian.org jessie-backports/main Sources/DiffIndex [27.8 kB]
+1452903468,,ui,message,    googlecompute: Get:13 http://http.debian.net jessie-backports/main 2015-11-11-1442.54.pdiff [5%!(PACKER_COMMA)204 B]
+1452903468,,ui,message,    googlecompute: Get:14 http://httpredir.debian.org jessie-backports/main amd64 Packages/DiffIndex [26.4 kB]
+1452903468,,ui,message,    googlecompute: Get:15 http://http.debian.net jessie-backports/main 2015-11-12-2041.22.pdiff [387 B]
+1452903468,,ui,message,    googlecompute: Get:16 http://http.debian.net jessie-backports/main 2015-11-11-2039.03.pdiff [1%!(PACKER_COMMA)622 B]
+1452903468,,ui,message,    googlecompute: Get:17 http://httpredir.debian.org jessie-backports/main Translation-en/DiffIndex [14.1 kB]
+1452903468,,ui,message,    googlecompute: Get:18 http://http.debian.net jessie-backports/main 2015-11-15-1442.46.pdiff [31 B]
+1452903468,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release
+1452903468,,ui,message,    googlecompute: Get:19 http://http.debian.net jessie-backports/main 2015-11-16-1445.00.pdiff [67 B]
+1452903469,,ui,message,    googlecompute: Get:20 http://http.debian.net jessie-backports/main 2015-11-18-1441.26.pdiff [4%!(PACKER_COMMA)838 B]
+1452903469,,ui,message,    googlecompute: Get:21 http://http.debian.net jessie-backports/main 2015-11-18-2043.43.pdiff [375 B]
+1452903469,,ui,message,    googlecompute: Get:22 http://http.debian.net jessie-backports/main 2015-11-20-0844.39.pdiff [817 B]
+1452903469,,ui,message,    googlecompute: Get:23 http://httpredir.debian.org jessie-backports/main 2015-11-11-1442.54.pdiff [5%!(PACKER_COMMA)204 B]
+1452903469,,ui,message,    googlecompute: Get:24 http://http.debian.net jessie-backports/main 2015-11-20-1443.29.pdiff [42 B]
+1452903469,,ui,message,    googlecompute: Get:25 http://http.debian.net jessie-backports/main 2015-11-22-0245.34.pdiff [490 B]
+1452903469,,ui,message,    googlecompute: Get:26 http://httpredir.debian.org jessie-backports/main 2015-11-11-2039.03.pdiff [1%!(PACKER_COMMA)622 B]
+1452903469,,ui,message,    googlecompute: Get:27 http://http.debian.net jessie-backports/main 2015-11-23-0245.42.pdiff [446 B]
+1452903469,,ui,message,    googlecompute: Get:28 http://httpredir.debian.org jessie-backports/main 2015-11-12-2041.22.pdiff [387 B]
+1452903469,,ui,message,    googlecompute: Get:29 http://http.debian.net jessie-backports/main 2015-11-23-0844.15.pdiff [33 B]
+1452903469,,ui,message,    googlecompute: Get:30 http://httpredir.debian.org jessie-backports/main 2015-11-15-1442.46.pdiff [31 B]
+1452903469,,ui,message,    googlecompute: Get:31 http://http.debian.net jessie-backports/main 2015-11-26-0243.36.pdiff [4%!(PACKER_COMMA)217 B]
+1452903470,,ui,message,    googlecompute: Get:32 http://http.debian.net jessie-backports/main 2015-11-27-1443.13.pdiff [698 B]
+1452903470,,ui,message,    googlecompute: Get:33 http://httpredir.debian.org jessie-backports/main 2015-11-16-1445.00.pdiff [67 B]
+1452903470,,ui,message,    googlecompute: Get:34 http://http.debian.net jessie-backports/main 2015-11-30-0242.42.pdiff [473 B]
+1452903470,,ui,message,    googlecompute: Get:35 http://httpredir.debian.org jessie-backports/main 2015-11-18-1441.26.pdiff [4%!(PACKER_COMMA)838 B]
+1452903470,,ui,message,    googlecompute: Get:36 http://http.debian.net jessie-backports/main 2015-11-30-1441.40.pdiff [2%!(PACKER_COMMA)254 B]
+1452903470,,ui,message,    googlecompute: Get:37 http://httpredir.debian.org jessie-backports/main 2015-11-18-2043.43.pdiff [375 B]
+1452903470,,ui,message,    googlecompute: Get:38 http://http.debian.net jessie-backports/main 2015-12-01-1440.30.pdiff [44 B]
+1452903470,,ui,message,    googlecompute: Get:39 http://httpredir.debian.org jessie-backports/main 2015-11-20-0844.39.pdiff [817 B]
+1452903470,,ui,message,    googlecompute: Get:40 http://http.debian.net jessie-backports/main 2015-12-04-1442.46.pdiff [1%!(PACKER_COMMA)638 B]
+1452903470,,ui,message,    googlecompute: Get:41 http://httpredir.debian.org jessie-backports/main 2015-11-20-1443.29.pdiff [42 B]
+1452903470,,ui,message,    googlecompute: Get:42 http://http.debian.net jessie-backports/main 2015-12-06-2044.12.pdiff [355 B]
+1452903471,,ui,message,    googlecompute: Get:43 http://http.debian.net jessie-backports/main 2015-12-07-0324.04.pdiff [2%!(PACKER_COMMA)111 B]
+1452903471,,ui,message,    googlecompute: Get:44 http://httpredir.debian.org jessie-backports/main 2015-11-22-0245.34.pdiff [490 B]
+1452903471,,ui,message,    googlecompute: Get:45 http://http.debian.net jessie-backports/main 2015-12-15-1450.01.pdiff [738 B]
+1452903471,,ui,message,    googlecompute: Get:46 http://http.debian.net jessie-backports/main 2015-12-14-1445.45.pdiff [3%!(PACKER_COMMA)557 B]
+1452903471,,ui,message,    googlecompute: Get:47 http://httpredir.debian.org jessie-backports/main 2015-11-23-0245.42.pdiff [446 B]
+1452903471,,ui,message,    googlecompute: Get:48 http://http.debian.net jessie-backports/main 2015-12-17-1456.02.pdiff [60 B]
+1452903471,,ui,message,    googlecompute: Get:49 http://httpredir.debian.org jessie-backports/main 2015-11-23-0844.15.pdiff [33 B]
+1452903471,,ui,message,    googlecompute: Get:50 http://http.debian.net jessie-backports/main 2015-12-21-1447.42.pdiff [45.9 kB]
+1452903471,,ui,message,    googlecompute: Get:51 http://http.debian.net jessie-backports/main 2015-12-23-2046.40.pdiff [40 B]
+1452903471,,ui,message,    googlecompute: Get:52 http://httpredir.debian.org jessie-backports/main 2015-11-26-0243.36.pdiff [4%!(PACKER_COMMA)217 B]
+1452903471,,ui,message,    googlecompute: Get:53 http://httpredir.debian.org jessie-backports/main 2015-11-27-1443.13.pdiff [698 B]
+1452903471,,ui,message,    googlecompute: Get:54 http://httpredir.debian.org jessie-backports/main 2015-11-30-0242.42.pdiff [473 B]
+1452903471,,ui,message,    googlecompute: Get:55 http://http.debian.net jessie-backports/main 2015-12-24-0249.42.pdiff [51 B]
+1452903472,,ui,message,    googlecompute: Get:56 http://http.debian.net jessie-backports/main 2015-12-24-0849.08.pdiff [33 B]
+1452903472,,ui,message,    googlecompute: Get:57 http://httpredir.debian.org jessie-backports/main 2015-11-30-1441.40.pdiff [2%!(PACKER_COMMA)254 B]
+1452903472,,ui,message,    googlecompute: Get:58 http://http.debian.net jessie-backports/main 2015-12-28-1451.57.pdiff [5%!(PACKER_COMMA)159 B]
+1452903472,,ui,message,    googlecompute: Get:59 http://http.debian.net jessie-backports/main 2015-12-25-1447.54.pdiff [462 B]
+1452903472,,ui,message,    googlecompute: Get:60 http://httpredir.debian.org jessie-backports/main 2015-12-01-1440.30.pdiff [44 B]
+1452903472,,ui,message,    googlecompute: Get:61 http://http.debian.net jessie-backports/main 2015-12-28-2051.01.pdiff [1%!(PACKER_COMMA)405 B]
+1452903472,,ui,message,    googlecompute: Get:62 http://httpredir.debian.org jessie-backports/main 2015-12-04-1442.46.pdiff [1%!(PACKER_COMMA)638 B]
+1452903472,,ui,message,    googlecompute: Get:63 http://http.debian.net jessie-backports/main 2015-12-29-0247.43.pdiff [1%!(PACKER_COMMA)034 B]
+1452903472,,ui,message,    googlecompute: Get:64 http://httpredir.debian.org jessie-backports/main 2015-12-06-2044.12.pdiff [355 B]
+1452903472,,ui,message,    googlecompute: Get:65 http://http.debian.net jessie-backports/main 2015-12-29-0846.49.pdiff [676 B]
+1452903472,,ui,message,    googlecompute: Get:66 http://http.debian.net jessie-backports/main 2015-12-29-2228.00.pdiff [670 B]
+1452903472,,ui,message,    googlecompute: Get:67 http://httpredir.debian.org jessie-backports/main 2015-12-07-0324.04.pdiff [2%!(PACKER_COMMA)111 B]
+1452903472,,ui,message,    googlecompute: Get:68 http://httpredir.debian.org jessie-backports/main 2015-12-14-1445.45.pdiff [3%!(PACKER_COMMA)557 B]
+1452903472,,ui,message,    googlecompute: Get:69 http://http.debian.net jessie-backports/main 2015-12-30-2046.03.pdiff [185 B]
+1452903472,,ui,message,    googlecompute: Get:70 http://http.debian.net jessie-backports/main 2016-01-04-1517.51.pdiff [8%!(PACKER_COMMA)000 B]
+1452903472,,ui,message,    googlecompute: Get:71 http://httpredir.debian.org jessie-backports/main 2015-12-15-1450.01.pdiff [738 B]
+1452903472,,ui,message,    googlecompute: Get:72 http://http.debian.net jessie-backports/main 2016-01-01-2045.53.pdiff [4%!(PACKER_COMMA)428 B]
+1452903473,,ui,message,    googlecompute: Get:73 http://httpredir.debian.org jessie-backports/main 2015-12-17-1456.02.pdiff [60 B]
+1452903473,,ui,message,    googlecompute: Get:74 http://http.debian.net jessie-backports/main 2016-01-08-1447.49.pdiff [215 B]
+1452903473,,ui,message,    googlecompute: Get:75 http://http.debian.net jessie-backports/main 2016-01-11-0245.39.pdiff [4%!(PACKER_COMMA)481 B]
+1452903473,,ui,message,    googlecompute: Get:76 http://http.debian.net jessie-backports/main 2016-01-11-0245.39.pdiff [4%!(PACKER_COMMA)481 B]
+1452903473,,ui,message,    googlecompute: Get:77 http://httpredir.debian.org jessie-backports/main 2015-12-21-1447.42.pdiff [45.9 kB]
+1452903473,,ui,message,    googlecompute: Get:78 http://httpredir.debian.org jessie-backports/main 2015-12-23-2046.40.pdiff [40 B]
+1452903473,,ui,message,    googlecompute: Hit http://http.debian.net jessie/main Sources
+1452903473,,ui,message,    googlecompute: Get:79 http://httpredir.debian.org jessie-backports/main 2015-12-24-0249.42.pdiff [51 B]
+1452903473,,ui,message,    googlecompute: Hit http://http.debian.net jessie/main amd64 Packages
+1452903473,,ui,message,    googlecompute: Get:80 http://httpredir.debian.org jessie-backports/main 2015-12-24-0849.08.pdiff [33 B]
+1452903473,,ui,message,    googlecompute: Get:81 http://httpredir.debian.org jessie-backports/main 2015-12-25-1447.54.pdiff [462 B]
+1452903473,,ui,message,    googlecompute: Hit http://http.debian.net jessie/main Translation-en
+1452903474,,ui,message,    googlecompute: Get:82 http://http.debian.net jessie-backports/main amd64 Packages [365 kB]
+1452903474,,ui,message,    googlecompute: Get:83 http://http.debian.net jessie-backports/main Sources [309 kB]
+1452903474,,ui,message,    googlecompute: Get:84 http://httpredir.debian.org jessie-backports/main 2015-12-28-1451.57.pdiff [5%!(PACKER_COMMA)159 B]
+1452903474,,ui,message,    googlecompute: Get:85 http://httpredir.debian.org jessie-backports/main 2015-12-28-2051.01.pdiff [1%!(PACKER_COMMA)405 B]
+1452903474,,ui,message,    googlecompute: Get:86 http://httpredir.debian.org jessie-backports/main 2015-12-29-0247.43.pdiff [1%!(PACKER_COMMA)034 B]
+1452903474,,ui,message,    googlecompute: Get:87 http://httpredir.debian.org jessie-backports/main 2015-12-29-0846.49.pdiff [676 B]
+1452903474,,ui,message,    googlecompute: Get:88 http://httpredir.debian.org jessie-backports/main 2015-12-29-2228.00.pdiff [670 B]
+1452903474,,ui,message,    googlecompute: Get:89 http://httpredir.debian.org jessie-backports/main 2015-12-30-2046.03.pdiff [185 B]
+1452903475,,ui,message,    googlecompute: Get:90 http://httpredir.debian.org jessie-backports/main 2016-01-01-2045.53.pdiff [4%!(PACKER_COMMA)428 B]
+1452903475,,ui,message,    googlecompute: Get:91 http://httpredir.debian.org jessie-backports/main 2016-01-04-1517.51.pdiff [8%!(PACKER_COMMA)000 B]
+1452903475,,ui,message,    googlecompute: Get:92 http://httpredir.debian.org jessie-backports/main 2016-01-08-1447.49.pdiff [215 B]
+1452903475,,ui,message,    googlecompute: Get:93 http://httpredir.debian.org jessie-backports/main 2016-01-11-0245.39.pdiff [4%!(PACKER_COMMA)481 B]
+1452903475,,ui,message,    googlecompute: Get:94 http://httpredir.debian.org jessie-backports/main 2016-01-11-0245.39.pdiff [4%!(PACKER_COMMA)481 B]
+1452903475,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main amd64 Packages
+1452903475,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main Translation-en
+1452903476,,ui,message,    googlecompute: Get:95 http://httpredir.debian.org jessie-backports/main Sources [309 kB]
+1452903476,,ui,message,    googlecompute: Get:96 http://httpredir.debian.org jessie-backports/main amd64 Packages [365 kB]
+1452903478,,ui,message,    googlecompute: Fetched 2%!(PACKER_COMMA)516 kB in 11s (215 kB/s)
+1452903480,,ui,message,    googlecompute: Reading package lists...
+1452903480,,ui,message,    googlecompute: Reading package lists...
+1452903480,,ui,message,    googlecompute: Building dependency tree...
+1452903480,,ui,message,    googlecompute: Reading state information...
+1452903480,,ui,message,    googlecompute: curl is already the newest version.
+1452903480,,ui,message,    googlecompute: The following extra packages will be installed:
+1452903480,,ui,message,    googlecompute: binutils cpp-4.8 gcc-4.8 libasan0 libatomic1 libc-dev-bin libc6-dev
+1452903480,,ui,message,    googlecompute: libcloog-isl4 libgcc-4.8-dev libgomp1 libisl10 libitm1 libmpc3 libmpfr4
+1452903480,,ui,message,    googlecompute: libquadmath0 libtsan0 linux-compiler-gcc-4.8-x86
+1452903480,,ui,message,    googlecompute: linux-headers-3.16.0-4-common linux-kbuild-3.16 linux-libc-dev manpages-dev
+1452903480,,ui,message,    googlecompute: Suggested packages:
+1452903480,,ui,message,    googlecompute: binutils-doc gcc-4.8-locales gcc-4.8-multilib gcc-4.8-doc libgcc1-dbg
+1452903480,,ui,message,    googlecompute: libgomp1-dbg libitm1-dbg libatomic1-dbg libasan0-dbg libtsan0-dbg
+1452903480,,ui,message,    googlecompute: libquadmath0-dbg glibc-doc zip
+1452903480,,ui,message,    googlecompute: The following NEW packages will be installed:
+1452903480,,ui,message,    googlecompute: binutils cpp-4.8 gcc-4.8 jq libasan0 libatomic1 libc-dev-bin libc6-dev
+1452903480,,ui,message,    googlecompute: libcloog-isl4 libgcc-4.8-dev libgomp1 libisl10 libitm1 libmpc3 libmpfr4
+1452903480,,ui,message,    googlecompute: libquadmath0 libtsan0 linux-compiler-gcc-4.8-x86
+1452903480,,ui,message,    googlecompute: linux-headers-3.16.0-4-amd64 linux-headers-3.16.0-4-common linux-kbuild-3.16
+1452903480,,ui,message,    googlecompute: linux-libc-dev manpages-dev unzip
+1452903480,,ui,message,    googlecompute: 0 upgraded%!(PACKER_COMMA) 24 newly installed%!(PACKER_COMMA) 0 to remove and 25 not upgraded.
+1452903480,,ui,message,    googlecompute: Need to get 26.9 MB of archives.
+1452903480,,ui,message,    googlecompute: After this operation%!(PACKER_COMMA) 105 MB of additional disk space will be used.
+1452903480,,ui,message,    googlecompute: Get:1 http://security.debian.org/ jessie/updates/main linux-libc-dev amd64 3.16.7-ckt20-1+deb8u2 [1%!(PACKER_COMMA)008 kB]
+1452903481,,ui,message,    googlecompute: Get:2 http://security.debian.org/ jessie/updates/main linux-compiler-gcc-4.8-x86 amd64 3.16.7-ckt20-1+deb8u2 [308 kB]
+1452903481,,ui,message,    googlecompute: Get:3 http://security.debian.org/ jessie/updates/main linux-headers-3.16.0-4-common amd64 3.16.7-ckt20-1+deb8u2 [4%!(PACKER_COMMA)502 kB]
+1452903481,,ui,message,    googlecompute: Get:4 http://security.debian.org/ jessie/updates/main linux-headers-3.16.0-4-amd64 amd64 3.16.7-ckt20-1+deb8u2 [453 kB]
+1452903481,,ui,message,    googlecompute: Get:5 http://security.debian.org/ jessie/updates/main unzip amd64 6.0-16+deb8u2 [162 kB]
+1452903481,,ui,message,    googlecompute: Get:6 http://httpredir.debian.org/debian/ jessie/main libasan0 amd64 4.8.4-1 [63.3 kB]
+1452903481,,ui,message,    googlecompute: Get:7 http://httpredir.debian.org/debian/ jessie/main libatomic1 amd64 4.9.2-10 [8%!(PACKER_COMMA)992 B]
+1452903481,,ui,message,    googlecompute: Get:8 http://httpredir.debian.org/debian/ jessie/main libisl10 amd64 0.12.2-2 [440 kB]
+1452903482,,ui,message,    googlecompute: Get:9 http://httpredir.debian.org/debian/ jessie/main libcloog-isl4 amd64 0.18.2-1+b2 [61.8 kB]
+1452903482,,ui,message,    googlecompute: Get:10 http://httpredir.debian.org/debian/ jessie/main libgomp1 amd64 4.9.2-10 [37.8 kB]
+1452903483,,ui,message,    googlecompute: Get:11 http://httpredir.debian.org/debian/ jessie/main libitm1 amd64 4.9.2-10 [29.2 kB]
+1452903483,,ui,message,    googlecompute: Get:12 http://httpredir.debian.org/debian/ jessie/main libmpfr4 amd64 3.1.2-2 [527 kB]
+1452903483,,ui,message,    googlecompute: Get:13 http://httpredir.debian.org/debian/ jessie/main libquadmath0 amd64 4.9.2-10 [129 kB]
+1452903484,,ui,message,    googlecompute: Get:14 http://httpredir.debian.org/debian/ jessie/main libtsan0 amd64 4.9.2-10 [212 kB]
+1452903484,,ui,message,    googlecompute: Get:15 http://httpredir.debian.org/debian/ jessie/main libmpc3 amd64 1.0.2-1 [39.3 kB]
+1452903484,,ui,message,    googlecompute: Get:16 http://httpredir.debian.org/debian/ jessie/main binutils amd64 2.25-5 [3%!(PACKER_COMMA)516 kB]
+1452903488,,ui,message,    googlecompute: Get:17 http://httpredir.debian.org/debian/ jessie/main cpp-4.8 amd64 4.8.4-1 [4%!(PACKER_COMMA)577 kB]
+1452903491,,ui,message,    googlecompute: Get:18 http://httpredir.debian.org/debian/ jessie/main libgcc-4.8-dev amd64 4.8.4-1 [1%!(PACKER_COMMA)689 kB]
+1452903493,,ui,message,    googlecompute: Get:19 http://httpredir.debian.org/debian/ jessie/main gcc-4.8 amd64 4.8.4-1 [4%!(PACKER_COMMA)787 kB]
+1452903498,,ui,message,    googlecompute: Get:20 http://httpredir.debian.org/debian/ jessie/main jq amd64 1.4-2.1 [102 kB]
+1452903498,,ui,message,    googlecompute: Get:21 http://httpredir.debian.org/debian/ jessie/main libc-dev-bin amd64 2.19-18+deb8u1 [237 kB]
+1452903498,,ui,message,    googlecompute: Get:22 http://httpredir.debian.org/debian/ jessie/main libc6-dev amd64 2.19-18+deb8u1 [1%!(PACKER_COMMA)998 kB]
+1452903500,,ui,message,    googlecompute: Get:23 http://httpredir.debian.org/debian/ jessie/main linux-kbuild-3.16 amd64 3.16-3 [173 kB]
+1452903500,,ui,message,    googlecompute: Get:24 http://httpredir.debian.org/debian/ jessie/main manpages-dev all 3.74-1 [1%!(PACKER_COMMA)865 kB]
+1452903502,,ui,message,    googlecompute: Fetched 26.9 MB in 20s (1%!(PACKER_COMMA)285 kB/s)
+1452903502,,ui,message,    googlecompute: Selecting previously unselected package libasan0:amd64.
+1452903503,,ui,message,    googlecompute: (Reading database ... 18097 files and directories currently installed.)
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libasan0_4.8.4-1_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libasan0:amd64 (4.8.4-1) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libatomic1:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libatomic1_4.9.2-10_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libatomic1:amd64 (4.9.2-10) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libisl10:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libisl10_0.12.2-2_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libisl10:amd64 (0.12.2-2) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libcloog-isl4:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libcloog-isl4_0.18.2-1+b2_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libcloog-isl4:amd64 (0.18.2-1+b2) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libgomp1:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libgomp1_4.9.2-10_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libgomp1:amd64 (4.9.2-10) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libitm1:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libitm1_4.9.2-10_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libitm1:amd64 (4.9.2-10) ...
+1452903503,,ui,message,    googlecompute: Selecting previously unselected package libmpfr4:amd64.
+1452903503,,ui,message,    googlecompute: Preparing to unpack .../libmpfr4_3.1.2-2_amd64.deb ...
+1452903503,,ui,message,    googlecompute: Unpacking libmpfr4:amd64 (3.1.2-2) ...
+1452903504,,ui,message,    googlecompute: Selecting previously unselected package libquadmath0:amd64.
+1452903504,,ui,message,    googlecompute: Preparing to unpack .../libquadmath0_4.9.2-10_amd64.deb ...
+1452903504,,ui,message,    googlecompute: Unpacking libquadmath0:amd64 (4.9.2-10) ...
+1452903504,,ui,message,    googlecompute: Selecting previously unselected package libtsan0:amd64.
+1452903504,,ui,message,    googlecompute: Preparing to unpack .../libtsan0_4.9.2-10_amd64.deb ...
+1452903504,,ui,message,    googlecompute: Unpacking libtsan0:amd64 (4.9.2-10) ...
+1452903504,,ui,message,    googlecompute: Selecting previously unselected package libmpc3:amd64.
+1452903504,,ui,message,    googlecompute: Preparing to unpack .../libmpc3_1.0.2-1_amd64.deb ...
+1452903504,,ui,message,    googlecompute: Unpacking libmpc3:amd64 (1.0.2-1) ...
+1452903504,,ui,message,    googlecompute: Selecting previously unselected package binutils.
+1452903504,,ui,message,    googlecompute: Preparing to unpack .../binutils_2.25-5_amd64.deb ...
+1452903504,,ui,message,    googlecompute: Unpacking binutils (2.25-5) ...
+1452903504,,ui,message,    googlecompute: Selecting previously unselected package cpp-4.8.
+1452903504,,ui,message,    googlecompute: Preparing to unpack .../cpp-4.8_4.8.4-1_amd64.deb ...
+1452903504,,ui,message,    googlecompute: Unpacking cpp-4.8 (4.8.4-1) ...
+1452903505,,ui,message,    googlecompute: Selecting previously unselected package libgcc-4.8-dev:amd64.
+1452903505,,ui,message,    googlecompute: Preparing to unpack .../libgcc-4.8-dev_4.8.4-1_amd64.deb ...
+1452903505,,ui,message,    googlecompute: Unpacking libgcc-4.8-dev:amd64 (4.8.4-1) ...
+1452903505,,ui,message,    googlecompute: Selecting previously unselected package gcc-4.8.
+1452903505,,ui,message,    googlecompute: Preparing to unpack .../gcc-4.8_4.8.4-1_amd64.deb ...
+1452903505,,ui,message,    googlecompute: Unpacking gcc-4.8 (4.8.4-1) ...
+1452903506,,ui,message,    googlecompute: Selecting previously unselected package jq.
+1452903506,,ui,message,    googlecompute: Preparing to unpack .../archives/jq_1.4-2.1_amd64.deb ...
+1452903506,,ui,message,    googlecompute: Unpacking jq (1.4-2.1) ...
+1452903506,,ui,message,    googlecompute: Selecting previously unselected package libc-dev-bin.
+1452903506,,ui,message,    googlecompute: Preparing to unpack .../libc-dev-bin_2.19-18+deb8u1_amd64.deb ...
+1452903506,,ui,message,    googlecompute: Unpacking libc-dev-bin (2.19-18+deb8u1) ...
+1452903506,,ui,message,    googlecompute: Selecting previously unselected package linux-libc-dev:amd64.
+1452903506,,ui,message,    googlecompute: Preparing to unpack .../linux-libc-dev_3.16.7-ckt20-1+deb8u2_amd64.deb ...
+1452903506,,ui,message,    googlecompute: Unpacking linux-libc-dev:amd64 (3.16.7-ckt20-1+deb8u2) ...
+1452903508,,ui,message,    googlecompute: Selecting previously unselected package libc6-dev:amd64.
+1452903508,,ui,message,    googlecompute: Preparing to unpack .../libc6-dev_2.19-18+deb8u1_amd64.deb ...
+1452903508,,ui,message,    googlecompute: Unpacking libc6-dev:amd64 (2.19-18+deb8u1) ...
+1452903509,,ui,message,    googlecompute: Selecting previously unselected package linux-compiler-gcc-4.8-x86.
+1452903509,,ui,message,    googlecompute: Preparing to unpack .../linux-compiler-gcc-4.8-x86_3.16.7-ckt20-1+deb8u2_amd64.deb ...
+1452903509,,ui,message,    googlecompute: Unpacking linux-compiler-gcc-4.8-x86 (3.16.7-ckt20-1+deb8u2) ...
+1452903509,,ui,message,    googlecompute: Selecting previously unselected package linux-headers-3.16.0-4-common.
+1452903509,,ui,message,    googlecompute: Preparing to unpack .../linux-headers-3.16.0-4-common_3.16.7-ckt20-1+deb8u2_amd64.deb ...
+1452903509,,ui,message,    googlecompute: Unpacking linux-headers-3.16.0-4-common (3.16.7-ckt20-1+deb8u2) ...
+1452903513,,ui,message,    googlecompute: Selecting previously unselected package linux-kbuild-3.16.
+1452903513,,ui,message,    googlecompute: Preparing to unpack .../linux-kbuild-3.16_3.16-3_amd64.deb ...
+1452903513,,ui,message,    googlecompute: Unpacking linux-kbuild-3.16 (3.16-3) ...
+1452903513,,ui,message,    googlecompute: Selecting previously unselected package linux-headers-3.16.0-4-amd64.
+1452903513,,ui,message,    googlecompute: Preparing to unpack .../linux-headers-3.16.0-4-amd64_3.16.7-ckt20-1+deb8u2_amd64.deb ...
+1452903513,,ui,message,    googlecompute: Unpacking linux-headers-3.16.0-4-amd64 (3.16.7-ckt20-1+deb8u2) ...
+1452903514,,ui,message,    googlecompute: Selecting previously unselected package manpages-dev.
+1452903514,,ui,message,    googlecompute: Preparing to unpack .../manpages-dev_3.74-1_all.deb ...
+1452903514,,ui,message,    googlecompute: Unpacking manpages-dev (3.74-1) ...
+1452903515,,ui,message,    googlecompute: Selecting previously unselected package unzip.
+1452903515,,ui,message,    googlecompute: Preparing to unpack .../unzip_6.0-16+deb8u2_amd64.deb ...
+1452903515,,ui,message,    googlecompute: Unpacking unzip (6.0-16+deb8u2) ...
+1452903515,,ui,message,    googlecompute: Processing triggers for man-db (2.7.0.2-5) ...
+1452903516,,ui,message,    googlecompute: Processing triggers for mime-support (3.58) ...
+1452903516,,ui,message,    googlecompute: Setting up libasan0:amd64 (4.8.4-1) ...
+1452903516,,ui,message,    googlecompute: Setting up libatomic1:amd64 (4.9.2-10) ...
+1452903516,,ui,message,    googlecompute: Setting up libisl10:amd64 (0.12.2-2) ...
+1452903516,,ui,message,    googlecompute: Setting up libcloog-isl4:amd64 (0.18.2-1+b2) ...
+1452903517,,ui,message,    googlecompute: Setting up libgomp1:amd64 (4.9.2-10) ...
+1452903517,,ui,message,    googlecompute: Setting up libitm1:amd64 (4.9.2-10) ...
+1452903517,,ui,message,    googlecompute: Setting up libmpfr4:amd64 (3.1.2-2) ...
+1452903517,,ui,message,    googlecompute: Setting up libquadmath0:amd64 (4.9.2-10) ...
+1452903517,,ui,message,    googlecompute: Setting up libtsan0:amd64 (4.9.2-10) ...
+1452903517,,ui,message,    googlecompute: Setting up libmpc3:amd64 (1.0.2-1) ...
+1452903517,,ui,message,    googlecompute: Setting up binutils (2.25-5) ...
+1452903517,,ui,message,    googlecompute: Setting up cpp-4.8 (4.8.4-1) ...
+1452903517,,ui,message,    googlecompute: Setting up libgcc-4.8-dev:amd64 (4.8.4-1) ...
+1452903517,,ui,message,    googlecompute: Setting up gcc-4.8 (4.8.4-1) ...
+1452903517,,ui,message,    googlecompute: Setting up jq (1.4-2.1) ...
+1452903517,,ui,message,    googlecompute: Setting up libc-dev-bin (2.19-18+deb8u1) ...
+1452903517,,ui,message,    googlecompute: Setting up linux-libc-dev:amd64 (3.16.7-ckt20-1+deb8u2) ...
+1452903517,,ui,message,    googlecompute: Setting up libc6-dev:amd64 (2.19-18+deb8u1) ...
+1452903517,,ui,message,    googlecompute: Setting up linux-compiler-gcc-4.8-x86 (3.16.7-ckt20-1+deb8u2) ...
+1452903517,,ui,message,    googlecompute: Setting up linux-headers-3.16.0-4-common (3.16.7-ckt20-1+deb8u2) ...
+1452903517,,ui,message,    googlecompute: Setting up linux-kbuild-3.16 (3.16-3) ...
+1452903517,,ui,message,    googlecompute: Setting up linux-headers-3.16.0-4-amd64 (3.16.7-ckt20-1+deb8u2) ...
+1452903517,,ui,message,    googlecompute: Setting up manpages-dev (3.74-1) ...
+1452903517,,ui,message,    googlecompute: Setting up unzip (6.0-16+deb8u2) ...
+1452903517,,ui,message,    googlecompute: Processing triggers for libc-bin (2.19-18+deb8u1) ...
+1452903518,,ui,message,    googlecompute: Reading package lists...
+1452903518,,ui,message,    googlecompute: Building dependency tree...
+1452903518,,ui,message,    googlecompute: Reading state information...
+1452903518,,ui,message,    googlecompute: linux-headers-3.16.0-4-amd64 is already the newest version.
+1452903518,,ui,message,    googlecompute: 0 upgraded%!(PACKER_COMMA) 0 newly installed%!(PACKER_COMMA) 0 to remove and 25 not upgraded.
+1452903518,,ui,say,==> googlecompute: Provisioning with shell script: scripts/docker.sh
+1452903519,,ui,message,    googlecompute: + sh -c sleep 3; apt-get update
+1452903522,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates InRelease
+1452903522,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates/main amd64 Packages
+1452903522,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates/main Translation-en
+1452903522,,ui,message,    googlecompute: Ign http://httpredir.debian.org jessie InRelease
+1452903522,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-updates InRelease
+1452903522,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-backports InRelease
+1452903522,,ui,message,    googlecompute: Get:1 http://httpredir.debian.org jessie-updates/main amd64 Packages/DiffIndex [367 B]
+1452903522,,ui,message,    googlecompute: Ign http://http.debian.net jessie InRelease
+1452903523,,ui,message,    googlecompute: Get:2 http://httpredir.debian.org jessie-backports/main Sources/DiffIndex [27.8 kB]
+1452903523,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-updates/main Translation-en
+1452903523,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release.gpg
+1452903523,,ui,message,    googlecompute: Get:3 http://httpredir.debian.org jessie-backports/main Translation-en/DiffIndex [14.1 kB]
+1452903523,,ui,message,    googlecompute: Get:4 http://httpredir.debian.org jessie-backports/main amd64 Packages/DiffIndex [26.4 kB]
+1452903523,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release
+1452903523,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main Translation-en
+1452903523,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main amd64 Packages
+1452903524,,ui,message,    googlecompute: Fetched 68.6 kB in 2s (27.1 kB/s)
+1452903526,,ui,message,    googlecompute: Reading package lists...
+1452903526,,ui,message,    googlecompute: + sh -c sleep 3; apt-get install -y -q apt-transport-https ca-certificates
+1452903529,,ui,message,    googlecompute: Reading package lists...
+1452903529,,ui,message,    googlecompute: Building dependency tree...
+1452903529,,ui,message,    googlecompute: Reading state information...
+1452903530,,ui,message,    googlecompute: ca-certificates is already the newest version.
+1452903530,,ui,message,    googlecompute: The following NEW packages will be installed:
+1452903530,,ui,message,    googlecompute: apt-transport-https libcurl3-gnutls
+1452903530,,ui,message,    googlecompute: 0 upgraded%!(PACKER_COMMA) 2 newly installed%!(PACKER_COMMA) 0 to remove and 25 not upgraded.
+1452903530,,ui,message,    googlecompute: Need to get 388 kB of archives.
+1452903530,,ui,message,    googlecompute: After this operation%!(PACKER_COMMA) 802 kB of additional disk space will be used.
+1452903530,,ui,message,    googlecompute: Get:1 http://httpredir.debian.org/debian/ jessie/main libcurl3-gnutls amd64 7.38.0-4+deb8u2 [251 kB]
+1452903530,,ui,message,    googlecompute: Get:2 http://httpredir.debian.org/debian/ jessie/main apt-transport-https amd64 1.0.9.8.1 [138 kB]
+1452903531,,ui,message,    googlecompute: Fetched 388 kB in 0s (444 kB/s)
+1452903531,,ui,message,    googlecompute: Selecting previously unselected package libcurl3-gnutls:amd64.
+1452903531,,ui,message,    googlecompute: (Reading database ... 32618 files and directories currently installed.)
+1452903531,,ui,message,    googlecompute: Preparing to unpack .../libcurl3-gnutls_7.38.0-4+deb8u2_amd64.deb ...
+1452903531,,ui,message,    googlecompute: Unpacking libcurl3-gnutls:amd64 (7.38.0-4+deb8u2) ...
+1452903531,,ui,message,    googlecompute: Selecting previously unselected package apt-transport-https.
+1452903531,,ui,message,    googlecompute: Preparing to unpack .../apt-transport-https_1.0.9.8.1_amd64.deb ...
+1452903531,,ui,message,    googlecompute: Unpacking apt-transport-https (1.0.9.8.1) ...
+1452903531,,ui,message,    googlecompute: Setting up libcurl3-gnutls:amd64 (7.38.0-4+deb8u2) ...
+1452903531,,ui,message,    googlecompute: Setting up apt-transport-https (1.0.9.8.1) ...
+1452903531,,ui,message,    googlecompute: Processing triggers for libc-bin (2.19-18+deb8u1) ...
+1452903531,,ui,message,    googlecompute: + sh -c apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+1452903531,,ui,message,    googlecompute: gpg: requesting key 2C52609D from hkp server p80.pool.sks-keyservers.net
+1452903531,,ui,message,    googlecompute: Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.Z1DixGPbW4 --no-auto-check-trustdb --trust-model always --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-security-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-jessie-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-squeeze-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-squeeze-stable.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-automatic.gpg --keyring /etc/apt/trusted.gpg.d/debian-archive-wheezy-stable.gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+1452903531,,ui,message,    googlecompute: gpg: key 2C52609D: public key "Docker Release Tool (releasedocker) <docker@docker.com>" imported
+1452903531,,ui,message,    googlecompute: gpg: Total number processed: 1
+1452903531,,ui,message,    googlecompute: gpg:               imported: 1  (RSA: 1)
+1452903531,,ui,message,    googlecompute: + sh -c mkdir -p /etc/apt/sources.list.d
+1452903531,,ui,message,    googlecompute: + sh -c echo deb https://apt.dockerproject.org/repo debian-jessie main > /etc/apt/sources.list.d/docker.list
+1452903531,,ui,message,    googlecompute: + sh -c sleep 3; apt-get update; apt-get install -y -q docker-engine
+1452903535,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates InRelease
+1452903535,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates/main amd64 Packages
+1452903535,,ui,message,    googlecompute: Hit http://security.debian.org jessie/updates/main Translation-en
+1452903535,,ui,message,    googlecompute: Ign http://httpredir.debian.org jessie InRelease
+1452903535,,ui,message,    googlecompute: Get:1 https://apt.dockerproject.org debian-jessie InRelease [454 B]
+1452903535,,ui,message,    googlecompute: Ign https://apt.dockerproject.org debian-jessie InRelease
+1452903535,,ui,message,    googlecompute: Get:2 https://apt.dockerproject.org debian-jessie Release.gpg [801 B]
+1452903535,,ui,message,    googlecompute: Get:3 https://apt.dockerproject.org debian-jessie Release [19.7 kB]
+1452903535,,ui,message,    googlecompute: Get:4 https://apt.dockerproject.org debian-jessie/main amd64 Packages [3%!(PACKER_COMMA)482 B]
+1452903535,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-backports InRelease
+1452903535,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-updates InRelease
+1452903535,,ui,message,    googlecompute: Ign http://http.debian.net jessie InRelease
+1452903535,,ui,message,    googlecompute: Get:5 https://apt.dockerproject.org debian-jessie/main Translation-en_US [454 B]
+1452903535,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release.gpg
+1452903535,,ui,message,    googlecompute: Get:6 http://http.debian.net jessie-backports InRelease [166 kB]
+1452903535,,ui,message,    googlecompute: Get:7 https://apt.dockerproject.org debian-jessie/main Translation-en [454 B]
+1452903536,,ui,message,    googlecompute: Get:8 https://apt.dockerproject.org debian-jessie/main Translation-en_US [454 B]
+1452903536,,ui,message,    googlecompute: Get:9 http://httpredir.debian.org jessie-backports/main Sources/DiffIndex [27.8 kB]
+1452903536,,ui,message,    googlecompute: Get:10 http://http.debian.net jessie Release.gpg [2%!(PACKER_COMMA)373 B]
+1452903536,,ui,message,    googlecompute: Get:11 http://httpredir.debian.org jessie-backports/main amd64 Packages/DiffIndex [26.4 kB]
+1452903536,,ui,message,    googlecompute: Get:12 http://httpredir.debian.org jessie-backports/main Translation-en/DiffIndex [14.1 kB]
+1452903536,,ui,message,    googlecompute: Get:13 https://apt.dockerproject.org debian-jessie/main Translation-en [454 B]
+1452903536,,ui,message,    googlecompute: Get:14 http://httpredir.debian.org jessie-updates/main amd64 Packages/DiffIndex [367 B]
+1452903536,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie-updates/main Translation-en
+1452903536,,ui,message,    googlecompute: Get:15 https://apt.dockerproject.org debian-jessie/main Translation-en_US [454 B]
+1452903536,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie Release
+1452903536,,ui,message,    googlecompute: Get:16 https://apt.dockerproject.org debian-jessie/main Translation-en [454 B]
+1452903536,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main amd64 Packages
+1452903536,,ui,message,    googlecompute: Get:17 http://http.debian.net jessie-backports/main Translation-en [247 kB]
+1452903536,,ui,message,    googlecompute: Get:18 http://http.debian.net jessie-backports/main amd64 Packages [365 kB]
+1452903536,,ui,message,    googlecompute: Get:19 https://apt.dockerproject.org debian-jessie/main Translation-en_US [454 B]
+1452903537,,ui,message,    googlecompute: Get:20 https://apt.dockerproject.org debian-jessie/main Translation-en [454 B]
+1452903537,,ui,message,    googlecompute: Get:21 http://http.debian.net jessie Release [148 kB]
+1452903537,,ui,message,    googlecompute: Get:22 https://apt.dockerproject.org debian-jessie/main Translation-en_US [454 B]
+1452903537,,ui,message,    googlecompute: Ign https://apt.dockerproject.org debian-jessie/main Translation-en_US
+1452903537,,ui,message,    googlecompute: Get:23 https://apt.dockerproject.org debian-jessie/main Translation-en [454 B]
+1452903537,,ui,message,    googlecompute: Ign https://apt.dockerproject.org debian-jessie/main Translation-en
+1452903537,,ui,message,    googlecompute: Hit http://httpredir.debian.org jessie/main Translation-en
+1452903537,,ui,message,    googlecompute: Get:24 http://http.debian.net jessie-backports/main Sources [309 kB]
+1452903537,,ui,message,    googlecompute: Get:25 http://http.debian.net jessie/main amd64 Packages [6%!(PACKER_COMMA)764 kB]
+1452903537,,ui,message,    googlecompute: Get:26 http://http.debian.net jessie/main Sources [7%!(PACKER_COMMA)058 kB]
+1452903538,,ui,message,    googlecompute: Get:27 http://http.debian.net jessie/main Translation-en [4%!(PACKER_COMMA)585 kB]
+1452903543,,ui,message,    googlecompute: Fetched 19.7 MB in 8s (2%!(PACKER_COMMA)410 kB/s)
+1452903545,,ui,message,    googlecompute: Reading package lists...
+1452903545,,ui,message,    googlecompute: Reading package lists...
+1452903545,,ui,message,    googlecompute: Building dependency tree...
+1452903545,,ui,message,    googlecompute: Reading state information...
+1452903545,,ui,message,    googlecompute: The following extra packages will be installed:
+1452903545,,ui,message,    googlecompute: aufs-tools cgroupfs-mount dbus git git-man libalgorithm-c3-perl libapparmor1
+1452903545,,ui,message,    googlecompute: libarchive-extract-perl libcap-ng0 libcgi-fast-perl libcgi-pm-perl
+1452903545,,ui,message,    googlecompute: libclass-c3-perl libclass-c3-xs-perl libcpan-meta-perl libdata-optlist-perl
+1452903545,,ui,message,    googlecompute: libdata-section-perl libdbus-1-3 libdrm2 liberror-perl libfcgi-perl
+1452903545,,ui,message,    googlecompute: liblog-message-perl liblog-message-simple-perl libmodule-build-perl
+1452903545,,ui,message,    googlecompute: libmodule-pluggable-perl libmodule-signature-perl libmro-compat-perl
+1452903545,,ui,message,    googlecompute: libnih-dbus1 libnih1 libpackage-constants-perl libparams-util-perl
+1452903545,,ui,message,    googlecompute: libpod-latex-perl libpod-readme-perl libregexp-common-perl
+1452903545,,ui,message,    googlecompute: libsoftware-license-perl libsub-exporter-perl libsub-install-perl
+1452903545,,ui,message,    googlecompute: libterm-ui-perl libtext-soundex-perl libtext-template-perl makedev mountall
+1452903545,,ui,message,    googlecompute: patch perl perl-base perl-modules plymouth rename xz-utils
+1452903545,,ui,message,    googlecompute: Suggested packages:
+1452903545,,ui,message,    googlecompute: dbus-x11 git-daemon-run git-daemon-sysvinit git-doc git-el git-email git-gui
+1452903545,,ui,message,    googlecompute: gitk gitweb git-arch git-cvs git-mediawiki git-svn ed diffutils-doc perl-doc
+1452903545,,ui,message,    googlecompute: libterm-readline-gnu-perl libterm-readline-perl-perl make libb-lint-perl
+1452903545,,ui,message,    googlecompute: libcpanplus-dist-build-perl libcpanplus-perl libfile-checktree-perl
+1452903545,,ui,message,    googlecompute: libobject-accessor-perl desktop-base plymouth-themes
+1452903545,,ui,message,    googlecompute: Recommended packages:
+1452903545,,ui,message,    googlecompute: libarchive-tar-perl
+1452903545,,ui,message,    googlecompute: The following NEW packages will be installed:
+1452903545,,ui,message,    googlecompute: aufs-tools cgroupfs-mount dbus docker-engine git git-man
+1452903545,,ui,message,    googlecompute: libalgorithm-c3-perl libapparmor1 libarchive-extract-perl libcap-ng0
+1452903545,,ui,message,    googlecompute: libcgi-fast-perl libcgi-pm-perl libclass-c3-perl libclass-c3-xs-perl
+1452903545,,ui,message,    googlecompute: libcpan-meta-perl libdata-optlist-perl libdata-section-perl libdbus-1-3
+1452903545,,ui,message,    googlecompute: libdrm2 liberror-perl libfcgi-perl liblog-message-perl
+1452903545,,ui,message,    googlecompute: liblog-message-simple-perl libmodule-build-perl libmodule-pluggable-perl
+1452903545,,ui,message,    googlecompute: libmodule-signature-perl libmro-compat-perl libnih-dbus1 libnih1
+1452903545,,ui,message,    googlecompute: libpackage-constants-perl libparams-util-perl libpod-latex-perl
+1452903545,,ui,message,    googlecompute: libpod-readme-perl libregexp-common-perl libsoftware-license-perl
+1452903545,,ui,message,    googlecompute: libsub-exporter-perl libsub-install-perl libterm-ui-perl
+1452903545,,ui,message,    googlecompute: libtext-soundex-perl libtext-template-perl makedev mountall patch perl
+1452903545,,ui,message,    googlecompute: perl-modules plymouth rename xz-utils
+1452903545,,ui,message,    googlecompute: The following packages will be upgraded:
+1452903545,,ui,message,    googlecompute: perl-base
+1452903545,,ui,message,    googlecompute: 1 upgraded%!(PACKER_COMMA) 48 newly installed%!(PACKER_COMMA) 0 to remove and 24 not upgraded.
+1452903545,,ui,message,    googlecompute: Need to get 21.2 MB of archives.
+1452903545,,ui,message,    googlecompute: After this operation%!(PACKER_COMMA) 103 MB of additional disk space will be used.
+1452903545,,ui,message,    googlecompute: Get:1 http://security.debian.org/ jessie/updates/main perl-base amd64 5.20.2-3+deb8u2 [1%!(PACKER_COMMA)224 kB]
+1452903546,,ui,message,    googlecompute: Get:2 https://apt.dockerproject.org/repo/ debian-jessie/main docker-engine amd64 1.9.1-0~jessie [7%!(PACKER_COMMA)344 kB]
+1452903546,,ui,message,    googlecompute: Get:3 http://security.debian.org/ jessie/updates/main perl-modules all 5.20.2-3+deb8u2 [2%!(PACKER_COMMA)545 kB]
+1452903546,,ui,message,    googlecompute: Get:4 http://httpredir.debian.org/debian/ jessie/main libdbus-1-3 amd64 1.8.20-0+deb8u1 [170 kB]
+1452903546,,ui,message,    googlecompute: Get:5 http://security.debian.org/ jessie/updates/main perl amd64 5.20.2-3+deb8u2 [2%!(PACKER_COMMA)657 kB]
+1452903546,,ui,message,    googlecompute: Get:6 http://httpredir.debian.org/debian/ jessie/main libcap-ng0 amd64 0.7.4-2 [13.2 kB]
+1452903546,,ui,message,    googlecompute: Get:7 http://httpredir.debian.org/debian/ jessie/main libnih-dbus1 amd64 1.0.3-4.3 [97.1 kB]
+1452903546,,ui,message,    googlecompute: Get:8 http://security.debian.org/ jessie/updates/main git-man all 1:2.1.4-2.1+deb8u1 [1%!(PACKER_COMMA)267 kB]
+1452903546,,ui,message,    googlecompute: Get:9 http://httpredir.debian.org/debian/ jessie/main libdrm2 amd64 2.4.58-2 [29.9 kB]
+1452903546,,ui,message,    googlecompute: Get:10 http://security.debian.org/ jessie/updates/main git amd64 1:2.1.4-2.1+deb8u1 [3%!(PACKER_COMMA)258 kB]
+1452903546,,ui,message,    googlecompute: Get:11 http://httpredir.debian.org/debian/ jessie/main libarchive-extract-perl all 0.72-1 [24.8 kB]
+1452903546,,ui,message,    googlecompute: Get:12 http://httpredir.debian.org/debian/ jessie/main plymouth amd64 0.9.0-9 [189 kB]
+1452903546,,ui,message,    googlecompute: Get:13 http://httpredir.debian.org/debian/ jessie/main xz-utils amd64 5.1.1alpha+20120614-2+b3 [221 kB]
+1452903546,,ui,message,    googlecompute: Get:14 http://httpredir.debian.org/debian/ jessie/main makedev all 2.3.1-93 [42.6 kB]
+1452903546,,ui,message,    googlecompute: Get:15 http://httpredir.debian.org/debian/ jessie/main libfcgi-perl amd64 0.77-1+b1 [39.1 kB]
+1452903546,,ui,message,    googlecompute: Get:16 http://httpredir.debian.org/debian/ jessie/main libnih1 amd64 1.0.3-4.3 [127 kB]
+1452903547,,ui,message,    googlecompute: Get:17 http://httpredir.debian.org/debian/ jessie/main liberror-perl all 0.17-1.1 [22.4 kB]
+1452903547,,ui,message,    googlecompute: Get:18 http://httpredir.debian.org/debian/ jessie/main dbus amd64 1.8.20-0+deb8u1 [291 kB]
+1452903547,,ui,message,    googlecompute: Get:19 http://httpredir.debian.org/debian/ jessie/main libalgorithm-c3-perl all 0.09-1 [11.9 kB]
+1452903547,,ui,message,    googlecompute: Get:20 http://httpredir.debian.org/debian/ jessie/main libcpan-meta-perl all 2.142690-1 [125 kB]
+1452903547,,ui,message,    googlecompute: Get:21 http://httpredir.debian.org/debian/ jessie/main mountall amd64 2.54 [68.3 kB]
+1452903547,,ui,message,    googlecompute: Get:22 http://httpredir.debian.org/debian/ jessie/main libcgi-fast-perl all 1:2.04-1 [10.9 kB]
+1452903547,,ui,message,    googlecompute: Get:23 http://httpredir.debian.org/debian/ jessie/main patch amd64 2.7.5-1 [109 kB]
+1452903547,,ui,message,    googlecompute: Get:24 http://httpredir.debian.org/debian/ jessie/main aufs-tools amd64 1:3.2+20130722-1.1 [92.9 kB]
+1452903547,,ui,message,    googlecompute: Get:25 http://httpredir.debian.org/debian/ jessie/main libmodule-signature-perl all 0.73-1+deb8u2 [30.4 kB]
+1452903547,,ui,message,    googlecompute: Get:26 http://httpredir.debian.org/debian/ jessie/main cgroupfs-mount all 1.1 [4%!(PACKER_COMMA)572 B]
+1452903547,,ui,message,    googlecompute: Get:27 http://httpredir.debian.org/debian/ jessie/main libcgi-pm-perl all 4.09-1 [213 kB]
+1452903547,,ui,message,    googlecompute: Get:28 http://httpredir.debian.org/debian/ jessie/main libpod-latex-perl all 0.61-1 [34.7 kB]
+1452903547,,ui,message,    googlecompute: Get:29 http://httpredir.debian.org/debian/ jessie/main libclass-c3-perl all 0.26-1 [22.9 kB]
+1452903547,,ui,message,    googlecompute: Get:30 http://httpredir.debian.org/debian/ jessie/main libsoftware-license-perl all 0.103010-3 [119 kB]
+1452903547,,ui,message,    googlecompute: Get:31 http://httpredir.debian.org/debian/ jessie/main libparams-util-perl amd64 1.07-2+b1 [23.5 kB]
+1452903547,,ui,message,    googlecompute: Get:32 http://httpredir.debian.org/debian/ jessie/main libsub-install-perl all 0.928-1 [11.4 kB]
+1452903547,,ui,message,    googlecompute: Get:33 http://httpredir.debian.org/debian/ jessie/main libclass-c3-xs-perl amd64 0.13-2+b1 [15.2 kB]
+1452903547,,ui,message,    googlecompute: Get:34 http://httpredir.debian.org/debian/ jessie/main libdata-section-perl all 0.200006-1 [13.4 kB]
+1452903547,,ui,message,    googlecompute: Get:35 http://httpredir.debian.org/debian/ jessie/main libdata-optlist-perl all 0.109-1 [10.6 kB]
+1452903548,,ui,message,    googlecompute: Get:36 http://httpredir.debian.org/debian/ jessie/main libmro-compat-perl all 0.12-1 [13.2 kB]
+1452903548,,ui,message,    googlecompute: Get:37 http://httpredir.debian.org/debian/ jessie/main liblog-message-simple-perl all 0.10-2 [8%!(PACKER_COMMA)126 B]
+1452903548,,ui,message,    googlecompute: Get:38 http://httpredir.debian.org/debian/ jessie/main libterm-ui-perl all 0.42-1 [19.1 kB]
+1452903548,,ui,message,    googlecompute: Get:39 http://httpredir.debian.org/debian/ jessie/main libsub-exporter-perl all 0.986-1 [49.9 kB]
+1452903548,,ui,message,    googlecompute: Get:40 http://httpredir.debian.org/debian/ jessie/main libmodule-build-perl all 0.421000-2 [265 kB]
+1452903548,,ui,message,    googlecompute: Get:41 http://httpredir.debian.org/debian/ jessie/main libtext-soundex-perl amd64 3.4-1+b2 [13.7 kB]
+1452903548,,ui,message,    googlecompute: Get:42 http://httpredir.debian.org/debian/ jessie/main liblog-message-perl all 0.8-1 [26.0 kB]
+1452903548,,ui,message,    googlecompute: Get:43 http://httpredir.debian.org/debian/ jessie/main libapparmor1 amd64 2.9.0-3 [60.3 kB]
+1452903548,,ui,message,    googlecompute: Get:44 http://httpredir.debian.org/debian/ jessie/main libmodule-pluggable-perl all 5.1-1 [25.0 kB]
+1452903548,,ui,message,    googlecompute: Get:45 http://httpredir.debian.org/debian/ jessie/main rename all 0.20-3 [12.4 kB]
+1452903548,,ui,message,    googlecompute: Get:46 http://httpredir.debian.org/debian/ jessie/main libpackage-constants-perl all 0.04-1 [5%!(PACKER_COMMA)820 B]
+1452903548,,ui,message,    googlecompute: Get:47 http://httpredir.debian.org/debian/ jessie/main libregexp-common-perl all 2013031301-1 [173 kB]
+1452903548,,ui,message,    googlecompute: Get:48 http://httpredir.debian.org/debian/ jessie/main libpod-readme-perl all 0.11-1 [15.3 kB]
+1452903548,,ui,message,    googlecompute: Get:49 http://httpredir.debian.org/debian/ jessie/main libtext-template-perl all 1.46-1 [53.1 kB]
+1452903549,,ui,message,    googlecompute: Extracting templates from packages: 100%
+1452903549,,ui,message,    googlecompute: Fetched 21.2 MB in 3s (6%!(PACKER_COMMA)910 kB/s)
+1452903549,,ui,message,    googlecompute: (Reading database ... 32633 files and directories currently installed.)
+1452903549,,ui,message,    googlecompute: Preparing to unpack .../perl-base_5.20.2-3+deb8u2_amd64.deb ...
+1452903549,,ui,message,    googlecompute: Unpacking perl-base (5.20.2-3+deb8u2) over (5.20.2-3+deb8u1) ...
+1452903550,,ui,message,    googlecompute: Processing triggers for man-db (2.7.0.2-5) ...
+1452903550,,ui,message,    googlecompute: Setting up perl-base (5.20.2-3+deb8u2) ...
+1452903550,,ui,message,    googlecompute: Selecting previously unselected package perl-modules.
+1452903550,,ui,message,    googlecompute: (Reading database ... 32633 files and directories currently installed.)
+1452903550,,ui,message,    googlecompute: Preparing to unpack .../perl-modules_5.20.2-3+deb8u2_all.deb ...
+1452903550,,ui,message,    googlecompute: Unpacking perl-modules (5.20.2-3+deb8u2) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package perl.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../perl_5.20.2-3+deb8u2_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking perl (5.20.2-3+deb8u2) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package libcap-ng0:amd64.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../libcap-ng0_0.7.4-2_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking libcap-ng0:amd64 (0.7.4-2) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package libdbus-1-3:amd64.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../libdbus-1-3_1.8.20-0+deb8u1_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking libdbus-1-3:amd64 (1.8.20-0+deb8u1) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package libdrm2:amd64.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../libdrm2_2.4.58-2_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking libdrm2:amd64 (2.4.58-2) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package makedev.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../makedev_2.3.1-93_all.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking makedev (2.3.1-93) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package plymouth.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../plymouth_0.9.0-9_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking plymouth (0.9.0-9) ...
+1452903551,,ui,message,    googlecompute: Selecting previously unselected package libnih1.
+1452903551,,ui,message,    googlecompute: Preparing to unpack .../libnih1_1.0.3-4.3_amd64.deb ...
+1452903551,,ui,message,    googlecompute: Unpacking libnih1 (1.0.3-4.3) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package libnih-dbus1.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../libnih-dbus1_1.0.3-4.3_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking libnih-dbus1 (1.0.3-4.3) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package mountall.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../mountall_2.54_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking mountall (2.54) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package dbus.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../dbus_1.8.20-0+deb8u1_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking dbus (1.8.20-0+deb8u1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package patch.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../patch_2.7.5-1_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking patch (2.7.5-1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package xz-utils.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../xz-utils_5.1.1alpha+20120614-2+b3_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking xz-utils (5.1.1alpha+20120614-2+b3) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package aufs-tools.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../aufs-tools_1%3a3.2+20130722-1.1_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking aufs-tools (1:3.2+20130722-1.1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package cgroupfs-mount.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../cgroupfs-mount_1.1_all.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking cgroupfs-mount (1.1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package liberror-perl.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../liberror-perl_0.17-1.1_all.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking liberror-perl (0.17-1.1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package git-man.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../git-man_1%3a2.1.4-2.1+deb8u1_all.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking git-man (1:2.1.4-2.1+deb8u1) ...
+1452903552,,ui,message,    googlecompute: Selecting previously unselected package git.
+1452903552,,ui,message,    googlecompute: Preparing to unpack .../git_1%3a2.1.4-2.1+deb8u1_amd64.deb ...
+1452903552,,ui,message,    googlecompute: Unpacking git (1:2.1.4-2.1+deb8u1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libalgorithm-c3-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libalgorithm-c3-perl_0.09-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libalgorithm-c3-perl (0.09-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libarchive-extract-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libarchive-extract-perl_0.72-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libarchive-extract-perl (0.72-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libcgi-pm-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libcgi-pm-perl_4.09-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libcgi-pm-perl (4.09-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libfcgi-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libfcgi-perl_0.77-1+b1_amd64.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libfcgi-perl (0.77-1+b1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libcgi-fast-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libcgi-fast-perl_1%3a2.04-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libcgi-fast-perl (1:2.04-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libclass-c3-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libclass-c3-perl_0.26-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libclass-c3-perl (0.26-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libclass-c3-xs-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libclass-c3-xs-perl_0.13-2+b1_amd64.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libclass-c3-xs-perl (0.13-2+b1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libcpan-meta-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libcpan-meta-perl_2.142690-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libcpan-meta-perl (2.142690-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libparams-util-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libparams-util-perl_1.07-2+b1_amd64.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libparams-util-perl (1.07-2+b1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libsub-install-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libsub-install-perl_0.928-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libsub-install-perl (0.928-1) ...
+1452903553,,ui,message,    googlecompute: Selecting previously unselected package libdata-optlist-perl.
+1452903553,,ui,message,    googlecompute: Preparing to unpack .../libdata-optlist-perl_0.109-1_all.deb ...
+1452903553,,ui,message,    googlecompute: Unpacking libdata-optlist-perl (0.109-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libmro-compat-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libmro-compat-perl_0.12-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libmro-compat-perl (0.12-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libsub-exporter-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libsub-exporter-perl_0.986-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libsub-exporter-perl (0.986-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libdata-section-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libdata-section-perl_0.200006-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libdata-section-perl (0.200006-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package liblog-message-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../liblog-message-perl_0.8-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking liblog-message-perl (0.8-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package liblog-message-simple-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../liblog-message-simple-perl_0.10-2_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking liblog-message-simple-perl (0.10-2) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libmodule-build-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libmodule-build-perl_0.421000-2_all.deb ...
+1452903554,,ui,message,    googlecompute: Adding 'diversion of /usr/bin/config_data to /usr/bin/config_data.diverted by libmodule-build-perl'
+1452903554,,ui,message,    googlecompute: Adding 'diversion of /usr/share/man/man1/config_data.1.gz to /usr/share/man/man1/config_data.diverted.1.gz by libmodule-build-perl'
+1452903554,,ui,message,    googlecompute: Unpacking libmodule-build-perl (0.421000-2) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libmodule-pluggable-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libmodule-pluggable-perl_5.1-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libmodule-pluggable-perl (5.1-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libmodule-signature-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libmodule-signature-perl_0.73-1+deb8u2_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libmodule-signature-perl (0.73-1+deb8u2) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libpackage-constants-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libpackage-constants-perl_0.04-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libpackage-constants-perl (0.04-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libpod-latex-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libpod-latex-perl_0.61-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Adding 'diversion of /usr/bin/pod2latex to /usr/bin/pod2latex.bundled by libpod-latex-perl'
+1452903554,,ui,message,    googlecompute: Adding 'diversion of /usr/share/man/man1/pod2latex.1.gz to /usr/share/man/man1/pod2latex.bundled.1.gz by libpod-latex-perl'
+1452903554,,ui,message,    googlecompute: Unpacking libpod-latex-perl (0.61-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libregexp-common-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libregexp-common-perl_2013031301-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libregexp-common-perl (2013031301-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libpod-readme-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libpod-readme-perl_0.11-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libpod-readme-perl (0.11-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libtext-template-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libtext-template-perl_1.46-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libtext-template-perl (1.46-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libsoftware-license-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libsoftware-license-perl_0.103010-3_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libsoftware-license-perl (0.103010-3) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libterm-ui-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libterm-ui-perl_0.42-1_all.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libterm-ui-perl (0.42-1) ...
+1452903554,,ui,message,    googlecompute: Selecting previously unselected package libtext-soundex-perl.
+1452903554,,ui,message,    googlecompute: Preparing to unpack .../libtext-soundex-perl_3.4-1+b2_amd64.deb ...
+1452903554,,ui,message,    googlecompute: Unpacking libtext-soundex-perl (3.4-1+b2) ...
+1452903555,,ui,message,    googlecompute: Selecting previously unselected package rename.
+1452903555,,ui,message,    googlecompute: Preparing to unpack .../archives/rename_0.20-3_all.deb ...
+1452903555,,ui,message,    googlecompute: Unpacking rename (0.20-3) ...
+1452903555,,ui,message,    googlecompute: Selecting previously unselected package libapparmor1:amd64.
+1452903555,,ui,message,    googlecompute: Preparing to unpack .../libapparmor1_2.9.0-3_amd64.deb ...
+1452903555,,ui,message,    googlecompute: Unpacking libapparmor1:amd64 (2.9.0-3) ...
+1452903555,,ui,message,    googlecompute: Selecting previously unselected package docker-engine.
+1452903555,,ui,message,    googlecompute: Preparing to unpack .../docker-engine_1.9.1-0~jessie_amd64.deb ...
+1452903555,,ui,message,    googlecompute: Unpacking docker-engine (1.9.1-0~jessie) ...
+1452903556,,ui,message,    googlecompute: Processing triggers for man-db (2.7.0.2-5) ...
+1452903558,,ui,message,    googlecompute: Processing triggers for systemd (215-17+deb8u2) ...
+1452903558,,ui,message,    googlecompute: Setting up perl-modules (5.20.2-3+deb8u2) ...
+1452903558,,ui,message,    googlecompute: Setting up perl (5.20.2-3+deb8u2) ...
+1452903558,,ui,message,    googlecompute: update-alternatives: using /usr/bin/prename to provide /usr/bin/rename (rename) in auto mode
+1452903558,,ui,message,    googlecompute: Setting up libcap-ng0:amd64 (0.7.4-2) ...
+1452903558,,ui,message,    googlecompute: Setting up libdbus-1-3:amd64 (1.8.20-0+deb8u1) ...
+1452903558,,ui,message,    googlecompute: Setting up libdrm2:amd64 (2.4.58-2) ...
+1452903558,,ui,message,    googlecompute: Setting up makedev (2.3.1-93) ...
+1452903558,,ui,message,    googlecompute: /run/udev or .udevdb or .udev presence implies active udev.  Aborting MAKEDEV invocation.
+1452903558,,ui,message,    googlecompute: /run/udev or .udevdb or .udev presence implies active udev.  Aborting MAKEDEV invocation.
+1452903558,,ui,message,    googlecompute: /run/udev or .udevdb or .udev presence implies active udev.  Aborting MAKEDEV invocation.
+1452903558,,ui,message,    googlecompute: Setting up plymouth (0.9.0-9) ...
+1452903558,,ui,message,    googlecompute: update-initramfs: deferring update (trigger activated)
+1452903558,,ui,message,    googlecompute: update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+1452903558,,ui,message,    googlecompute: update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+1452903558,,ui,message,    googlecompute: Setting up libnih1 (1.0.3-4.3) ...
+1452903558,,ui,message,    googlecompute: Setting up libnih-dbus1 (1.0.3-4.3) ...
+1452903558,,ui,message,    googlecompute: Setting up mountall (2.54) ...
+1452903558,,ui,message,    googlecompute: Setting up dbus (1.8.20-0+deb8u1) ...
+1452903559,,ui,message,    googlecompute: Setting up patch (2.7.5-1) ...
+1452903559,,ui,message,    googlecompute: Setting up xz-utils (5.1.1alpha+20120614-2+b3) ...
+1452903559,,ui,message,    googlecompute: update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+1452903559,,ui,message,    googlecompute: Setting up aufs-tools (1:3.2+20130722-1.1) ...
+1452903559,,ui,message,    googlecompute: Setting up cgroupfs-mount (1.1) ...
+1452903559,,ui,message,    googlecompute: Setting up liberror-perl (0.17-1.1) ...
+1452903559,,ui,message,    googlecompute: Setting up git-man (1:2.1.4-2.1+deb8u1) ...
+1452903559,,ui,message,    googlecompute: Setting up git (1:2.1.4-2.1+deb8u1) ...
+1452903559,,ui,message,    googlecompute: Setting up libalgorithm-c3-perl (0.09-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libarchive-extract-perl (0.72-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libcgi-pm-perl (4.09-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libfcgi-perl (0.77-1+b1) ...
+1452903559,,ui,message,    googlecompute: Setting up libcgi-fast-perl (1:2.04-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libclass-c3-perl (0.26-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libclass-c3-xs-perl (0.13-2+b1) ...
+1452903559,,ui,message,    googlecompute: Setting up libcpan-meta-perl (2.142690-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libparams-util-perl (1.07-2+b1) ...
+1452903559,,ui,message,    googlecompute: Setting up libsub-install-perl (0.928-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libdata-optlist-perl (0.109-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libmro-compat-perl (0.12-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libsub-exporter-perl (0.986-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libdata-section-perl (0.200006-1) ...
+1452903559,,ui,message,    googlecompute: Setting up liblog-message-perl (0.8-1) ...
+1452903559,,ui,message,    googlecompute: Setting up liblog-message-simple-perl (0.10-2) ...
+1452903559,,ui,message,    googlecompute: Setting up libmodule-build-perl (0.421000-2) ...
+1452903559,,ui,message,    googlecompute: Setting up libmodule-pluggable-perl (5.1-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libmodule-signature-perl (0.73-1+deb8u2) ...
+1452903559,,ui,message,    googlecompute: Setting up libpackage-constants-perl (0.04-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libpod-latex-perl (0.61-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libregexp-common-perl (2013031301-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libpod-readme-perl (0.11-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libtext-template-perl (1.46-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libsoftware-license-perl (0.103010-3) ...
+1452903559,,ui,message,    googlecompute: Setting up libterm-ui-perl (0.42-1) ...
+1452903559,,ui,message,    googlecompute: Setting up libtext-soundex-perl (3.4-1+b2) ...
+1452903559,,ui,message,    googlecompute: Setting up rename (0.20-3) ...
+1452903559,,ui,message,    googlecompute: update-alternatives: using /usr/bin/file-rename to provide /usr/bin/rename (rename) in auto mode
+1452903559,,ui,message,    googlecompute: Setting up libapparmor1:amd64 (2.9.0-3) ...
+1452903559,,ui,message,    googlecompute: Setting up docker-engine (1.9.1-0~jessie) ...
+1452903560,,ui,message,    googlecompute: Processing triggers for libc-bin (2.19-18+deb8u1) ...
+1452903560,,ui,message,    googlecompute: Processing triggers for systemd (215-17+deb8u2) ...
+1452903560,,ui,message,    googlecompute: Processing triggers for initramfs-tools (0.120) ...
+1452903561,,ui,message,    googlecompute: update-initramfs: Generating /boot/initrd.img-3.16.0-4-amd64
+1452903568,,ui,message,    googlecompute: + sh -c docker version
+1452903568,,ui,message,    googlecompute: Client:
+1452903568,,ui,message,    googlecompute: Version:      1.9.1
+1452903568,,ui,message,    googlecompute: API version:  1.21
+1452903568,,ui,message,    googlecompute: Go version:   go1.4.2
+1452903568,,ui,message,    googlecompute: Git commit:   a34a1d5
+1452903568,,ui,message,    googlecompute: Built:        Fri Nov 20 12:59:02 UTC 2015
+1452903568,,ui,message,    googlecompute: OS/Arch:      linux/amd64
+1452903568,,ui,message,    googlecompute:
+1452903568,,ui,message,    googlecompute: Server:
+1452903568,,ui,message,    googlecompute: Version:      1.9.1
+1452903568,,ui,message,    googlecompute: API version:  1.21
+1452903568,,ui,message,    googlecompute: Go version:   go1.4.2
+1452903568,,ui,message,    googlecompute: Git commit:   a34a1d5
+1452903568,,ui,message,    googlecompute: Built:        Fri Nov 20 12:59:02 UTC 2015
+1452903568,,ui,message,    googlecompute: OS/Arch:      linux/amd64
+1452903568,,ui,message,    googlecompute:
+1452903568,,ui,message,    googlecompute: If you would like to use Docker as a non-root user%!(PACKER_COMMA) you should now consider
+1452903568,,ui,message,    googlecompute: adding your user to the "docker" group with something like:
+1452903568,,ui,message,    googlecompute:
+1452903568,,ui,message,    googlecompute: sudo usermod -aG docker your-user
+1452903568,,ui,message,    googlecompute:
+1452903568,,ui,message,    googlecompute: Remember that you will have to log out and back in for this to take effect!
+1452903568,,ui,message,    googlecompute:
+1452903570,,ui,message,    googlecompute: Generating grub configuration file ...
+1452903570,,ui,message,    googlecompute: Found linux image: /boot/vmlinuz-3.16.0-4-amd64
+1452903570,,ui,message,    googlecompute: Found initrd image: /boot/initrd.img-3.16.0-4-amd64
+1452903570,,ui,message,    googlecompute: done
+1452903570,,ui,say,==> googlecompute: Provisioning with shell script: scripts/docker-pull.sh
+1452903570,,ui,message,    googlecompute: Using default tag: latest
+1452903572,,ui,message,    googlecompute: latest: Pulling from library/redis
+1452903572,,ui,message,    googlecompute: 523ef1d23f22: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 140f9bdfeb97: Pulling fs layer
+1452903572,,ui,message,    googlecompute: aaf00e325351: Pulling fs layer
+1452903572,,ui,message,    googlecompute: a2c3dccc1f84: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 3cee39c33b85: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 36b64753a2f9: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 9a0ce215b6fb: Pulling fs layer
+1452903572,,ui,message,    googlecompute: d51b6b499762: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 3347a723ba99: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 161f618c7db3: Pulling fs layer
+1452903572,,ui,message,    googlecompute: b4386ab2fc22: Pulling fs layer
+1452903572,,ui,message,    googlecompute: b7cb0fd3c808: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 1bc051151408: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 4cf859b8ece8: Pulling fs layer
+1452903572,,ui,message,    googlecompute: e00e92cb7a94: Pulling fs layer
+1452903572,,ui,message,    googlecompute: a23e3460f76a: Pulling fs layer
+1452903572,,ui,message,    googlecompute: 8bccd73928d9: Pulling fs layer
+1452903573,,ui,message,    googlecompute: 9a0ce215b6fb: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 9a0ce215b6fb: Download complete
+1452903573,,ui,message,    googlecompute: e00e92cb7a94: Verifying Checksum
+1452903573,,ui,message,    googlecompute: e00e92cb7a94: Download complete
+1452903573,,ui,message,    googlecompute: d51b6b499762: Verifying Checksum
+1452903573,,ui,message,    googlecompute: d51b6b499762: Download complete
+1452903573,,ui,message,    googlecompute: 1bc051151408: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 1bc051151408: Download complete
+1452903573,,ui,message,    googlecompute: a23e3460f76a: Verifying Checksum
+1452903573,,ui,message,    googlecompute: a23e3460f76a: Download complete
+1452903573,,ui,message,    googlecompute: 3cee39c33b85: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 3cee39c33b85: Download complete
+1452903573,,ui,message,    googlecompute: 4cf859b8ece8: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 4cf859b8ece8: Download complete
+1452903573,,ui,message,    googlecompute: 140f9bdfeb97: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 140f9bdfeb97: Download complete
+1452903573,,ui,message,    googlecompute: b7cb0fd3c808: Verifying Checksum
+1452903573,,ui,message,    googlecompute: b7cb0fd3c808: Download complete
+1452903573,,ui,message,    googlecompute: 8bccd73928d9: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 8bccd73928d9: Download complete
+1452903573,,ui,message,    googlecompute: 3347a723ba99: Verifying Checksum
+1452903573,,ui,message,    googlecompute: 3347a723ba99: Download complete
+1452903574,,ui,message,    googlecompute: aaf00e325351: Verifying Checksum
+1452903574,,ui,message,    googlecompute: aaf00e325351: Download complete
+1452903574,,ui,message,    googlecompute: b4386ab2fc22: Verifying Checksum
+1452903574,,ui,message,    googlecompute: b4386ab2fc22: Download complete
+1452903574,,ui,message,    googlecompute: 161f618c7db3: Verifying Checksum
+1452903574,,ui,message,    googlecompute: 161f618c7db3: Download complete
+1452903574,,ui,message,    googlecompute: a2c3dccc1f84: Verifying Checksum
+1452903574,,ui,message,    googlecompute: a2c3dccc1f84: Download complete
+1452903574,,ui,message,    googlecompute: 36b64753a2f9: Verifying Checksum
+1452903574,,ui,message,    googlecompute: 36b64753a2f9: Download complete
+1452903575,,ui,message,    googlecompute: 523ef1d23f22: Verifying Checksum
+1452903575,,ui,message,    googlecompute: 523ef1d23f22: Download complete
+1452903580,,ui,message,    googlecompute: 523ef1d23f22: Pull complete
+1452903580,,ui,message,    googlecompute: 140f9bdfeb97: Pull complete
+1452903580,,ui,message,    googlecompute: aaf00e325351: Pull complete
+1452903581,,ui,message,    googlecompute: a2c3dccc1f84: Pull complete
+1452903581,,ui,message,    googlecompute: 3cee39c33b85: Pull complete
+1452903581,,ui,message,    googlecompute: 36b64753a2f9: Pull complete
+1452903581,,ui,message,    googlecompute: 9a0ce215b6fb: Pull complete
+1452903581,,ui,message,    googlecompute: d51b6b499762: Pull complete
+1452903581,,ui,message,    googlecompute: 3347a723ba99: Pull complete
+1452903581,,ui,message,    googlecompute: 161f618c7db3: Pull complete
+1452903581,,ui,message,    googlecompute: b4386ab2fc22: Pull complete
+1452903581,,ui,message,    googlecompute: b7cb0fd3c808: Pull complete
+1452903581,,ui,message,    googlecompute: 1bc051151408: Pull complete
+1452903581,,ui,message,    googlecompute: 4cf859b8ece8: Pull complete
+1452903581,,ui,message,    googlecompute: e00e92cb7a94: Pull complete
+1452903581,,ui,message,    googlecompute: a23e3460f76a: Pull complete
+1452903581,,ui,message,    googlecompute: 8bccd73928d9: Pull complete
+1452903581,,ui,message,    googlecompute: Digest: sha256:85e974373722db79e6af6e62b4bc200ea271f933ac1c27e89a3393d1056f4c02
+1452903581,,ui,message,    googlecompute: Status: Downloaded newer image for redis:latest
+1452903581,,ui,message,    googlecompute: Using default tag: latest
+1452903583,,ui,message,    googlecompute: latest: Pulling from jess/stress
+1452903583,,ui,message,    googlecompute: c5eba5f5c62d: Pulling fs layer
+1452903583,,ui,message,    googlecompute: 53b7fdaacc48: Pulling fs layer
+1452903583,,ui,message,    googlecompute: 03efd6a6cfc5: Pulling fs layer
+1452903584,,ui,message,    googlecompute: c5eba5f5c62d: Verifying Checksum
+1452903584,,ui,message,    googlecompute: c5eba5f5c62d: Download complete
+1452903584,,ui,message,    googlecompute: 03efd6a6cfc5: Verifying Checksum
+1452903584,,ui,message,    googlecompute: 03efd6a6cfc5: Download complete
+1452903584,,ui,message,    googlecompute: c5eba5f5c62d: Pull complete
+1452903585,,ui,message,    googlecompute: 53b7fdaacc48: Verifying Checksum
+1452903585,,ui,message,    googlecompute: 53b7fdaacc48: Download complete
+1452903585,,ui,message,    googlecompute: 53b7fdaacc48: Pull complete
+1452903585,,ui,message,    googlecompute: 03efd6a6cfc5: Pull complete
+1452903585,,ui,message,    googlecompute: Digest: sha256:aba2da924754ed3098c8d563bed8b09e1de6677c1c65b7973850866bdb959462
+1452903585,,ui,message,    googlecompute: Status: Downloaded newer image for jess/stress:latest
+1452903585,,ui,message,    googlecompute: Using default tag: latest
+1452903586,,ui,message,    googlecompute: latest: Pulling from sysdig/agent
+1452903586,,ui,message,    googlecompute: 419754143dbf: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 8d757b237b87: Pulling fs layer
+1452903586,,ui,message,    googlecompute: ad5c35233c3e: Pulling fs layer
+1452903586,,ui,message,    googlecompute: c4962def932e: Pulling fs layer
+1452903586,,ui,message,    googlecompute: bde8a4409b9a: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 6042dab27cfc: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 6b9175f4b03a: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 0f1cffa9e81b: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 7ba43efb1095: Pulling fs layer
+1452903586,,ui,message,    googlecompute: b1885a757402: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 2ff54861f223: Pulling fs layer
+1452903586,,ui,message,    googlecompute: 26ae2053c230: Pulling fs layer
+1452903586,,ui,message,    googlecompute: e55c5e300854: Pulling fs layer
+1452903586,,ui,message,    googlecompute: af990ebec435: Pulling fs layer
+1452903587,,ui,message,    googlecompute: af990ebec435: Verifying Checksum
+1452903587,,ui,message,    googlecompute: af990ebec435: Download complete
+1452903587,,ui,message,    googlecompute: bde8a4409b9a: Verifying Checksum
+1452903587,,ui,message,    googlecompute: bde8a4409b9a: Download complete
+1452903587,,ui,message,    googlecompute: c4962def932e: Verifying Checksum
+1452903587,,ui,message,    googlecompute: c4962def932e: Download complete
+1452903587,,ui,message,    googlecompute: 6042dab27cfc: Verifying Checksum
+1452903587,,ui,message,    googlecompute: 6042dab27cfc: Download complete
+1452903587,,ui,message,    googlecompute: 8d757b237b87: Verifying Checksum
+1452903587,,ui,message,    googlecompute: 8d757b237b87: Download complete
+1452903588,,ui,message,    googlecompute: ad5c35233c3e: Verifying Checksum
+1452903588,,ui,message,    googlecompute: ad5c35233c3e: Download complete
+1452903588,,ui,message,    googlecompute: 6b9175f4b03a: Verifying Checksum
+1452903588,,ui,message,    googlecompute: 6b9175f4b03a: Download complete
+1452903588,,ui,message,    googlecompute: 0f1cffa9e81b: Verifying Checksum
+1452903588,,ui,message,    googlecompute: 0f1cffa9e81b: Download complete
+1452903588,,ui,message,    googlecompute: e55c5e300854: Verifying Checksum
+1452903588,,ui,message,    googlecompute: e55c5e300854: Download complete
+1452903588,,ui,message,    googlecompute: 26ae2053c230: Verifying Checksum
+1452903588,,ui,message,    googlecompute: 26ae2053c230: Download complete
+1452903588,,ui,message,    googlecompute: b1885a757402: Verifying Checksum
+1452903588,,ui,message,    googlecompute: b1885a757402: Download complete
+1452903592,,ui,message,    googlecompute: 2ff54861f223: Verifying Checksum
+1452903592,,ui,message,    googlecompute: 2ff54861f223: Download complete
+1452903592,,ui,message,    googlecompute: 419754143dbf: Verifying Checksum
+1452903592,,ui,message,    googlecompute: 419754143dbf: Download complete
+1452903598,,ui,message,    googlecompute: 419754143dbf: Pull complete
+1452903598,,ui,message,    googlecompute: 8d757b237b87: Pull complete
+1452903598,,ui,message,    googlecompute: ad5c35233c3e: Pull complete
+1452903598,,ui,message,    googlecompute: c4962def932e: Pull complete
+1452903598,,ui,message,    googlecompute: bde8a4409b9a: Pull complete
+1452903598,,ui,message,    googlecompute: 6042dab27cfc: Pull complete
+1452903598,,ui,message,    googlecompute: 6b9175f4b03a: Pull complete
+1452903598,,ui,message,    googlecompute: 0f1cffa9e81b: Pull complete
+1452903606,,ui,message,    googlecompute: 7ba43efb1095: Verifying Checksum
+1452903606,,ui,message,    googlecompute: 7ba43efb1095: Download complete
+1452903624,,ui,message,    googlecompute: 7ba43efb1095: Pull complete
+1452903624,,ui,message,    googlecompute: b1885a757402: Pull complete
+1452903625,,ui,message,    googlecompute: 2ff54861f223: Pull complete
+1452903625,,ui,message,    googlecompute: 26ae2053c230: Pull complete
+1452903625,,ui,message,    googlecompute: e55c5e300854: Pull complete
+1452903625,,ui,message,    googlecompute: af990ebec435: Pull complete
+1452903625,,ui,message,    googlecompute: Digest: sha256:d1e037ea61a43a75c0ef5132c5c79f79a3ee88077c6c789cc6c441bd47f5eb3c
+1452903625,,ui,message,    googlecompute: Status: Downloaded newer image for sysdig/agent:latest
+1452903625,,ui,message,    googlecompute: Using default tag: latest
+1452903627,,ui,message,    googlecompute: latest: Pulling from gliderlabs/consul-server
+1452903627,,ui,message,    googlecompute: b98ffa2251d3: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 1bebf06fe1f4: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 25b07580892b: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 776944599028: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 8abbc4dedabd: Pulling fs layer
+1452903627,,ui,message,    googlecompute: dbc73a5ad7fe: Pulling fs layer
+1452903627,,ui,message,    googlecompute: ad5038c5d09c: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 310131e77ace: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 1981e807aa10: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 8335d0bf853d: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 0dbdd8b297f2: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 498c1c04831d: Pulling fs layer
+1452903627,,ui,message,    googlecompute: f95681786b18: Pulling fs layer
+1452903627,,ui,message,    googlecompute: ba2c357fcde2: Pulling fs layer
+1452903627,,ui,message,    googlecompute: 06c98c52fae1: Pulling fs layer
+1452903627,,ui,message,    googlecompute: b358f79d31b4: Pulling fs layer
+1452903628,,ui,message,    googlecompute: 310131e77ace: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 310131e77ace: Download complete
+1452903628,,ui,message,    googlecompute: 8335d0bf853d: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 8335d0bf853d: Download complete
+1452903628,,ui,message,    googlecompute: 0dbdd8b297f2: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 0dbdd8b297f2: Download complete
+1452903628,,ui,message,    googlecompute: 1bebf06fe1f4: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 1bebf06fe1f4: Download complete
+1452903628,,ui,message,    googlecompute: 25b07580892b: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 25b07580892b: Download complete
+1452903628,,ui,message,    googlecompute: ad5038c5d09c: Verifying Checksum
+1452903628,,ui,message,    googlecompute: ad5038c5d09c: Download complete
+1452903628,,ui,message,    googlecompute: b358f79d31b4: Verifying Checksum
+1452903628,,ui,message,    googlecompute: b358f79d31b4: Download complete
+1452903628,,ui,message,    googlecompute: 1981e807aa10: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 1981e807aa10: Download complete
+1452903628,,ui,message,    googlecompute: 8abbc4dedabd: Verifying Checksum
+1452903628,,ui,message,    googlecompute: 8abbc4dedabd: Download complete
+1452903629,,ui,message,    googlecompute: 776944599028: Verifying Checksum
+1452903629,,ui,message,    googlecompute: 776944599028: Download complete
+1452903629,,ui,message,    googlecompute: 498c1c04831d: Verifying Checksum
+1452903629,,ui,message,    googlecompute: 498c1c04831d: Download complete
+1452903629,,ui,message,    googlecompute: dbc73a5ad7fe: Verifying Checksum
+1452903629,,ui,message,    googlecompute: dbc73a5ad7fe: Download complete
+1452903629,,ui,message,    googlecompute: f95681786b18: Verifying Checksum
+1452903629,,ui,message,    googlecompute: f95681786b18: Download complete
+1452903629,,ui,message,    googlecompute: b98ffa2251d3: Verifying Checksum
+1452903629,,ui,message,    googlecompute: b98ffa2251d3: Download complete
+1452903629,,ui,message,    googlecompute: b98ffa2251d3: Pull complete
+1452903629,,ui,message,    googlecompute: 1bebf06fe1f4: Pull complete
+1452903629,,ui,message,    googlecompute: 25b07580892b: Pull complete
+1452903629,,ui,message,    googlecompute: ba2c357fcde2: Verifying Checksum
+1452903629,,ui,message,    googlecompute: ba2c357fcde2: Download complete
+1452903630,,ui,message,    googlecompute: 776944599028: Pull complete
+1452903630,,ui,message,    googlecompute: 8abbc4dedabd: Pull complete
+1452903630,,ui,message,    googlecompute: dbc73a5ad7fe: Pull complete
+1452903630,,ui,message,    googlecompute: ad5038c5d09c: Pull complete
+1452903631,,ui,message,    googlecompute: 310131e77ace: Pull complete
+1452903631,,ui,message,    googlecompute: 1981e807aa10: Pull complete
+1452903631,,ui,message,    googlecompute: 8335d0bf853d: Pull complete
+1452903631,,ui,message,    googlecompute: 0dbdd8b297f2: Pull complete
+1452903631,,ui,message,    googlecompute: 498c1c04831d: Pull complete
+1452903631,,ui,message,    googlecompute: f95681786b18: Pull complete
+1452903631,,ui,message,    googlecompute: ba2c357fcde2: Pull complete
+1452903633,,ui,message,    googlecompute: 06c98c52fae1: Verifying Checksum
+1452903633,,ui,message,    googlecompute: 06c98c52fae1: Download complete
+1452903633,,ui,message,    googlecompute: 06c98c52fae1: Pull complete
+1452903633,,ui,message,    googlecompute: b358f79d31b4: Pull complete
+1452903633,,ui,message,    googlecompute: Digest: sha256:5694cb91ed6f6bb22e2d7bfb696f13f0eaec3615aa0d285c8532dc71f202ba29
+1452903633,,ui,message,    googlecompute: Status: Downloaded newer image for gliderlabs/consul-server:latest
+1452903633,,ui,say,==> googlecompute: Provisioning with shell script: scripts/user.sh
+1452903633,,ui,say,==> googlecompute: Provisioning with shell script: scripts/nomad.sh
+1452903633,,ui,message,    googlecompute: % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+1452903633,,ui,message,    googlecompute: Dload  Upload   Total   Spent    Left  Speed
+1452903634,,ui,message,    googlecompute: 100 5793k  100 5793k    0     0  21.8M      0 --:--:-- --:--:-- --:--:-- 21.8M
+1452903634,,ui,message,    googlecompute: Archive:  /tmp/nomad.zip
+1452903634,,ui,message,    googlecompute: inflating: /usr/bin/nomad
+1452903634,,ui,say,==> googlecompute: Deleting instance...
+1452903668,,ui,message,    googlecompute: Instance has been deleted!
+1452903668,,ui,say,==> googlecompute: Creating image...
+1452903732,,ui,say,==> googlecompute: Deleting disk...
+1452903735,,ui,message,    googlecompute: Disk has been deleted!
+1452903735,,ui,say,Build 'googlecompute' finished.
+1452903735,,ui,say,\n==> Builds finished. The artifacts of successful builds are:
+1452903735,googlecompute,artifact-count,1
+1452903735,googlecompute,artifact,0,builder-id,packer.googlecompute
+1452903735,googlecompute,artifact,0,id,nomad-ok-1452903405
+1452903735,googlecompute,artifact,0,string,A disk image was created: nomad-ok-1452903405
+1452903735,googlecompute,artifact,0,files-count,0
+1452903735,googlecompute,artifact,0,end
+1452903735,,ui,say,--> googlecompute: A disk image was created: nomad-ok-1452903405

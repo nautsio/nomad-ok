@@ -2,6 +2,8 @@
 
 set -e
 
+echo "${ssh_key}" > /home/user/.ssh/authorized_keys
+
 ADDR=$(ifconfig eth0 | grep -oP 'inet addr:\K\S+')
 cat > /etc/nomad.d/local.hcl << EOF
 datacenter = "sys1"

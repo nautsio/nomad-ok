@@ -7,6 +7,7 @@ module "nomad-client" {
   disk_image = "${var.disk_image}"
   machine_type = "${var.nomad_client.machine_type}"
   instance = "${var.instance}"
+  ssh_key = "${var.ssh_key}"
 }
 
 module "nomad-server" {
@@ -20,4 +21,5 @@ module "nomad-server" {
   disk_image = "${var.disk_image}"
   machine_type = "${var.nomad_server.machine_type}"
   instance = "${var.instance}"
+  ssh_key = "${var.ssh_key}"
 }

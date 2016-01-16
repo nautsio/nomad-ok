@@ -34,6 +34,7 @@ resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
   vars {
     prefix = "${var.instance}-"
+    ssh_key = "${var.ssh_key}"
   }
 }
 

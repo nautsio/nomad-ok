@@ -2,6 +2,8 @@
 
 set -e
 
+echo "${ssh_key}" > /home/user/.ssh/authorized_keys
+
 cat > /etc/nomad.d/local.hcl << EOF
 datacenter = "dc1"
 
