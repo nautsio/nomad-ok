@@ -1,12 +1,12 @@
 #
 # Auto scaling group consisting of Nomad client nodes.
 #
-resource "google_compute_autoscaler" "nomad-client-scaler" {
+resource "google_compute_autoscaler" "nomad_client_scaler" {
   count = "${var.groups}"
-  name = "${var.stack}-nomad-client-scaler-${count.index}"
+  name = "${format("%s-nomad-client-scaler-%02d", var.stack, count.index + 1)}"
   zone = "${element(split(",", var.zones), count.index)}"
 
-  target = "${element(google_compute_instance_group_manager.nomad-client-group.*.self_link, count.index)}"
+  target = "${element(google_compute_instance_group_manager.nomad_client_group.*.self_link, count.index)}"
   autoscaling_policy = {
     min_replicas = "${var.min_cluster_size}"
     max_replicas = "${var.max_cluster_size}"
@@ -20,14 +20,14 @@ resource "google_compute_autoscaler" "nomad-client-scaler" {
 #
 # Instance group manager that manages the Nomad client nodes.
 #
-resource "google_compute_instance_group_manager" "nomad-client-group" {
+resource "google_compute_instance_group_manager" "nomad_client_group" {
   count = "${var.groups}"
-  name = "${var.stack}-nomad-client-group-${count.index}"
+  name = "${format("%s-nomad-client-group-%02d", var.stack, count.index + 1)}"
   zone = "${element(split(",", var.zones), count.index)}"
 
   description = "Group consisting of Nomad client nodes"
-  instance_template = "${google_compute_instance_template.nomad-client.self_link}"
-  base_instance_name = "${var.stack}-farm-${count.index}"
+  instance_template = "${google_compute_instance_template.nomad_client.self_link}"
+  base_instance_name = "${format("%s-farm-%02d", var.stack, count.index + 1)}"
 }
 
 resource "template_file" "startup_script_template" {
@@ -41,8 +41,8 @@ resource "template_file" "startup_script_template" {
 #
 # A template that is used to create the Nomad client nodes.
 #
-resource "google_compute_instance_template" "nomad-client" {
-  name = "${var.stack}-nomad-client"
+resource "google_compute_instance_template" "nomad_client" {
+  name = "${format("%s-nomad-client", var.stack)}"
   description = "Template for Nomad client nodes"
   instance_description = "Nomad client node"
   machine_type = "${var.machine_type}"

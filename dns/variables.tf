@@ -1,1 +1,3 @@
-../variables.tf
+variable "name" {}
+variable "description" {}
+variable "domain" {}

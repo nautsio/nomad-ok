@@ -15,7 +15,7 @@ advertise {
 }
 
 client {
-  servers = ["${prefix}nomad-0:4647", "${prefix}nomad-1:4647", "${prefix}nomad-2:4647"]
+  servers = ["${prefix}nomad-01:4647", "${prefix}nomad-02:4647", "${prefix}nomad-03:4647"]
   node_class = "system"
 }
 
@@ -29,7 +29,7 @@ server {
   num_schedulers = 1
 
   # join other servers
-  retry_join = [ "${prefix}nomad-0", "${prefix}nomad-1", "${prefix}nomad-2" ]
+  retry_join = [ "${prefix}nomad-01", "${prefix}nomad-02", "${prefix}nomad-03" ]
 }
 
 telemetry {

@@ -9,13 +9,22 @@ resource "template_file" "startup_script_template" {
   }
 }
 
+resource "google_compute_disk" "server_disk" {
+    count = "${var.cluster_size}"
+
+    name = "${format("%s-server-disk-%02d", var.stack, count.index + 1)}"
+    type = "pd-standard"
+    zone = "${element(split(",", var.zones), count.index)}"
+    image = "${var.disk_image}"
+}
+
 resource "google_compute_instance" "server_instance" {
   count = "${var.cluster_size}"
 
   machine_type = "${var.machine_type}"
   zone = "${element(split(",", var.zones), count.index)}"
 
-  name = "${var.stack}-nomad-${count.index}"
+  name = "${format("%s-nomad-%02d", var.stack, count.index + 1)}"
   description = "Nomad server node"
   tags = ["nomad", "server"]
 
@@ -25,12 +34,7 @@ resource "google_compute_instance" "server_instance" {
   }
 
   disk {
-    image = "${var.disk_image}"
-  }
-
-  disk {
-    type = "local-ssd"
-    scratch = true
+    disk = "${element(google_compute_disk.server_disk.*.name, count.index)}"
   }
 
   network_interface {

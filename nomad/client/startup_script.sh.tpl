@@ -8,7 +8,7 @@ cat > /etc/nomad.d/local.hcl << EOF
 datacenter = "dc1"
 
 client {
-  servers = ["${prefix}nomad-0:4647", "${prefix}nomad-1:4647", "${prefix}nomad-2:4647"]
+  servers = ["${prefix}nomad-01:4647", "${prefix}nomad-02:4647", "${prefix}nomad-03:4647"]
   node_class = "docker"
 }
 
