@@ -2,7 +2,7 @@
 # Quit on errors.
 set -e
 
-useradd -m -G docker user
+useradd -m -G docker --shell /bin/bash user
 
 # allow passwordless sudo
 echo user ALL=NOPASSWD: ALL > /etc/sudoers.d/user
