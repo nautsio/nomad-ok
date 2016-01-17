@@ -4,7 +4,7 @@ STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
 TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
 
-.PHONY: stack-dir ssh-key plan apply show refresh destroy
+.PHONY: stack-dir ssh-key plan apply show refresh destroy list
 
 stack-dir: $(STACK_DIR)
 
@@ -33,3 +33,6 @@ refresh: stack-dir
 
 destroy: stack-dir
 	terraform destroy $(TF_FLAGS)
+
+list:
+	 gcloud compute --project "innovation-day-nomad" instances
