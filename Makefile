@@ -1,4 +1,4 @@
-STACK=eveld
+TACK:=$(shell cat default-stack-id 2> /dev/null || (uuidgen | cut -d- -f1 | tee default-stack-id))
 STACK_DIR=stacks/$(STACK)
 STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
@@ -35,4 +35,4 @@ destroy: stack-dir
 	terraform destroy $(TF_FLAGS)
 
 list:
-	 gcloud compute --project "innovation-day-nomad" instances
+	 gcloud compute --project "innovation-day-nomad" instances list
