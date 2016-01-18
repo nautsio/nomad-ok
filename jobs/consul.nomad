@@ -1,4 +1,4 @@
-job "consul-servers" {
+job "consul" {
 	datacenters = ["sys1", "dc1"]
 	type = "system"
 
