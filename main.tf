@@ -1,3 +1,6 @@
+#
+# Create a network for the stack.
+#
 module "network" {
   source = "./network"
 
@@ -5,6 +8,9 @@ module "network" {
   range = "10.20.30.0/24"
 }
 
+#
+# Create an external DNS zone for the stack e.g. stack.gce.nauts.io.
+#
 module "external_dns" {
   source = "./dns"
 
@@ -13,6 +19,9 @@ module "external_dns" {
   domain = "${format("%s.%s", var.stack, var.external_domain)}"
 }
 
+#
+# Create an internal DNS zone for the stack e.g. stack.local.
+#
 module "internal_dns" {
   source = "./dns"
 
@@ -21,6 +30,9 @@ module "internal_dns" {
   domain = "${format("%s.%s", var.stack, var.internal_domain)}"
 }
 
+#
+# Create a farm of Nomad client nodes.
+#
 module "nomad_client" {
   source = "./nomad/client"
 
@@ -36,6 +48,9 @@ module "nomad_client" {
   network = "${module.network.name}"
 }
 
+#
+# Create a cluster of Nomad server nodes.
+#
 module "nomad_server" {
   source = "./nomad/server"
 

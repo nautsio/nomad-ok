@@ -4,3 +4,4 @@ account.json
 *.tfstate.backup
 terraform.tfvars
 stacks
+default-stack-id
