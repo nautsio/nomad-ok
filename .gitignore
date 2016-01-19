@@ -5,3 +5,5 @@ account.json
 terraform.tfvars
 stacks
 default-stack-id
+packer/build.log
+packer/image
