@@ -4,7 +4,7 @@ resource "google_compute_network" "network" {
 }
 
 resource "google_compute_firewall" "allow-from-everywhere" {
-    name = "allow-from-everywhere"
+    name = "${var.name}-allow-from-everywhere"
     network = "${google_compute_network.network.name}"
 
     allow {
