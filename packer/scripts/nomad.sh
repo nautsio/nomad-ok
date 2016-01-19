@@ -14,4 +14,5 @@ mv /tmp/etc/nomad.d /etc/nomad.d
 install -o root -g root -m 755 -d /etc/nomad.d /var/local/nomad
 install -o root -g root -m 644 /tmp/etc/systemd/system/nomad.service /etc/systemd/system/nomad.service
 
-# Do not enable daemon: nomad is started by gcloud startup-script after configuration
+systemctl daemon-reload
+systemctl enable nomad.service

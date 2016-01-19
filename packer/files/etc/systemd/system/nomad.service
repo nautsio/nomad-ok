@@ -1,6 +1,6 @@
 [Unit]
 Description=Nomad Agent
-After=network.target
+After=google-startup-scripts.service
 
 [Service]
 TimeoutStartSec=0
