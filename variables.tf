@@ -1,3 +1,4 @@
+# Google Project Name
 variable "project" {
   default = "innovation-day-nomad"
 }
@@ -11,7 +12,10 @@ variable "zones" {
 }
 
 variable "external_domain" {
-  default = "gce.nauts.io."
+  default = {
+    domain = "gce.nauts.io."
+    zone = "gce-nauts-io"
+  }
 }
 
 variable "internal_domain" {

@@ -9,17 +9,6 @@ module "network" {
 }
 
 #
-# Create an external DNS zone for the stack e.g. stack.gce.nauts.io.
-#
-module "external_dns" {
-  source = "./dns"
-
-  name = "${format("%s-external-zone", var.stack)}"
-  description = "External zone"
-  domain = "${format("%s.%s", var.stack, var.external_domain)}"
-}
-
-#
 # Create an internal DNS zone for the stack e.g. stack.local.
 #
 module "internal_dns" {
@@ -57,8 +46,8 @@ module "nomad_server" {
   stack = "${var.stack}"
   ssh_key = "${var.ssh_key}"
 
-  external_dns_zone = "${module.external_dns.zone}"
-  external_dns_name = "${module.external_dns.domain}"
+  external_dns_zone = "${var.external_domain.zone}"
+  external_dns_name = "${format("%s.%s", var.stack, var.external_domain.domain)}"
 
   internal_dns_zone = "${module.internal_dns.zone}"
   internal_dns_name = "${module.internal_dns.domain}"
