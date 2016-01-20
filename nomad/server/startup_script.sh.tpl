@@ -36,5 +36,3 @@ telemetry {
   statsite_address = "localhost:8125"
 }
 EOF
-
-systemctl restart nomad

@@ -10,10 +10,6 @@ variable "zones" {
   default = "europe-west1-b,europe-west1-c,europe-west1-d"
 }
 
-variable "disk_image" {
-  default = "nomad-ok-1452903405"
-}
-
 variable "external_domain" {
   default = "gce.nauts.io."
 }
