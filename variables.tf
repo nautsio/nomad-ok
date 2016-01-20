@@ -3,14 +3,25 @@ variable "project" {
   default = "innovation-day-nomad"
 }
 
+# Google Project Region
 variable "region" {
   default = "europe-west1-b"
 }
 
+# Comma separated list of Google Availability Zones that may be used to create
+# instances or instance groups.
+# Will be used on a round robin basis.
 variable "zones" {
   default = "europe-west1-b,europe-west1-c,europe-west1-d"
 }
 
+# Google DNS Zone resource name and corresponding domain name to use to
+# register the external IP addresses of static hosts in the cluster.
+# The full DNS name will be <host-name>.<stack-name>.<domain>.
+# E.g. nomad-01.bbakker.gce.nauts.io
+#
+# NB. The Zone resource is not managed by this Terraform setup, only the
+# DNS records are.
 variable "external_domain" {
   default = {
     domain = "gce.nauts.io."
@@ -18,14 +29,22 @@ variable "external_domain" {
   }
 }
 
+# DNS suffix for the DNS zone for the internal IP addresses of static hosts
+# in the cluster.
+# E.g. nomad-01.bbakker.local
+#
+# This Zone *will* be managed by this Terraform setup
 variable "internal_domain" {
   default = "local."
 }
 
+# Name of this Stack
 variable "stack" {
   default = "default"
 }
 
+# Public SSH key. This key will be authorized to login to the 'user' account
+# on all hosts in the cluster.
 variable "ssh_key" {
   default = ""
 }
@@ -42,12 +61,6 @@ variable "nomad_client" {
 variable "nomad_server" {
   default = {
     "machine_type" = "g1-small"
-    "cluster_size" = 3
-  }
-}
-
-variable "consul_server" {
-  default = {
     "cluster_size" = 3
   }
 }
