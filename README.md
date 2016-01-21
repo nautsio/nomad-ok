@@ -40,3 +40,11 @@ To destroy the environment:
 ```
 make destroy STACK=<name>
 ```
+
+## To view the presentation
+Run the presenter binary corresponding to your operating system.
+```
+presenter.linux serve slides.md   // Linux
+presenter.osx serve slides.md     // Mac OSX
+presenter.exe serve slides.md     // Windows
+```
