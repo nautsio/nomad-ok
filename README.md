@@ -9,22 +9,34 @@ The environment that is created on [Google Compute Engine](https://cloud.google.
 * External DNS for the Nomad servers. (e.g. nomad-01.stack.gce.nauts.io)
 
 ## Getting started
-Before we get started we need to load the modules that are used in this setup.
+Before we get started we need to load the modules that are used in this setup:
 ```
 make get
 ```
 
-To check what changes would be applied, run make plan.
+To check what changes would be applied and view the plan:
 ```
 make plan STACK=<name>
+make show STACK=<name>
 ```
 
-To create the environment, run make apply.
+To create the environment:
 ```
 make apply STACK=<name>
 ```
 
-To destroy the environment, run make destroy.
+To view your stack or all stacks:
+```
+make list STACK=<name>
+make list-all STACK=<name>
+```
+
+To refresh the state of the stack:
+```
+make refresh STACK=<name>
+```
+
+To destroy the environment:
 ```
 make destroy STACK=<name>
 ```
