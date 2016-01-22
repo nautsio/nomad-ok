@@ -70,6 +70,8 @@ What is it?
 !SLIDE
 
 ## Resources & Scheduling
+When you stop seeing your servers as pets and start seeing them as resources you can use to run your workloads,
+you can also stop caring where they are scheduled. You care only that your workload gets processed.
 
 !SLIDE
 
