@@ -4,7 +4,7 @@ STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
 TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
 
-.PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all
+.PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all copy-jobs ssh
 
 stack-dir: $(STACK_DIR)
 
@@ -39,3 +39,9 @@ list:
 
 list-all:
 	 gcloud compute --project "innovation-day-nomad" instances list
+
+copy-jobs:
+	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@nomad-01.$(STACK).gce.nauts.io:
+
+ssh:
+	ssh -i stacks/$(STACK)/ssh-key user@nomad-01.$(STACK).gce.nauts.io || true
