@@ -116,30 +116,47 @@ you can also stop caring where they are scheduled. You care only that your workl
 !SUB
 
 ## Creating jobs
+- HCL
+- json
 
 !SUB
 
 ## Launching jobs
+- Use the CLI
+- Use the HTTP api
 
 !SUB
 
 ## Constraining jobs
+- Hardware
+- Meta
+- Location
+- Anti-affinity
 
 !SUB
 
 ## Restarting jobs
+- Restart policies
+- Intervals
 
 !SUB
 
 ## Scaling jobs
+- Change the number of instances, redeploy the job, see the number of instances scale
+- Make the number too large and see that the extra instances don't get placed
 
 !SUB
 
 ## Updating jobs
+- Change a value, do a rolling update
 
 !SUB
 
 ## Auto discovery
+- Uses consul to discover services
+- Works without bootstrapping, nomad picks it up as soon as it recognizes consul
+- Defined inside the job description
+- No need for external tools (registrator)
 
 !SLIDE
 
@@ -148,6 +165,9 @@ you can also stop caring where they are scheduled. You care only that your workl
 !SLIDE
 
 # Recap
+- What does nomad do for you?
+- What is the added value?
+- What are the experiences sofar?
 
 !SLIDE
 
