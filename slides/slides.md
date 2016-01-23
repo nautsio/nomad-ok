@@ -105,14 +105,12 @@ you can also stop caring where they are scheduled. You care only that your workl
 
 ## Explain how to work with the components
 
-!SUB
-
 !SLIDE
 ## Monitoring with Sysdig
 
-*"Sysdig Cloud is the first and only monitoring, alerting, and troubleshooting
+*“Sysdig Cloud is the first and only monitoring, alerting, and troubleshooting
   solution designed from the ground up to provide unprecedented visibility into
-  containerized infrastructures."*
+  containerized infrastructures.”*
 
 We'll integrate Sysdig Cloud to get a quick overview of our cluster and the
 containers running in it.
@@ -172,7 +170,7 @@ $ nomad run sysdig.nomad
 !SUB
 ## Sysdig Cloud
 
-![Sysdig Cloud Explore View](sysdig-explore.png)
+![Sysdig Cloud Explore View](/img/sysdig-explore.png)
 
 !SLIDE
 
