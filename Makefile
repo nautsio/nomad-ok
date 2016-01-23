@@ -35,10 +35,10 @@ destroy: stack-dir
 	terraform destroy $(TF_FLAGS)
 
 list:
-	 gcloud compute --project "innovation-day-nomad" instances list | egrep "^$(STACK)-" | sort
+	 @gcloud compute --project "innovation-day-nomad" instances list | egrep "^NAME|$(STACK)-" | sort
 
 list-all:
-	 gcloud compute --project "innovation-day-nomad" instances list
+	 @gcloud compute --project "innovation-day-nomad" instances list
 
 copy-jobs:
 	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@nomad-01.$(STACK).gce.nauts.io:
