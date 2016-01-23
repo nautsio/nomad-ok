@@ -294,28 +294,33 @@ curl http://ddd-01:8500/v1/catalog/services | jq .
 
 !SLIDE
 
-# Things don't always go well in real life ...
+# Things don't always go well in real life
 
 !SUB
 
-## Decommissioning nodes
+# Decommissioning nodes
+- node drain feature
 
 !SUB
 
-## Client failures
+# Client failures
+- are jobs correctly transferred to other nodes?
 
 !SUB
 
-## Master failures
+# Master failures
+- can scheduling still continue?
 
 !SUB
 
-## Machine failures
+# Machine failures
+- can scheduling still continue?
+- are jobs correctly transferred to other nodes?
 
 !SLIDE
 
-# Looking back ...
+# Review
 
 !SLIDE
 
-# Q & A
+# Drinks
