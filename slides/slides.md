@@ -301,6 +301,20 @@ curl http://ddd-01:8500/v1/catalog/services | jq .
 # Decommissioning nodes
 - node drain feature
 
+Example of a killed node in the docker farm:
+```
+root@bbakker-nomad-01:~# nomad node-status
+ID        Datacenter  Name                  Class   Drain  Status
+0b46eda1  dc1         bbakker-farm-01-jmja  docker  false  down
+e1191817  dc1         bbakker-farm-02-1q3f  docker  false  ready
+9b2e3f82  dc1         bbakker-farm-01-q1ll  docker  false  ready
+ecabf2fa  dc1         bbakker-farm-01-6ys5  docker  false  ready
+954b5b89  sys1        bbakker-nomad-01      system  false  ready
+f99014c9  sys1        bbakker-nomad-02      system  false  ready
+45b2d888  sys1        bbakker-nomad-03      system  false  ready
+50f3d652  dc1         bbakker-farm-02-42x5  docker  false  ready
+```
+
 !SUB
 
 # Client failures
