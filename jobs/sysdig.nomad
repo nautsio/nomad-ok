@@ -17,6 +17,7 @@ job "sysdig" {
 			interval = "5m"
 			attempts = 10
 			delay = "25s"
+			mode = "delay"
 		}
 
 		task "sysdig" {
@@ -40,16 +41,24 @@ job "sysdig" {
 			}
 
 			env {
-					TAGS="nomad.dc:$node.datacenter,zone:$attr.platform.gce.zone"
+					TAGS="stack:bbakker,nomad.dc:$node.datacenter,zone:$attr.platform.gce.zone"
 					ACCESS_KEY="7535a00e-58aa-4073-b55e-eb0ccd22c410"
 			}
 
+			# NB is not reachable outside localhost
+			service {
+				name = "${TASKGROUP}"
+				tags = ["statsite"]
+				port = "sysdig_statsite"
+			}
+
 			resources {
-				cpu = 500 # 500 Mhz
+				cpu = 50 # 500 Mhz
 				memory = 256 # 256MB
 				network {
 					mbits = 10
-					port "db" {
+					port "sysdig_statsite" {
+						static = "8125"
 					}
 				}
 			}
