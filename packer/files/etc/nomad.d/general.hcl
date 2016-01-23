@@ -19,7 +19,5 @@ ports {
   rpc = 4647
   serf = 4648
 }
-leave_on_interrupt = false
-leave_on_terminate = false
 disable_updates_check = false
 disable_anonymous_signature = false

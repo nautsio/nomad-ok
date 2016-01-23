@@ -7,4 +7,4 @@ docker pull redis
 #docker pull mvanholsteijn/paas-monitor
 docker pull jess/stress
 docker pull sysdig/agent
-docker pull gliderlabs/consul-server
+#docker pull gliderlabs/consul-server

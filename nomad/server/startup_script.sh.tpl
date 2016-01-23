@@ -8,6 +8,9 @@ ADDR=$(ifconfig eth0 | grep -oP 'inet addr:\K\S+')
 cat > /etc/nomad.d/local.hcl << EOF
 datacenter = "sys1"
 
+leave_on_interrupt = false
+leave_on_terminate = false
+
 advertise {
   # We need to specify our host's IP because we can't
   # advertise 0.0.0.0 to other nodes in our cluster.
@@ -34,5 +37,21 @@ server {
 
 telemetry {
   statsite_address = "localhost:8125"
+}
+EOF
+
+cat > /etc/consul.d/server.json << EOF
+{
+  "client_addr": "0.0.0.0",
+  "leave_on_terminate": true,
+  "ui": true,
+  "dns_config": {
+    "allow_stale": false
+  },
+  "advertise_addr": "$ADDR",
+  "statsite_addr": "localhost:8125",
+  "server": true,
+  "retry_join": [ "${prefix}nomad-01", "${prefix}nomad-02", "${prefix}nomad-03" ],
+  "bootstrap_expect": 3
 }
 EOF
