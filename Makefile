@@ -3,8 +3,10 @@ STACK_DIR=stacks/$(STACK)
 STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
 TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
+HOST:=nomad-01
+FROM:=bbakker@xebia.com
 
-.PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all copy-jobs ssh
+.PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all copy-jobs ssh mail
 
 stack-dir: $(STACK_DIR)
 
@@ -35,13 +37,19 @@ destroy: stack-dir
 	terraform destroy $(TF_FLAGS)
 
 list:
-	 @gcloud compute --project "innovation-day-nomad" instances list | egrep "^NAME|$(STACK)-" | sort
+	 @gcloud compute --project "innovation-day-nomad" instances list | egrep "^$(STACK)-" | sort
 
 list-all:
 	 @gcloud compute --project "innovation-day-nomad" instances list
 
 copy-jobs:
-	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@nomad-01.$(STACK).gce.nauts.io:
+	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@$(HOST).$(STACK).gce.nauts.io:
 
 ssh:
-	ssh -i stacks/$(STACK)/ssh-key user@nomad-01.$(STACK).gce.nauts.io || true
+	ssh -i stacks/$(STACK)/ssh-key user@$(HOST).$(STACK).gce.nauts.io || true
+
+stacks/$(STACK)/message.txt: mail.sh
+	./mail.sh $(STACK) $(FROM) $(TO) > $@
+
+mail: stacks/$(STACK)/message.txt
+	esmtp -v -i -X mail.log -f $(FROM) $(TO) < $<
