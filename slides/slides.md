@@ -241,6 +241,7 @@ We have prepared a Nomad **system job** to automatically deploy Sysdig on **all 
   3. Run `nomad run jobs/sysdig.nomad`
 
 !SUB
+# Running Sysdig
 
 ```
 $ cd jobs/
@@ -258,6 +259,12 @@ $ nomad run sysdig.nomad
     Evaluation status changed: "pending" -> "complete"
 ==> Evaluation "d3d8b3e3-c1ba-7594-8cd6-868e79bb1e2b" finished with status "complete"
 ```
+
+!SUB
+# Sysdig Explore Console
+
+![Sysdig Console](/img/sysdig-explore.png)
+
 
 !SLIDE
 
@@ -282,6 +289,77 @@ show job description
 !SLIDE
 
 # Resource management (Bastiaan)
+
+In order to schedule jobs on the right nodes, Nomad needs to know which resources
+are available and where, and which resources a job needs.
+
+Nomad currently can manage the following resources:
+- CPU cycles
+- memory
+- Disk space
+- Disk IO
+- Network ports
+- Network IO
+
+!SUB
+
+# Available Resources  
+The 'node' endpoint shows detected resources:
+
+```
+$ curl http://localhost:4646/v1/node/0af1abf0-d55c-3923-188f-495bed729a4e | jq .Resources
+{
+  "CPU": 2500,
+  "MemoryMB": 1704,
+  "DiskMB": 7493,
+  "IOPS": 0,
+  "Networks": [
+    {
+      "Device": "eth0",
+      "CIDR": "10.20.30.5/32",
+      "IP": "10.20.30.5",
+      "MBits": 1000,
+      "ReservedPorts": null,
+      "DynamicPorts": null
+    }
+  ]
+}
+```
+
+doc: https://www.nomadproject.io/docs/http/node.html
+
+!SUB
+# Available Resources
+
+NB. These are resources Nomad detects at startup time.
+
+NB. Without consisdering processes not scheduled by Nomad.
+
+NB. Currently it is *not* possible to query unallocated resources.
+
+!SUB
+# Reserving Resources
+
+Jobs can specify which and how many resources the need. Nomad the may instruct
+the task driver (e.g. Docker) to not let the process use more.
+
+For example the default a job may specify (within the 'task' section):
+
+```
+resources {
+				cpu = 500 # 500 Mhz
+				memory = 256 # 256MB
+				network {
+					mbits = 10
+					port "db" {
+            static = 3306
+					}
+				}
+			}
+```
+
+
+
 
 !SLIDE
 
