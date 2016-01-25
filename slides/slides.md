@@ -104,61 +104,6 @@ show architecture in infographic ...
 - how to check if things go as planned
 
 !SLIDE
-## Monitoring with Sysdig
-
-*“Sysdig Cloud is the first and only __monitoring, alerting, and troubleshooting
-  solution__ designed from the ground up to provide unprecedented visibility into
-  __containerized infrastructures__.”*
-
-<br />
-We'll integrate Sysdig Cloud to get a quick overview of our cluster and the
-containers running in it.
-
-!SUB
-
-- Sysdig runs as a **metrics collecting** agent on every node
-- The agent employs a custom **kernel module** to collect interesting events
-- The agent **aggegates** the metrics and **forwards** them to Sysdig Cloud
-- The agent authenticates to Sysdig Cloud with a **per-account ACCESS_KEY**
-- Both the agent and kernel module can be deployed as a single *very privileged* docker container
-
-!SUB
-# Account Creation
-1. Create a trial account at https://sysdig.com/sign-up/
-2. Activate your account
-3. Choose an installation option (doesn't matter which)
-4. Copy the ACCESS_KEY
-
-!SUB
-# Running Sysdig
-
-We have prepared a Nomad **system job** to automatically deploy Sysdig on **all nodes**, by using the **raw_exec** driver to start the Sysdig Docker container with the right **privileges and mounts**.
-
-<br />
-  1. login to server 'nomad-01'
-  2. Paste ACCESS_KEY into `jobs/sysdig.nomad`
-  3. Run `nomad run jobs/sysdig.nomad`
-
-!SUB
-
-```
-$ cd jobs/
-$ perl -pi -e 's/ACCESS_KEY=".*"/ACCESS_KEY="7535a00e-58aa-4073-b55e-eb0ccd22c410"/' sysdig.nomad
-$ nomad run sysdig.nomad
-==> Monitoring evaluation "d3d8b3e3-c1ba-7594-8cd6-868e79bb1e2b"
-    Evaluation triggered by job "sysdig"
-    Allocation "2633-dc54-e4d1-72de554b74e6" created: node "4554-c487-cfe6", group "sysdig"
-    Allocation "0797-ac22-8c20-30fb35b2b4d9" created: node "032d-c7b7-4533", group "sysdig"
-    Allocation "a2e1-e3ca-ec97-80cb37ca4af2" created: node "1019-bb6e-ca3f", group "sysdig"
-    Allocation "b9b1-8fe9-bcf2-427960bb9597" created: node "7082-2fbe-90b8", group "sysdig"
-    Allocation "604b-089a-4e2b-64e4c6f5c103" created: node "8460-44f2-bc69", group "sysdig"
-    Allocation "d0da-1966-109d-be2d2e7be4a8" created: node "ce49-f687-d42f", group "sysdig"
-    Allocation "2f5e-6345-413d-99b04a4f0ed9" created: node "f3e3-acc5-e4d7", group "sysdig"
-    Evaluation status changed: "pending" -> "complete"
-==> Evaluation "d3d8b3e3-c1ba-7594-8cd6-868e79bb1e2b" finished with status "complete"
-```
-
-!SLIDE
 
 # Jobs
 
@@ -257,29 +202,73 @@ What happens if we change the version?
 What happens if we scale up/down?
 What happens if we add a constraint that would disallow placement of the already placed job?
 
+!SLIDE
+
+## Monitoring with Sysdig
+
+*“Sysdig Cloud is the first and only __monitoring, alerting, and troubleshooting
+  solution__ designed from the ground up to provide unprecedented visibility into
+  __containerized infrastructures__.”*
+
+<br />
+We'll integrate Sysdig Cloud to get a quick overview of our cluster and the
+containers running in it.
+
 !SUB
 
-## Auto discovery
+- Sysdig runs as a **metrics collecting** agent on every node
+- The agent employs a custom **kernel module** to collect interesting events
+- The agent **aggegates** the metrics and **forwards** them to Sysdig Cloud
+- The agent authenticates to Sysdig Cloud with a **per-account ACCESS_KEY**
+- Both the agent and kernel module can be deployed as a single *very privileged* docker container
+
+!SUB
+# Account Creation
+1. Create a trial account at https://sysdig.com/sign-up/
+2. Activate your account
+3. Choose an installation option (doesn't matter which)
+4. Copy the ACCESS_KEY
+
+!SUB
+# Running Sysdig
+
+We have prepared a Nomad **system job** to automatically deploy Sysdig on **all nodes**, by using the **raw_exec** driver to start the Sysdig Docker container with the right **privileges and mounts**.
+
+<br />
+  1. login to server 'nomad-01'
+  2. Paste ACCESS_KEY into `jobs/sysdig.nomad`
+  3. Run `nomad run jobs/sysdig.nomad`
+
+!SUB
+
+```
+$ cd jobs/
+$ perl -pi -e 's/ACCESS_KEY=".*"/ACCESS_KEY="7535a00e-58aa-4073-b55e-eb0ccd22c410"/' sysdig.nomad
+$ nomad run sysdig.nomad
+==> Monitoring evaluation "d3d8b3e3-c1ba-7594-8cd6-868e79bb1e2b"
+    Evaluation triggered by job "sysdig"
+    Allocation "2633-dc54-e4d1-72de554b74e6" created: node "4554-c487-cfe6", group "sysdig"
+    Allocation "0797-ac22-8c20-30fb35b2b4d9" created: node "032d-c7b7-4533", group "sysdig"
+    Allocation "a2e1-e3ca-ec97-80cb37ca4af2" created: node "1019-bb6e-ca3f", group "sysdig"
+    Allocation "b9b1-8fe9-bcf2-427960bb9597" created: node "7082-2fbe-90b8", group "sysdig"
+    Allocation "604b-089a-4e2b-64e4c6f5c103" created: node "8460-44f2-bc69", group "sysdig"
+    Allocation "d0da-1966-109d-be2d2e7be4a8" created: node "ce49-f687-d42f", group "sysdig"
+    Allocation "2f5e-6345-413d-99b04a4f0ed9" created: node "f3e3-acc5-e4d7", group "sysdig"
+    Evaluation status changed: "pending" -> "complete"
+==> Evaluation "d3d8b3e3-c1ba-7594-8cd6-868e79bb1e2b" finished with status "complete"
+```
+
+!SLIDE
+
+# Auto discovery
 - Uses consul to discover services
 - Works without bootstrapping, nomad picks it up as soon as it recognizes consul
 - Defined inside the job description
 - No need for external tools (registrator)
 
-Since verson 0.2.0 Nomad now integrates directly with Consul for its service discovery, which removes the need for a separate Registrator container.
-Lets see this new feature in action by adding service discovery to our client nodes and job files.
-
-Exercises
-Set
-client {
-  options {
-    "consul.address" = "<hostname>:8500"
-  }
-}
-in the Nomad node configurations. Note the awkward quoting of the option key.
-Restart the Nomad services.
-Add a service block to the job specification.
-Resubmit the job and check if it appears in consul:
-curl http://ddd-01:8500/v1/catalog/services | jq .
+```
+show job description
+```
 
 !SLIDE
 
@@ -288,9 +277,6 @@ curl http://ddd-01:8500/v1/catalog/services | jq .
 !SLIDE
 
 # Recap
-- What does nomad do for you?
-- What is the added value?
-- What are the experiences sofar?
 
 !SLIDE
 
@@ -300,6 +286,9 @@ curl http://ddd-01:8500/v1/catalog/services | jq .
 
 # Decommissioning nodes
 - node drain feature
+```
+call node drain in CLI
+```
 
 Example of a killed node in the docker farm:
 ```
@@ -314,6 +303,12 @@ f99014c9  sys1        bbakker-nomad-02      system  false  ready
 45b2d888  sys1        bbakker-nomad-03      system  false  ready
 50f3d652  dc1         bbakker-farm-02-42x5  docker  false  ready
 ```
+
+- Check if google/nomad automatically removed dead nodes after 24 hrs.
+
+!SUB
+
+# Stress
 
 !SUB
 
