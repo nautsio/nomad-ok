@@ -83,6 +83,7 @@ Nomad is a tool for **managing a cluster of machines and running applications on
 
 !SUB
 
+# Erik
 show architecture in infographic ...
 
 !SUB
@@ -95,7 +96,7 @@ show architecture in infographic ...
 
 !SLIDE
 
-# The setup
+# The setup (Erik)
 
 !SUB
 
@@ -125,7 +126,7 @@ show architecture in infographic ...
 
 !SUB
 
-# Creating
+# Creating (Erik)
 Nomad can initialize an example job for us which we can then modify to our own requirements:
 
 ```
@@ -143,7 +144,7 @@ job "example" {
 
 !SUB
 
-# Launching
+# Launching (Erik)
 Use the run command of the Nomad CLI:
 ```
 $ nomad run example.nomad
@@ -162,7 +163,7 @@ $ curl -X POST -d @example.json $NOMAD_ADDR/v1/jobs
 
 !SUB
 
-# Constraints
+# Constraints (Erik)
 - Hardware
 - Meta
 - Location
@@ -175,7 +176,7 @@ Try to place the job based on a node's metadata (We will need to add some)
 
 !SUB
 
-## Restarting
+## Restarting (Erik)
 - Restart policies
 - Intervals
 
@@ -187,13 +188,13 @@ docker kill <job> command.
 
 !SUB
 
-## Scaling
+## Scaling (Erik)
 - Change the number of instances, redeploy the job, see the number of instances scale
 - Make the number too large and see that the extra instances don't get placed
 
 !SUB
 
-## Updating
+## Updating (Erik)
 - Change a value, do a rolling update
 
 Now lets try changing settings in the job file and see what happens when we resubmit the job.
@@ -280,6 +281,10 @@ show job description
 
 !SLIDE
 
+# Resource management (Bastiaan)
+
+!SLIDE
+
 # Things don't always go well in real life
 
 !SUB
@@ -308,21 +313,17 @@ f99014c9  sys1        bbakker-nomad-02      system  false  ready
 
 !SUB
 
-# Stress
-
-!SUB
-
-# Client failures
+# Client failures (Bastiaan)
 - are jobs correctly transferred to other nodes?
 
 !SUB
 
-# Master failures
+# Master failures (Bastiaan)
 - can scheduling still continue?
 
 !SUB
 
-# Machine failures
+# Machine failures (Bastiaan)
 - can scheduling still continue?
 - are jobs correctly transferred to other nodes?
 
