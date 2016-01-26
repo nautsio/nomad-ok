@@ -48,8 +48,8 @@ copy-jobs:
 ssh:
 	ssh -i stacks/$(STACK)/ssh-key user@$(HOST).$(STACK).gce.nauts.io || true
 
-stacks/$(STACK)/message.txt: mail.sh
+stacks/$(STACK)/mail.msg: mail.sh
 	./mail.sh $(STACK) $(FROM) $(TO) > $@
 
-mail: stacks/$(STACK)/message.txt
+mail: stacks/$(STACK)/mail.msg
 	esmtp -v -i -X mail.log -f $(FROM) $(TO) < $<
