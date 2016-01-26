@@ -1,10 +1,14 @@
+SHELL=/bin/bash
+
 STACK:=$(shell cat default-stack-id 2> /dev/null || (uuidgen | cut -d- -f1 | tee default-stack-id))
 STACK_DIR=stacks/$(STACK)
 STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
 TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
+
 HOST:=nomad-01
 FROM:=bbakker@xebia.com
+DOMAIN=$(STACK).gce.nauts.io
 
 .PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all copy-jobs ssh mail
 
@@ -42,11 +46,14 @@ list:
 list-all:
 	 @gcloud compute --project "innovation-day-nomad" instances list
 
+# suffix with domain if hostname, not IP address
+HOSTFQDN=$(shell sed 's/\(^[^.]*$$\)/\1.$(DOMAIN)/' <<< $(HOST))
+
 copy-jobs:
-	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@$(HOST).$(STACK).gce.nauts.io:
+	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@$(HOSTFQDN):
 
 ssh:
-	ssh -i stacks/$(STACK)/ssh-key user@$(HOST).$(STACK).gce.nauts.io || true
+	ssh -i stacks/$(STACK)/ssh-key user@$(HOSTFQDN) || true
 
 stacks/$(STACK)/mail.msg: mail.sh
 	./mail.sh $(STACK) $(FROM) $(TO) > $@
