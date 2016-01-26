@@ -35,7 +35,7 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 
 # Immutable infrastructure
 
-!NOTE ** explanation of immutable infrastructure **
+!NOTE Immutable infrastructure provides stability, efficiency, and fidelity to your applications through automation and the use of the immutability pattern from programming: once you instantiate something, you never change it. Instead, you replace it with another instance to make changes or ensure proper behavior.
 
 !SUB
 
@@ -52,6 +52,8 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 
 # Infrastructure as code
 
+!NOTE Infrastructure as code, or programmable infrastructure, means writing code to manage configurations and automate provisioning of infrastructure in addition to deployments, this means you write code to provision and manage your server, in addition to automating processes.
+!NOTE It differs from infrastructure automation, which just involves replicating steps multiple times and reproducing them on several servers
 !NOTE Don't log in to a new machine and configure it
 !NOTE Write code to describe the desired state
 !NOTE Manage infrastructure via source control
@@ -71,7 +73,7 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 
 # Resources & Scheduling
 
-!NOTE Schedule a task only on nodes that have enough resources available to run that task. These can be CPU cycles, memory, disk, etc, but also network ports the task wants to bind. Extra constraints or requirements can be described that will decide where a task is run.
+!NOTE Schedule a task only on nodes that have enough resources available to run that task. These can be CPU cycles, memory, disk, etc, but also network ports the task wants to bind. Extra constraints or requirements can be described that will decide where a task is run. A resource manager/scheduler will also take care of relocating the task in case of failures.
 
 !SLIDE
 
@@ -97,6 +99,8 @@ show architecture in infographic ...
 !SLIDE
 
 # The setup (Erik)
+
+diagram with the gce setup (3x sys1 - nomad + consul) (2x farm - nomad) (nomad @ .local / .gce.nauts.io) (1x network)
 
 !SUB
 
@@ -126,7 +130,7 @@ show architecture in infographic ...
 
 !SUB
 
-# Creating (Erik)
+# Creating
 Nomad can initialize an example job for us which we can then modify to our own requirements:
 
 ```
@@ -144,35 +148,55 @@ job "example" {
 
 !SUB
 
-# Launching (Erik)
+- change the docker image to nautsio/helloworld
+- set the version to v1
+- set the group to hello
+- task helloworld-v1
+- add some tags (hello, v1)
+- add port 80
+- save it as helloworld-v1.nomad
+
+!SUB
+
+# Launching
 Use the run command of the Nomad CLI:
 ```
-$ nomad run example.nomad
+$ nomad run helloworld-v1.nomad
 ==> Monitoring evaluation "3d823c52-929a-fa8b-c50d-1ac4d00cf6b7"
-    Evaluation triggered by job "example"
-    Allocation "f67a-72a4-5a13" created: node "5b7c-a959-dfd9", group "cache"
+    Evaluation triggered by job "hellloworld-v1"
+    Allocation "f67a-72a4-5a13" created: node "5b7c-a959-dfd9", group "hello"
     Evaluation status changed: "pending" -> "complete"
 ==> Evaluation "3d823c52-929a-fa8b-c50d-1ac4d00cf6b7" finished with status "complete"
 ```
 
 <br />
-Submit a job in JSON format to the HTTP API endpoint:
+You can also submit a job in JSON format to the HTTP API endpoint:
 ```
-$ curl -X POST -d @example.json $NOMAD_ADDR/v1/jobs
+$ curl -X POST -d @helloworld-v1.json $NOMAD_ADDR/v1/jobs
+```
+
+!SUB
+# Inspecting
+Find out where our job is running:
+```
+$
+```
+
+<br />
+Check that the job is running properly by calling it:
+```
+$ curl http://<ip>
 ```
 
 !SUB
 
 # Constraints (Erik)
+By specifying constraints you can dictate a set of rules that Nomad will follow when placing your jobs. These constraints can be on resources, self applied metadata and other configured attributes.
+
 - Hardware
 - Meta
 - Location
 - Anti-affinity
-
-By specifying constraints you can dictate a set of rules that Nomad will follow when placing your jobs. These constraints can be on resources, self applied metadata and other configured attributes.
-Exercises
-Try to place the job based on a node's attribute (e.g. hostname)
-Try to place the job based on a node's metadata (We will need to add some)
 
 !SUB
 
@@ -262,13 +286,22 @@ $ nomad run sysdig.nomad
 !SLIDE
 
 # Auto discovery
-- Uses consul to discover services
-- Works without bootstrapping, nomad picks it up as soon as it recognizes consul
-- Defined inside the job description
-- No need for external tools (registrator)
+- Uses Consul to expose services and works **without bootstrapping**
+- Defined **inside the job description**
+- **No external tools** such as Registrator needed
 
+<br />
 ```
-show job description
+service {
+  name = "${TASKGROUP}-helloworld-v1"
+  tags = ["hello", "v1"]
+  port = "http"
+  check {
+    type = "http"
+    delay = "10s"
+    timeout = "2s"
+  }
+}
 ```
 
 !SLIDE
