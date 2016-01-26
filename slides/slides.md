@@ -321,7 +321,7 @@ service {
 
 !SLIDE
 
-# Resource management (Bastiaan)
+# Resource management
 
 In order to schedule jobs on the right nodes, Nomad needs to know which resources
 are available and where, and which resources a job needs.
@@ -366,9 +366,9 @@ doc: https://www.nomadproject.io/docs/http/node.html
 
 NB. These are resources Nomad detects at startup time.
 
-NB. Without consisdering processes not scheduled by Nomad.
+NB. Without considering processes not scheduled by Nomad.
 
-NB. Currently it is *not* possible to query unallocated resources.
+NB. Currently it is **not** possible to query unallocated resources.
 
 !SUB
 # Reserving Resources
