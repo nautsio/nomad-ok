@@ -442,15 +442,15 @@ For example the default a job may specify (within the 'task' section):
 
 ```
 resources {
-				cpu = 500 # 500 Mhz
-				memory = 256 # 256MB
-				network {
-					mbits = 10
-					port "db" {
-            static = 3306
-					}
-				}
-			}
+	cpu = 500 # 500 Mhz
+	memory = 256 # 256MB
+	network {
+		mbits = 10
+		port "db" {
+      static = 3306
+		}
+	}
+}
 ```
 
 
