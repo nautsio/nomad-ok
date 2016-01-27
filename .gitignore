@@ -7,3 +7,4 @@ stacks
 default-stack-id
 packer/build.log
 packer/image
+.DS_Store

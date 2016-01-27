@@ -10,7 +10,6 @@ Bastiaan Bakker [bastiaan@nauts.io](mailto:bastiaan@nauts.io)
 Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 
 !SLIDE
-
 # Less pets, more cattle
 <pre markdown="0">
               (__)            (__)             (__)             (__)             (__)
@@ -32,13 +31,11 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 *It takes a family of three to care for a __single puppy__, but a few cowboys can drive tens of __thousands of cows__ over great distances, all while drinking whiskey.*
 
 !SLIDE
-
 # Immutable infrastructure
 
 !NOTE Immutable infrastructure provides stability, efficiency, and fidelity to your applications through automation and the use of the immutability pattern from programming: once you instantiate something, you never change it. Instead, you replace it with another instance to make changes or ensure proper behavior.
 
 !SUB
-
 - All components of a running system are in a **known state**
 - **Simplify change management**
 - **Better understanding** across the whole delivery chain
@@ -49,13 +46,11 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 *“Enable the reconstruction of the business from nothing but a source code repository, an application data backup, and bare metal resources”* - Jesse Robins
 
 !SLIDE
-
 # Infrastructure as code
 
 !NOTE Infrastructure as code, or programmable infrastructure, means writing code to manage configurations and automate provisioning of infrastructure in addition to deployments, this means you write code to provision and manage your server, in addition to automating processes. It differs from infrastructure automation, which just involves replicating steps multiple times and reproducing them on several servers (Testing, Source Control, Describe desired state, Don't log in)
 
 !SUB
-
 - **Remove manual steps** prone to errors
 - Enables **collaboration**
 - Infrastructure components can be **versioned**
@@ -65,41 +60,33 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 *“A single person can start 100 machines at the press of a button, and have them properly configured”* - Boyd Hemphill
 
 !SLIDE
-
 # Resources & Scheduling
 
 !NOTE Schedule a task only on nodes that have enough resources available to run that task. These can be CPU cycles, memory, disk, etc, but also network ports the task wants to bind. Extra constraints or requirements can be described that will decide where a task is run. A resource manager/scheduler will also take care of relocating the task in case of failures.
 
 !SLIDE
-
 # Nomad
 
 !SUB
-
 Nomad is a tool for **managing a cluster of machines and running applications on them**. Nomad **abstracts away machines** and the location of applications, and instead **enables users to declare what they want to run** and Nomad handles where they should run and how to run them.
 
 !SUB
-
 # Architecture
-image
+![Architecture](/img/architecture.png)
 
 !SUB
-
-# Evaluation
-image
-
-!SUB
-
-# Planning
-image
+# Phase 1: Evaluation
+![Evaluation](/img/evaluation.png)
 
 !SUB
-
-# Allocation
-image
+# Phase 2: Planning
+![Planning](/img/planning.png)
 
 !SUB
+# Phase 3: Allocation
+![Allocation](/img/allocation.png)
 
+!SUB
 - **Job, Task & Taskgroup**: A Job is a specification of tasks that Nomad should run. It consists of Taskgroups, which themselves contain one ore more Tasks.
 - **Allocation**: An Allocation is a placement of a Task on a node.
 - **Evaluation**: Evaluations are the mechanism by which Nomad makes scheduling decisions.
@@ -107,21 +94,19 @@ image
 - **Task Driver**: A Driver represents the basic means of executing your Tasks.
 
 !SLIDE
-
-# The setup (Erik)
-
-diagram with the gce setup (3x sys1 - nomad + consul) (2x farm - nomad) (nomad @ .local / .gce.nauts.io) (1x network)
+# The setup
+![Setup](/img/setup.png)
 
 !SLIDE
-
 # Jobs
 
 !SUB
-
 # Job types
 - **Service**: The service scheduler is designed for scheduling long lived services that should never go down.
 - **Batch**: Batch jobs are much less sensitive to short term performance fluctuations and are short lived, finishing in a few minutes to a few days. They can be scheduled and recurring.
 - **System**: The system scheduler is used to register jobs that should be run on all clients that meet the job's constraints.
+
+doc: [/docs/jobspec/schedulers.html](https://www.nomadproject.io/docs/jobspec/schedulers.html)
 
 !SUB
 # Task drivers
@@ -132,8 +117,9 @@ diagram with the gce setup (3x sys1 - nomad + consul) (2x farm - nomad) (nomad @
 - **Java**: Run a downloaded Java jar file
 - **Qemu**: Start a Virtual Machine
 
-!SUB
+doc: [/docs/drivers/index.html](https://www.nomadproject.io/docs/drivers/index.html)
 
+!SUB
 # Creating
 Nomad can initialize an example job for us which we can then modify to our own requirements:
 
@@ -150,8 +136,9 @@ job "example" {
 ...
 ```
 
-!SUB
+doc: [/docs/jobspec/index.html](https://www.nomadproject.io/docs/jobspec/index.html)
 
+!SUB
 ```
 job "helloworld" {
   datacenters = ["dc1"]
@@ -180,7 +167,6 @@ job "helloworld" {
 jobs/helloworld-v1.nomad
 
 !SUB
-
 # Launching
 Use the run command of the Nomad CLI:
 ```
@@ -198,6 +184,7 @@ You can also submit a job in JSON format to the HTTP API endpoint:
 ```
 $ curl -X POST -d @helloworld-v1.json $NOMAD_ADDR/v1/jobs
 ```
+doc: [/docs/http/index.html](https://www.nomadproject.io/docs/http/index.html)
 
 !SUB
 # Where is our job?
@@ -221,7 +208,6 @@ Inside the **.TaskResources.helloworld** block, for each of the **.Networks**, c
 Those are the ip's and corresponding ports for your service.
 
 !SUB
-
 Or you can use some JQ-fu and get it with a script:
 
 ```
@@ -246,7 +232,6 @@ Hello v1
 ```
 
 !SUB
-
 # Constraints
 By specifying constraints you can dictate a set of rules that Nomad will follow when placing your jobs. These constraints can be on **resources**, self applied **metadata** and other configured **attributes**.
 
@@ -256,13 +241,13 @@ constraint {
   value = "dc1"
 }
 ```
+doc: [/docs/jobspec/index.html](https://www.nomadproject.io/docs/jobspec/index.html)
 
 <br />
 - *What happens if you target a constraint that can't be met?*
 
 !SUB
-
-## Restarting
+# Restarting
 Very few tasks are immune to failure and the addition of **restart policies** recognizes that and allows users to rely on Nomad to keep the task running through transient failures.
 
 ```
@@ -274,23 +259,23 @@ restart {
   mode = "delay"
 }
 ```
+doc: [/docs/jobspec/index.html](https://www.nomadproject.io/docs/jobspec/index.html)
 
 !SUB
-
-## Scaling
+# Scaling
 Nomad can handle the scaling of your application for you, all you have to do is provide the **desired amount** of instances you want to be running.
 This can only be applied on the **taskgroup** level.
 
 ```
 count = 5
 ```
+doc: [/docs/jobspec/index.html](https://www.nomadproject.io/docs/jobspec/index.html)
 
 <br />
 - *What happens if you make the count larger than the number of machines?*
 
 !SUB
-
-## Updating
+# Updating
 Nomad allows us to easily do **rolling updates**. Lets add the **update block** and change the **version** of our helloworld job, in order to try to do a rolling update.
 
 ```
@@ -312,10 +297,10 @@ job "helloworld" {
 
 ...
 ```
+doc: [/docs/jobspec/index.html](https://www.nomadproject.io/docs/jobspec/index.html)
 
 !SLIDE
-
-## Monitoring with Sysdig
+# Monitoring with Sysdig
 
 *“Sysdig Cloud is the first and only __monitoring, alerting, and troubleshooting
   solution__ designed from the ground up to provide unprecedented visibility into
@@ -326,7 +311,6 @@ We'll integrate Sysdig Cloud to get a quick overview of our cluster and the
 containers running in it.
 
 !SUB
-
 - Sysdig runs as a **metrics collecting** agent on every node
 - The agent employs a custom **kernel module** to collect interesting events
 - The agent **aggegates** the metrics and **forwards** them to Sysdig Cloud
@@ -334,7 +318,6 @@ containers running in it.
 - Both the agent and kernel module can be deployed as a single *very privileged* docker container
 
 !SUB
-
 # Account Creation
 1. Create a trial account at https://sysdig.com/sign-up/
 2. Activate your account
@@ -342,7 +325,6 @@ containers running in it.
 4. Copy the ACCESS_KEY
 
 !SUB
-
 # Running Sysdig
 
 We have prepared a Nomad **system job** to automatically deploy Sysdig on **all nodes**, by using the **raw_exec** driver to start the Sysdig Docker container with the right **privileges and mounts**.
@@ -353,7 +335,6 @@ We have prepared a Nomad **system job** to automatically deploy Sysdig on **all 
   3. Run `nomad run jobs/sysdig.nomad`
 
 !SUB
-
 # Running Sysdig
 
 ```
@@ -374,14 +355,12 @@ $ nomad run sysdig.nomad
 ```
 
 !SUB
-
 # Sysdig Explore Console
 
 ![Sysdig Console](/img/sysdig-explore.png)
 
 
 !SLIDE
-
 # Auto discovery
 - Uses Consul to expose services and works **without bootstrapping**
 - Defined **inside the job description**
@@ -400,23 +379,19 @@ service {
   }
 }
 ```
+doc: [/docs/jobspec/servicediscovery.html](https://www.nomadproject.io/docs/jobspec/servicediscovery.html)
 
 !SLIDE
-
 # Food
 
 !SLIDE
-
 # Recap
 
 !SLIDE
-
 # Resource management
 
 In order to schedule jobs on the right nodes, Nomad needs to know which resources
-are available and where, and which resources a job needs.
-
-Nomad currently can manage the following resources:
+are available and where, and which resources a job needs. Nomad currently can manage the following resources:
 - CPU cycles
 - memory
 - Disk space
@@ -425,7 +400,6 @@ Nomad currently can manage the following resources:
 - Network IO
 
 !SUB
-
 # Available Resources  
 The 'node' endpoint shows detected resources:
 
@@ -454,11 +428,9 @@ doc: https://www.nomadproject.io/docs/http/node.html
 !SUB
 # Available Resources
 
-NB. These are resources Nomad detects at startup time.
-
-NB. Without considering processes not scheduled by Nomad.
-
-NB. Currently it is **not** possible to query unallocated resources.
+- These are resources Nomad detects at startup time
+- Processes not scheduled by Nomad are not considered
+- Currently it is **not** possible to query unallocated resources.
 
 !SUB
 # Reserving Resources
@@ -491,11 +463,27 @@ resources {
 !SUB
 
 # Decommissioning nodes
-- node drain feature
+We can let Nomad move all of a node's applications by letting it drain:
 ```
-call node drain in CLI
+$ nomad node-drain -enable 37b31879
+```
+We can then view the status of the node with the node-status command:
+```
+$ nomad node-status
+ID        DC    Name                  Class   Drain  Status
+37b31879  dc1   bbakker-farm-01-pkdh  docker  true   ready
+033744da  dc1   bbakker-farm-01-umft  docker  false  down
+b7d2886d  dc1   bbakker-farm-02-2ru3  docker  false  ready
+2fae0a91  dc1   bbakker-farm-01-m4s0  docker  false  ready
+d8211338  dc1   bbakker-farm-02-17v3  docker  false  ready
+ee340c8d  sys1  bbakker-nomad-03      system  false  ready
+dfdd7c8e  sys1  bbakker-nomad-01      system  false  ready
+0d470098  sys1  bbakker-nomad-02      system  false  ready
 ```
 
+!SUB
+
+# Client failures (Bastiaan)
 Example of a killed node in the docker farm:
 ```
 root@bbakker-nomad-01:~# nomad node-status
@@ -510,17 +498,12 @@ f99014c9  sys1        bbakker-nomad-02      system  false  ready
 50f3d652  dc1         bbakker-farm-02-42x5  docker  false  ready
 ```
 
-- Check if google/nomad automatically removed dead nodes after 24 hrs.
-
-!SUB
-
-# Client failures (Bastiaan)
-- are jobs correctly transferred to other nodes?
+- *Are jobs correctly transferred to other nodes?*
 
 !SUB
 
 # Master failures (Bastiaan)
-- can scheduling still continue?
+- *Can scheduling still continue?*
 
 !SUB
 
