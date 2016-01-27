@@ -48,7 +48,7 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 !SLIDE
 # Infrastructure as code
 
-!NOTE Infrastructure as code, or programmable infrastructure, means writing code to manage configurations and automate provisioning of infrastructure in addition to deployments, this means you write code to provision and manage your server, in addition to automating processes. It differs from infrastructure automation, which just involves replicating steps multiple times and reproducing them on several servers (Testing, Source Control, Describe desired state, Don't log in)
+!NOTE write code to manage configurations and automate provisioning of infrastructure in addition to deployments. (Testing, Source Control, Describe desired state, Don't log in)
 
 !SUB
 - **Remove manual steps** prone to errors
@@ -374,7 +374,7 @@ service {
   port = "http"
   check {
     type = "http"
-    delay = "10s"
+    interval = "10s"
     timeout = "2s"
   }
 }
