@@ -154,7 +154,7 @@ job "helloworld" {
     task "helloworld" {
       driver = "docker"
       config {
-        image = "cargonauts/helloworld:v1"
+        image = "b.gcr.io/kuar/helloworld:1.0.0"
         port_map { http = 80 }
       }
       resources {
@@ -457,11 +457,9 @@ resources {
 
 
 !SLIDE
-
 # Things don't always go well in real life
 
 !SUB
-
 # Decommissioning nodes
 We can let Nomad move all of a node's applications by letting it drain:
 ```
@@ -482,8 +480,7 @@ dfdd7c8e  sys1  bbakker-nomad-01      system  false  ready
 ```
 
 !SUB
-
-# Client failures (Bastiaan)
+# Client failures
 Example of a killed node in the docker farm:
 ```
 root@bbakker-nomad-01:~# nomad node-status
@@ -501,20 +498,16 @@ f99014c9  sys1        bbakker-nomad-02      system  false  ready
 - *Are jobs correctly transferred to other nodes?*
 
 !SUB
-
-# Master failures (Bastiaan)
+# Master failures
 - *Can scheduling still continue?*
 
 !SUB
-
-# Machine failures (Bastiaan)
-- can scheduling still continue?
-- are jobs correctly transferred to other nodes?
+# Machine failures
+- *Can scheduling still continue?*
+- *Are jobs correctly transferred to other nodes?*
 
 !SLIDE
-
 # Review
 
 !SLIDE
-
 # Drinks

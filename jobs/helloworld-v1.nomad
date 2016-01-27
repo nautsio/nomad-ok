@@ -12,7 +12,7 @@ job "helloworld" {
     task "helloworld" {
       driver = "docker"
       config {
-        image = "cargonauts/helloworld:v1"
+        image = "b.gcr.io/kuar/helloworld:1.0.0"
         port_map {
           http = 80
         }
