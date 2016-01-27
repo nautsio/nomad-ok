@@ -52,12 +52,7 @@ Erik Veld [erik@nauts.io](mailto:erik@nauts.io)
 
 # Infrastructure as code
 
-!NOTE Infrastructure as code, or programmable infrastructure, means writing code to manage configurations and automate provisioning of infrastructure in addition to deployments, this means you write code to provision and manage your server, in addition to automating processes.
-!NOTE It differs from infrastructure automation, which just involves replicating steps multiple times and reproducing them on several servers
-!NOTE Don't log in to a new machine and configure it
-!NOTE Write code to describe the desired state
-!NOTE Manage infrastructure via source control
-!NOTE Apply testing to infrastructure
+!NOTE Infrastructure as code, or programmable infrastructure, means writing code to manage configurations and automate provisioning of infrastructure in addition to deployments, this means you write code to provision and manage your server, in addition to automating processes. It differs from infrastructure automation, which just involves replicating steps multiple times and reproducing them on several servers (Testing, Source Control, Describe desired state, Don't log in)
 
 !SUB
 
@@ -85,8 +80,23 @@ Nomad is a tool for **managing a cluster of machines and running applications on
 
 !SUB
 
-# Erik
-show architecture in infographic ...
+# Architecture
+image
+
+!SUB
+
+# Evaluation
+image
+
+!SUB
+
+# Planning
+image
+
+!SUB
+
+# Allocation
+image
 
 !SUB
 
@@ -101,12 +111,6 @@ show architecture in infographic ...
 # The setup (Erik)
 
 diagram with the gce setup (3x sys1 - nomad + consul) (2x farm - nomad) (nomad @ .local / .gce.nauts.io) (1x network)
-
-!SUB
-
-- how to ssh to the machines
-- how to reach nomad
-- how to check if things go as planned
 
 !SLIDE
 
@@ -148,19 +152,39 @@ job "example" {
 
 !SUB
 
-- change the docker image to nautsio/helloworld
-- set the version to v1
-- set the group to hello
-- task helloworld-v1
-- add some tags (hello, v1)
-- add port 80
-- save it as helloworld-v1.nomad
+```
+job "helloworld" {
+  datacenters = ["dc1"]
+  type = "service"
+
+  update {
+    stagger = "30s"
+    max_parallel = 1
+  }
+
+  group "helloworld" {
+    count = 1
+    task "helloworld" {
+      driver = "docker"
+      config {
+        image = "cargonauts/helloworld:v1"
+        port_map { http = 80 }
+      }
+      resources {
+        cpu = 100
+        memory = 200
+        network { port "http" {} }
+
+...
+```
+jobs/helloworld-v1.nomad
 
 !SUB
 
 # Launching
 Use the run command of the Nomad CLI:
 ```
+$ export NOMAD_ADDR=http://nomad-01.stack.gce.nauts.io:4646
 $ nomad run helloworld-v1.nomad
 ==> Monitoring evaluation "3d823c52-929a-fa8b-c50d-1ac4d00cf6b7"
     Evaluation triggered by job "hellloworld-v1"
@@ -176,56 +200,118 @@ $ curl -X POST -d @helloworld-v1.json $NOMAD_ADDR/v1/jobs
 ```
 
 !SUB
-# Inspecting
-Find out where our job is running:
+# Where is our job?
 ```
-$
+$ curl -s $NOMAD_ADDR/v1/job/helloworld/allocations | jq .
+{
+  ...
+}
+```
+
+Search for the allocations where **.TaskStates.helloworld.State** is not "dead" and collect their **.ID**'s.
+
+For each of those .ID's:
+```
+$ curl -s $NOMAD_ADDR/v1/allocation/<ID> | jq .
+{
+  ...
+}
+```
+Inside the **.TaskResources.helloworld** block, for each of the **.Networks**, collect the **.IP** and for each of the **.DynamicPorts**, their **.Value**.
+Those are the ip's and corresponding ports for your service.
+
+!SUB
+
+Or you can use some JQ-fu and get it with a script:
+
+```
+#!/bin/bash
+JOB=$1
+TASK=$2
+
+# This obviously only works if there is just one port exposed per task.
+for ALLOC in $(curl -s "$NOMAD_ADDR/v1/job/$JOB/allocations" | jq -r '.[] | select(.TaskStates.'"$TASK"'.State != "dead") | .ID'); do
+  curl -s "$NOMAD_ADDR/v1/allocation/$ALLOC" | jq -r '.TaskResources.'"$TASK"' | .Networks[0].IP + ":" + (.Networks[0].DynamicPorts[0].Value | tostring)'
+done
+
+$ ./get_job_address.sh helloworld helloworld
+10.20.30.8:42957
 ```
 
 <br />
 Check that the job is running properly by calling it:
 ```
-$ curl http://<ip>
+$ curl http://10.20.30.8:42957
+Hello v1
 ```
 
 !SUB
 
-# Constraints (Erik)
-By specifying constraints you can dictate a set of rules that Nomad will follow when placing your jobs. These constraints can be on resources, self applied metadata and other configured attributes.
+# Constraints
+By specifying constraints you can dictate a set of rules that Nomad will follow when placing your jobs. These constraints can be on **resources**, self applied **metadata** and other configured **attributes**.
 
-- Hardware
-- Meta
-- Location
-- Anti-affinity
+```
+constraint {
+  attribute = "$node.datacenter"
+  value = "dc1"
+}
+```
 
-!SUB
-
-## Restarting (Erik)
-- Restart policies
-- Intervals
-
-Very few tasks are immune to failure and the addition of restart policies recognizes that and allows users to rely on Nomad to keep the task running through transient failures.
-Exercises
-Add a restart policy to the job.
-Kill one of the job instances by executing the
-docker kill <job> command.
+<br />
+- *What happens if you target a constraint that can't be met?*
 
 !SUB
 
-## Scaling (Erik)
-- Change the number of instances, redeploy the job, see the number of instances scale
-- Make the number too large and see that the extra instances don't get placed
+## Restarting
+Very few tasks are immune to failure and the addition of **restart policies** recognizes that and allows users to rely on Nomad to keep the task running through transient failures.
+
+```
+restart {
+  interval = "1m"
+  attempts = 2
+  delay = "15s"
+  on_success = true
+  mode = "delay"
+}
+```
 
 !SUB
 
-## Updating (Erik)
-- Change a value, do a rolling update
+## Scaling
+Nomad can handle the scaling of your application for you, all you have to do is provide the **desired amount** of instances you want to be running.
+This can only be applied on the **taskgroup** level.
 
-Now lets try changing settings in the job file and see what happens when we resubmit the job.
-Questions
-What happens if we change the version?
-What happens if we scale up/down?
-What happens if we add a constraint that would disallow placement of the already placed job?
+```
+count = 5
+```
+
+<br />
+- *What happens if you make the count larger than the number of machines?*
+
+!SUB
+
+## Updating
+Nomad allows us to easily do **rolling updates**. Lets add the **update block** and change the **version** of our helloworld job, in order to try to do a rolling update.
+
+```
+job "helloworld" {
+  datacenters = ["dc1"]
+  type = "service"
+
+  update {
+    stagger = "30s"
+    max_parallel = 1
+  }
+
+  group "helloworld" {
+    count = 5
+    task "helloworld" {
+      driver = "docker"
+      config {
+        image = "cargonauts/helloworld:v2"
+
+...
+```
 
 !SLIDE
 
@@ -248,6 +334,7 @@ containers running in it.
 - Both the agent and kernel module can be deployed as a single *very privileged* docker container
 
 !SUB
+
 # Account Creation
 1. Create a trial account at https://sysdig.com/sign-up/
 2. Activate your account
@@ -255,6 +342,7 @@ containers running in it.
 4. Copy the ACCESS_KEY
 
 !SUB
+
 # Running Sysdig
 
 We have prepared a Nomad **system job** to automatically deploy Sysdig on **all nodes**, by using the **raw_exec** driver to start the Sysdig Docker container with the right **privileges and mounts**.
@@ -265,6 +353,7 @@ We have prepared a Nomad **system job** to automatically deploy Sysdig on **all 
   3. Run `nomad run jobs/sysdig.nomad`
 
 !SUB
+
 # Running Sysdig
 
 ```
@@ -285,6 +374,7 @@ $ nomad run sysdig.nomad
 ```
 
 !SUB
+
 # Sysdig Explore Console
 
 ![Sysdig Console](/img/sysdig-explore.png)
