@@ -1,16 +1,26 @@
 SHELL=/bin/bash
 
-STACK:=$(shell cat default-stack-id 2> /dev/null || (uuidgen | cut -d- -f1 | tee default-stack-id))
+include defaults.mk
+
+DOMAIN=$(STACK).$(TLD)
+ifeq ($(strip $(STACK)),)
+	STACK:=$(shell cat generated-stack-id 2> /dev/null || (uuidgen | cut -d- -f1 | tee generated-stack-id))
+endif
+
 STACK_DIR=stacks/$(STACK)
 STATE_FILE=$(STACK_DIR)/terraform.tfstate
 TF_DIR=.
-TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)" $(TF_DIR)
+TF_FLAGS=-state $(STATE_FILE) -var 'stack=$(STACK)' -var "ssh_key=$$(cat $(STACK_DIR)/ssh-key.pub)"
+ifneq ($(strip $(PROJECT)),)
+	TF_FLAGS+=-var 'project=$(PROJECT)'
+endif
 
-HOST:=nomad-01
-FROM:=bbakker@xebia.com
-DOMAIN=$(STACK).gce.nauts.io
+TF_FLAGS+=$(TF_DIR)
 
-.PHONY: stack-dir ssh-key plan apply show refresh destroy list list-all copy-jobs ssh mail
+.PHONY: stack-dir get ssh-key plan apply show refresh destroy list list-all copy-jobs check ssh mail
+
+flags:
+	echo $(TF_FLAGS)
 
 stack-dir: $(STACK_DIR)
 
@@ -38,13 +48,13 @@ refresh: stack-dir
 	terraform refresh $(TF_FLAGS)
 
 destroy: stack-dir
-	terraform destroy $(TF_FLAGS)
+	echo yes | terraform destroy $(TF_FLAGS)
 
 list:
-	 @gcloud compute --project "innovation-day-nomad" instances list | egrep "^$(STACK)-" | sort
+	 @gcloud compute --project "$(PROJECT)" instances list | egrep "^$(STACK)-" | sort
 
 list-all:
-	 @gcloud compute --project "innovation-day-nomad" instances list
+	 @gcloud compute --project "$(PROJECT)" instances list
 
 # suffix with domain if hostname, not IP address
 HOSTFQDN=$(shell sed 's/\(^[^.]*$$\)/\1.$(DOMAIN)/' <<< $(HOST))
@@ -55,8 +65,11 @@ copy-jobs:
 ssh:
 	ssh -i stacks/$(STACK)/ssh-key user@$(HOSTFQDN) || true
 
+check:
+	NOMAD_ADDR=http://$(HOSTFQDN):4646 packer/files/usr/bin/nomad node-status
+
 stacks/$(STACK)/mail.msg: mail.sh
-	./mail.sh $(STACK) $(FROM) $(TO) > $@
+	./mail.sh $(STACK) $(FROM) $(TO) $(PROJECT) $(DOMAIN) > $@
 
 mail: stacks/$(STACK)/mail.msg
 	esmtp -v -i -X mail.log -f $(FROM) $(TO) < $<
