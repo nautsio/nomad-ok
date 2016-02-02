@@ -376,6 +376,7 @@ service {
     type = "http"
     interval = "10s"
     timeout = "2s"
+    path = "/"
   }
 }
 ```
