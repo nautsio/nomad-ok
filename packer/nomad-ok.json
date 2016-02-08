@@ -8,7 +8,7 @@
       "type": "googlecompute",
       "account_file": "../account.json",
       "project_id": "{{user `project_id`}}",
-      "source_image": "debian-8-jessie-v20151104",
+      "source_image": "debian-8-jessie-v20160126",
       "image_name": "nomad-ok-{{timestamp}}",
       "instance_name": "nomad-ok-{{uuid}}",
       "zone": "{{user `zone`}}"
