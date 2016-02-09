@@ -17,7 +17,7 @@ job "stress" {
     }
 
     group "stress" {
-        count = 4
+        count = 1
 
         restart {
     			interval = "120s"
@@ -35,8 +35,8 @@ job "stress" {
             }
 
             resources {
-                cpu = 500
-                memory = 200
+                cpu = 50
+                memory = 100
             }
         }
     }
