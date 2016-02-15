@@ -29,15 +29,6 @@ variable "external_domain" {
   }
 }
 
-# DNS suffix for the DNS zone for the internal IP addresses of static hosts
-# in the cluster.
-# E.g. nomad-01.bbakker.local
-#
-# This Zone *will* be managed by this Terraform setup
-variable "internal_domain" {
-  default = "local."
-}
-
 # Name of this Stack
 variable "stack" {
   default = "default"

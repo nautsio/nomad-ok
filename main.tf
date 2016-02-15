@@ -9,17 +9,6 @@ module "network" {
 }
 
 #
-# Create an internal DNS zone for the stack e.g. stack.local.
-#
-module "internal_dns" {
-  source = "./dns"
-
-  name = "${format("%s-internal-zone", var.stack)}"
-  description = "Internal zone"
-  domain = "${format("%s.%s", var.stack, var.internal_domain)}"
-}
-
-#
 # Create a farm of Nomad client nodes.
 #
 module "nomad_client" {
@@ -48,9 +37,6 @@ module "nomad_server" {
 
   external_dns_zone = "${var.external_domain.zone}"
   external_dns_name = "${format("%s.%s", var.stack, var.external_domain.domain)}"
-
-  internal_dns_zone = "${module.internal_dns.zone}"
-  internal_dns_name = "${module.internal_dns.domain}"
 
   zones = "${var.zones}"
   cluster_size = "${var.nomad_server.cluster_size}"

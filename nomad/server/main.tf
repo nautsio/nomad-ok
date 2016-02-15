@@ -55,16 +55,3 @@ resource "google_dns_record_set" "external_dns" {
   ttl = 300
   rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.nat_ip, count.index)}"]
 }
-
-#
-# The internal DNS records for the Nomad servers.
-#
-resource "google_dns_record_set" "internal_dns" {
-  count = "${var.cluster_size}"
-
-  managed_zone = "${var.internal_dns_zone}"
-  name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 2), var.internal_dns_name)}"
-  type = "A"
-  ttl = 300
-  rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.address, count.index)}"]
-}
