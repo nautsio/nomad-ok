@@ -21,7 +21,7 @@ job "consul" {
 		}
 
 		constraint {
-			attribute = "$node.datacenter"
+			attribute = "${node.datacenter}"
 			value = "sys1"
 		}
 
@@ -29,14 +29,13 @@ job "consul" {
 			driver = "docker"
 
 			config {
-				image = "gliderlabs/consul-server:latest"
+				image = "bastiaanb/consul:latest"
 				network_mode="host"
-				command = "-advertise"
-				args=["$network.ip-address",
+				command = "server"
+				args=["-advertise", "${network.ip-address}",
 							"-retry-join", "default-nomad-01",
 							"-retry-join", "default-nomad-02",
 							"-retry-join", "default-nomad-03",
-							"-server",
 							"-bootstrap-expect", "3"]
 			}
 			resources {
@@ -76,7 +75,7 @@ job "consul" {
 		}
 
 		constraint {
-			attribute = "$node.datacenter"
+			attribute = "${node.datacenter}"
 			value = "dc1"
 		}
 
@@ -84,10 +83,10 @@ job "consul" {
 			driver = "docker"
 
 			config {
-				image = "gliderlabs/consul-agent:latest"
+				image = "bastiaanb/consul:latest"
 				network_mode="host"
-				command = "-advertise"
-				args=["$network.ip-address",
+				command = "client"
+				args=["-advertise", "${network.ip-address}",
 							"-retry-join", "default-nomad-01",
 							"-retry-join", "default-nomad-02",
 							"-retry-join", "default-nomad-03"]
