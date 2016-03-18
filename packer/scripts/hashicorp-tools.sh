@@ -35,5 +35,5 @@ install_hashicorp_tool() {
   systemctl enable ${TOOL}.service
 }
 
-install_hashicorp_tool consul 0.6.3 0.6.4-dev
-install_hashicorp_tool nomad 0.2.3 0.3.0-dev
+install_hashicorp_tool consul 0.6.4
+install_hashicorp_tool nomad 0.3.1
