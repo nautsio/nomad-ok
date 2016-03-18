@@ -22,6 +22,7 @@ module "nomad_client" {
   min_cluster_size = "${var.nomad_client.min_cluster_size}"
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
   machine_type = "${var.nomad_client.machine_type}"
+  preemptible_instance = "${var.nomad_client.preemptible_instance}"
   disk_image = "${var.disk_image}"
   network = "${module.network.name}"
 }

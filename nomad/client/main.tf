@@ -49,8 +49,9 @@ resource "google_compute_instance_template" "nomad_client" {
   tags = ["nomad", "client"]
 
   scheduling {
-    automatic_restart = true
-    on_host_maintenance = "MIGRATE"
+    automatic_restart = false
+#    on_host_maintenance = "MIGRATE"
+    preemptible = "${var.preemptible_instance}"
   }
 
   disk {

@@ -46,6 +46,7 @@ variable "nomad_client" {
     "min_cluster_size" = 2
     "max_cluster_size" = 4
     "machine_type" = "f1-micro"
+    "preemptible_instance" = "true"
   }
 }
 
