@@ -17,7 +17,7 @@ module "nomad_client" {
   stack = "${var.stack}"
   ssh_key = "${var.ssh_key}"
 
-  zones = "${var.zones}"
+  zones = "${var.nomad_client.zones}"
   groups = "${var.nomad_client.groups}"
   min_cluster_size = "${var.nomad_client.min_cluster_size}"
   max_cluster_size = "${var.nomad_client.max_cluster_size}"

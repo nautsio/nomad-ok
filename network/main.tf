@@ -1,6 +1,6 @@
 resource "google_compute_network" "network" {
   name = "${var.name}"
-  ipv4_range = "${var.range}"
+  auto_create_subnetworks = true
 }
 
 resource "google_compute_firewall" "allow-from-everywhere" {
@@ -42,5 +42,6 @@ resource "google_compute_firewall" "allow-all-internal" {
         ports = ["0-65535"]
     }
 
-    source_ranges = ["${var.range}"]
+    # TODO: don't hard code IP range defined by Google
+    source_ranges = ["10.128.0.0/9"]
 }

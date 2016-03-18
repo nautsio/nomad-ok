@@ -47,6 +47,7 @@ variable "nomad_client" {
     "max_cluster_size" = 4
     "machine_type" = "f1-micro"
     "preemptible_instance" = "true"
+    "zones" = "europe-west1-b,us-east1-c,asia-east1-a"
   }
 }
 
