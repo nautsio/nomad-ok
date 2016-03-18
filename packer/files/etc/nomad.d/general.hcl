@@ -19,5 +19,5 @@ ports {
   rpc = 4647
   serf = 4648
 }
-disable_updates_check = false
+disable_update_check = false
 disable_anonymous_signature = false
