@@ -45,13 +45,13 @@ variable "nomad_client" {
     "groups" = 2
     "min_cluster_size" = 2
     "max_cluster_size" = 4
-    "machine_type" = "g1-small"
+    "machine_type" = "f1-micro"
   }
 }
 
 variable "nomad_server" {
   default = {
-    "machine_type" = "g1-small"
+    "machine_type" = "f1-micro"
     "cluster_size" = 3
   }
 }
