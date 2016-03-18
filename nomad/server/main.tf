@@ -53,5 +53,5 @@ resource "google_dns_record_set" "external_dns" {
   name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 2), var.external_dns_name)}"
   type = "A"
   ttl = 300
-  rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.nat_ip, count.index)}"]
+  rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.assigned_nat_ip, count.index)}"]
 }
