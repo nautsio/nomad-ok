@@ -6,7 +6,8 @@ echo "${ssh_key}" > /home/user/.ssh/authorized_keys
 
 ADDR=$(ifconfig eth0 | grep -oP 'inet addr:\K\S+')
 cat > /etc/nomad.d/local.hcl << EOF
-datacenter = "sys1"
+region = "${region}"
+datacenter = "sys1-${region}"
 
 leave_on_interrupt = false
 leave_on_terminate = false
@@ -18,7 +19,7 @@ advertise {
 }
 
 client {
-  servers = ["${prefix}nomad-01:4647", "${prefix}nomad-02:4647", "${prefix}nomad-03:4647"]
+  servers = ["${prefix}nomad-${region}-01:4647", "${prefix}nomad-${region}-02:4647", "${prefix}nomad-${region}-03:4647"]
   node_class = "system"
 }
 
@@ -32,7 +33,7 @@ server {
   num_schedulers = 1
 
   # join other servers
-  retry_join = [ "${prefix}nomad-01", "${prefix}nomad-02", "${prefix}nomad-03" ]
+  retry_join = [ "${prefix}nomad-eu-01", "${prefix}nomad-us-01", "${prefix}nomad-asia-01" ]
 }
 
 telemetry {
@@ -42,6 +43,7 @@ EOF
 
 cat > /etc/consul.d/server.json << EOF
 {
+  "datacenter": "${region}",
   "client_addr": "0.0.0.0",
   "leave_on_terminate": true,
   "ui": true,
@@ -51,7 +53,12 @@ cat > /etc/consul.d/server.json << EOF
   "advertise_addr": "$ADDR",
   "statsite_addr": "localhost:8125",
   "server": true,
-  "retry_join": [ "${prefix}nomad-01", "${prefix}nomad-02", "${prefix}nomad-03" ],
+  "retry_join": [ "${prefix}nomad-${region}-01" ],
+  "retry_join_wan": [
+    "${prefix}nomad-eu-01", "${prefix}nomad-us-01", "${prefix}nomad-asia-01",
+    "${prefix}nomad-eu-02", "${prefix}nomad-us-02", "${prefix}nomad-asia-02",
+    "${prefix}nomad-eu-03", "${prefix}nomad-us-03", "${prefix}nomad-asia-03"
+   ],
   "bootstrap_expect": 3
 }
 EOF

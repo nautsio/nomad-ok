@@ -1,6 +1,7 @@
 variable "stack" {}
 variable "ssh_key" {}
 
+variable "region" {}
 variable "zones" {}
 variable "groups" {}
 variable "min_cluster_size" {}

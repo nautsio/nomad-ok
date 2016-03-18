@@ -6,6 +6,7 @@ resource "template_file" "startup_script_template" {
   vars {
     prefix = "${var.stack}-"
     ssh_key = "${var.ssh_key}"
+    region = "${var.region}"
   }
 }
 
@@ -15,7 +16,7 @@ resource "google_compute_instance" "server_instance" {
   machine_type = "${var.machine_type}"
   zone = "${element(split(",", var.zones), count.index)}"
 
-  name = "${format("%s-nomad-%02d", var.stack, count.index + 1)}"
+  name = "${format("%s-nomad-%s-%02d", var.stack, var.region, count.index + 1)}"
   description = "Nomad server node"
   tags = ["nomad", "server"]
 
@@ -50,7 +51,7 @@ resource "google_dns_record_set" "external_dns" {
   count = "${var.cluster_size}"
 
   managed_zone = "${var.external_dns_zone}"
-  name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 2), var.external_dns_name)}"
+  name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 3), var.external_dns_name)}"
   type = "A"
   ttl = 300
   rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.assigned_nat_ip, count.index)}"]

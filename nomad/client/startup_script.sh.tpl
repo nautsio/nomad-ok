@@ -7,14 +7,15 @@ echo "${ssh_key}" > /home/user/.ssh/authorized_keys
 ADDR=$(ifconfig eth0 | grep -oP 'inet addr:\K\S+')
 
 cat > /etc/nomad.d/local.hcl << EOF
-datacenter = "dc1"
+region = "${region}"
+datacenter = "dc1-${region}"
 
-# let clients leave 
+# let clients leave
 leave_on_interrupt = true
 leave_on_terminate = true
 
 client {
-  servers = ["${prefix}nomad-01:4647", "${prefix}nomad-02:4647", "${prefix}nomad-03:4647"]
+  servers = ["${prefix}nomad-${region}-01:4647", "${prefix}nomad-${region}-02:4647", "${prefix}nomad-${region}-03:4647"]
   node_class = "docker"
 }
 
@@ -25,6 +26,7 @@ EOF
 
 cat > /etc/consul.d/client.json << EOF
 {
+  "datacenter": "${region}",
   "client_addr": "0.0.0.0",
   "leave_on_terminate": true,
 	"dns_config": {
@@ -33,5 +35,5 @@ cat > /etc/consul.d/client.json << EOF
 	},
   "statsite_addr": "localhost:8125",
   "advertise_addr": "$ADDR",
-  "retry_join": [ "${prefix}nomad-01", "${prefix}nomad-02", "${prefix}nomad-03" ]
+  "retry_join": [ "${prefix}nomad-${region}-01", "${prefix}nomad-${region}-02", "${prefix}nomad-${region}-03" ]
 }
