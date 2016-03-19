@@ -35,7 +35,26 @@ module "nomad_client_us" {
   ssh_key = "${var.ssh_key}"
 
   region = "us"
-  zones = "us-east1-b,us-east1-c,us-east1-d"
+  zones = "us-east1-b,us-central1-c,us-east1-d"
+  groups = "2"
+#  zones = "us-east1-b,us-east1-c,us-east1-d"
+#  groups = "${var.nomad_client.groups}"
+  min_cluster_size = "${var.nomad_client.min_cluster_size}"
+  max_cluster_size = "${var.nomad_client.max_cluster_size}"
+  machine_type = "${var.nomad_client.machine_type}"
+  preemptible_instance = "${var.nomad_client.preemptible_instance}"
+  disk_image = "${var.disk_image}"
+  network = "${module.network.name}"
+}
+
+module "nomad_client_asia" {
+  source = "./nomad/client"
+
+  stack = "${var.stack}"
+  ssh_key = "${var.ssh_key}"
+
+  region = "asia"
+  zones = "asia-east1-a,asia-east1-b,asia-east1-c"
   groups = "${var.nomad_client.groups}"
   min_cluster_size = "${var.nomad_client.min_cluster_size}"
   max_cluster_size = "${var.nomad_client.max_cluster_size}"
@@ -79,6 +98,26 @@ module "nomad_server_us" {
 
   region = "us"
   zones = "us-east1-b,us-east1-c,us-east1-d"
+  cluster_size = "${var.nomad_server.cluster_size}"
+  machine_type = "${var.nomad_server.machine_type}"
+  disk_image = "${var.disk_image}"
+  network = "${module.network.name}"
+}
+
+#
+# Create a cluster of Nomad server nodes.
+#
+module "nomad_server_asia" {
+  source = "./nomad/server"
+
+  stack = "${var.stack}"
+  ssh_key = "${var.ssh_key}"
+
+  external_dns_zone = "${var.external_domain.zone}"
+  external_dns_name = "${format("%s.%s.%s", "asia", var.stack, var.external_domain.domain)}"
+
+  region = "asia"
+  zones = "asia-east1-a,asia-east1-b,asia-east1-c"
   cluster_size = "${var.nomad_server.cluster_size}"
   machine_type = "${var.nomad_server.machine_type}"
   disk_image = "${var.disk_image}"
