@@ -1,14 +1,14 @@
 {
   "variables": {
     "project_id": "innovation-day-nomad",
-    "zone": "europe-west1-b"
+    "zone": "europe-west1-c"
   },
   "builders": [
     {
       "type": "googlecompute",
       "account_file": "../account.json",
       "project_id": "{{user `project_id`}}",
-      "source_image": "debian-8-jessie-v20160301",
+      "source_image": "debian-8-jessie-v20160329",
       "image_name": "nomad-ok-{{timestamp}}",
       "instance_name": "nomad-ok-{{uuid}}",
       "zone": "{{user `zone`}}"
