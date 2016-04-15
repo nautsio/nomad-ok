@@ -33,8 +33,9 @@ resource "google_compute_instance_group_manager" "nomad_client_group" {
 resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
   vars {
-    prefix = "${var.stack}-"
+    stack = "${var.stack}"
     ssh_key = "${var.ssh_key}"
+    loggly_token= "${var.loggly_token}"
   }
 }
 

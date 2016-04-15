@@ -1,5 +1,6 @@
 variable "stack" {}
 variable "ssh_key" {}
+variable "loggly_token" {}
 
 variable "zones" {}
 variable "groups" {}

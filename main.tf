@@ -16,6 +16,7 @@ module "nomad_client" {
 
   stack = "${var.stack}"
   ssh_key = "${var.ssh_key}"
+  loggly_token= "${var.loggly_token}"
 
   zones = "${var.nomad_client.zones}"
   groups = "${var.nomad_client.groups}"
@@ -35,6 +36,7 @@ module "nomad_server" {
 
   stack = "${var.stack}"
   ssh_key = "${var.ssh_key}"
+  loggly_token= "${var.loggly_token}"
 
   external_dns_zone = "${var.external_domain.zone}"
   external_dns_name = "${format("%s.%s", var.stack, var.external_domain.domain)}"

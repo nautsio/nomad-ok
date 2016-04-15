@@ -40,14 +40,19 @@ variable "ssh_key" {
   default = ""
 }
 
+# Token for sending logs to Loggly. Leave empty to disable Loggly logging.
+variable "loggly_token" {
+  default = "7a9f9e66-f88d-4bbe-8218-c46edf71389d"
+}
+
 variable "nomad_client" {
   default = {
     "groups" = 2
-    "min_cluster_size" = 2
+    "min_cluster_size" = 1
     "max_cluster_size" = 4
     "machine_type" = "f1-micro"
     "preemptible_instance" = "true"
-    "zones" = "europe-west1-b,us-east1-c,asia-east1-a"
+    "zones" = "europe-west1-d,us-east1-c,asia-east1-a"
   }
 }
 

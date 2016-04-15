@@ -4,8 +4,9 @@
 resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/server/startup_script.sh.tpl\")}"
   vars {
-    prefix = "${var.stack}-"
+    stack = "${var.stack}"
     ssh_key = "${var.ssh_key}"
+    loggly_token = "${var.loggly_token}"
   }
 }
 
