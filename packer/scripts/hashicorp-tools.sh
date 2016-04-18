@@ -36,4 +36,4 @@ install_hashicorp_tool() {
 }
 
 install_hashicorp_tool consul 0.6.4
-install_hashicorp_tool nomad 0.3.1
+install_hashicorp_tool nomad 0.3.1 0.3.2-rc1
