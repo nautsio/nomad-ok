@@ -19,6 +19,7 @@ advertise {
   # We need to specify our host's IP because we can't
   # advertise 0.0.0.0 to other nodes in our cluster.
   rpc = "$ADDR:4647"
+  serf = "$ADDR:4648"
 }
 
 client {
