@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+export NOMAD_ADDR=http://localhost:4646
+
+NODE_ID=$(curl -s $NOMAD_ADDR/v1/agent/self | jq -r .stats.client.node_id)
+
+echo enable Nomad node drain
+curl -s -X POST -d enable=true $NOMAD_ADDR/v1/node/$NODE_ID/drain?enable=true > /dev/null
+
+echo wait for drain of all allocations
+while [ "0" != "$ALLOCS" ] ; do
+	sleep 1
+	ALLOCS=$(curl -s $NOMAD_ADDR/v1/node/$NODE_ID/allocations | jq '[.[] | select(.ClientStatus == "running")] | length')
+	echo remaining allocs is $ALLOCS
+done
+
+echo node drained

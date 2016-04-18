@@ -27,7 +27,8 @@
         "scripts/docker.sh",
         "scripts/docker-pull.sh",
         "scripts/user.sh",
-        "scripts/hashicorp-tools.sh"
+        "scripts/hashicorp-tools.sh",
+        "scripts/nomad-node-drain.sh"
       ]
     }
   ]

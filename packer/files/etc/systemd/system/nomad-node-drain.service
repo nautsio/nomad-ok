@@ -1,0 +1,12 @@
+[Unit]
+Description=Drain Nomad node on shutdown
+Before=shutdown.target
+After=nomad.service
+
+[Service]
+ExecStart=/bin/true
+ExecStop=/usr/bin/nomad-node-drain
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

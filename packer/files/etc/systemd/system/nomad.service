@@ -1,6 +1,6 @@
 [Unit]
 Description=Nomad Agent
-After=google-startup-scripts.service
+After=google-startup-scripts.service docker.service rsyslog.service
 
 [Service]
 TimeoutStartSec=0
