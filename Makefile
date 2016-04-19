@@ -66,7 +66,7 @@ ssh:
 	ssh -i stacks/$(STACK)/ssh-key user@$(HOSTFQDN) || true
 
 check:
-	NOMAD_ADDR=http://$(HOSTFQDN):4646 nomad node-status
+	NOMAD_ADDR=http://$(HOSTFQDN):4646 nomad node-status -allocs
 
 stacks/$(STACK)/mail.msg: mail.sh
 	./mail.sh $(STACK) $(FROM) $(TO) $(PROJECT) $(DOMAIN) > $@
