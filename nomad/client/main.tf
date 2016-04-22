@@ -34,7 +34,6 @@ resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
   vars {
     stack = "${var.stack}"
-    ssh_key = "${var.ssh_key}"
     loggly_token= "${var.loggly_token}"
   }
 }
@@ -68,5 +67,6 @@ resource "google_compute_instance_template" "nomad_client" {
 
   metadata {
     startup-script = "${template_file.startup_script_template.rendered}"
+    ssh-keys = "user:${var.ssh_key}"
   }
 }

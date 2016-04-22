@@ -4,10 +4,6 @@ set -e
 
 ADDR=$(ifconfig eth0 | grep -oP 'inet addr:\K\S+')
 
-writeSshAuthorizedKey() {
-  echo "${ssh_key}" > /home/user/.ssh/authorized_keys
-}
-
 writeNomadClientConfig() {
   cat > /etc/nomad.d/local.hcl << EOF
 datacenter = "dc1"
@@ -66,6 +62,5 @@ EOF
 }
 
 configureLoggly
-writeSshAuthorizedKey
 writeNomadClientConfig
 writeConsulClientConfig

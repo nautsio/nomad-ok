@@ -5,7 +5,6 @@ resource "template_file" "startup_script_template" {
   template = "${file(\"nomad/server/startup_script.sh.tpl\")}"
   vars {
     stack = "${var.stack}"
-    ssh_key = "${var.ssh_key}"
     loggly_token = "${var.loggly_token}"
   }
 }
@@ -35,24 +34,23 @@ resource "google_compute_instance" "server_instance" {
     access_config {}
   }
 
+  metadata = {
+    ssh-keys = "user:${var.ssh_key}"
+  }
+
   metadata_startup_script = "${template_file.startup_script_template.rendered}"
 }
-
-#resource "google_compute_project_metadata" "project_metadata" {
-#  metadata {
-#    nomad_servers = "${join(",", google_compute_instance.server_instance.*.name)}"
-#  }
-#}
 
 #
 # The external DNS records for the Nomad servers.
 #
-resource "google_dns_record_set" "external_dns" {
-  count = "${var.cluster_size}"
 
-  managed_zone = "${var.external_dns_zone}"
-  name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 2), var.external_dns_name)}"
-  type = "A"
-  ttl = 300
-  rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.assigned_nat_ip, count.index)}"]
-}
+#resource "google_dns_record_set" "external_dns" {
+#  count = "${var.cluster_size}"
+#
+#  managed_zone = "${var.external_dns_zone}"
+#  name = "${format("%s-%s.%s", element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 1), element(split("-", element(google_compute_instance.server_instance.*.name, count.index)), 2), var.external_dns_name)}"
+#  type = "A"
+#  ttl = 300
+#  rrdatas = ["${element(google_compute_instance.server_instance.*.network_interface.0.access_config.0.assigned_nat_ip, count.index)}"]
+#}
