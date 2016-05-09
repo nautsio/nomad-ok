@@ -3,7 +3,7 @@ include ../defaults.mk
 default: image
 
 build.log: nomad-ok.json $(shell find files scripts)
-	packer -machine-readable build -var 'project_id=$(PROJECT)' $< | tee $@
+	packer -machine-readable build -debug -var 'project_id=$(PROJECT)' $< | tee $@
 
 image: build.log
 	@grep -oP 'googlecompute,artifact,0,id,\K\S+' $< | tee image
