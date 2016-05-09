@@ -8,5 +8,6 @@ variable "machine_type" {}
 variable "disk_image" {}
 variable "network" {}
 
+variable "register_hostnames" {}
 variable "external_dns_zone" {}
 variable "external_dns_name" {}

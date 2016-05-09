@@ -4,8 +4,7 @@
 module "network" {
   source = "./network"
 
-  name = "${var.stack}"
-  range = "10.20.30.0/24"
+  name = "${var.network_name}"
 }
 
 #
@@ -25,7 +24,7 @@ module "nomad_client" {
   machine_type = "${var.nomad_client.machine_type}"
   preemptible_instance = "${var.nomad_client.preemptible_instance}"
   disk_image = "${var.disk_image}"
-  network = "${module.network.name}"
+  network = "${var.network_name}"
 }
 
 #
@@ -38,6 +37,7 @@ module "nomad_server" {
   ssh_key = "${var.ssh_key}"
   loggly_token= "${var.loggly_token}"
 
+  register_hostnames = "1"
   external_dns_zone = "${var.external_domain.zone}"
   external_dns_name = "${format("%s.%s", var.stack, var.external_domain.domain)}"
 
@@ -45,5 +45,5 @@ module "nomad_server" {
   cluster_size = "${var.nomad_server.cluster_size}"
   machine_type = "${var.nomad_server.machine_type}"
   disk_image = "${var.disk_image}"
-  network = "${module.network.name}"
+  network = "${var.network_name}"
 }

@@ -45,6 +45,11 @@ variable "loggly_token" {
   default = "7a9f9e66-f88d-4bbe-8218-c46edf71389d"
 }
 
+# Name of this Stack
+variable "network_name" {
+  default = "nomadnet"
+}
+
 variable "nomad_client" {
   default = {
     "groups" = 2

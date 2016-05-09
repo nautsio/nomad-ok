@@ -15,6 +15,12 @@ ifneq ($(strip $(PROJECT)),)
 	TF_FLAGS+=-var 'project=$(PROJECT)'
 endif
 
+ifeq ($(STACK),common)
+	TF_FLAGS+=-target=module.network
+else
+	TF_FLAGS+=-target=module.nomad_server -target=module.nomad_client
+endif
+
 TF_FLAGS+=$(TF_DIR)
 
 .PHONY: stack-dir get ssh-key plan apply show refresh destroy list list-all copy-jobs check ssh mail
