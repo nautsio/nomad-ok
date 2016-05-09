@@ -1,3 +1,3 @@
 variable "disk_image" {
-  default = "nomad-ok-1461047947"
+  default = "nomad-ok-1462829521"
 }
