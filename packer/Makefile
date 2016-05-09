@@ -11,3 +11,6 @@ image: build.log
 
 list-images:
 	@gcloud compute images list --project "$(PROJECT)" --no-standard-images --regexp '^nomad-ok-.*'
+
+list-base-images:
+	@gcloud compute images list --project "$(PROJECT)" --regexp '^debian-8.*'
