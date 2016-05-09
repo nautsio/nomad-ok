@@ -5,7 +5,7 @@ variable "project" {
 
 # Google Project Region
 variable "region" {
-  default = "europe-west1-b"
+  default = "europe-west1-d"
 }
 
 # Comma separated list of Google Availability Zones that may be used to create
