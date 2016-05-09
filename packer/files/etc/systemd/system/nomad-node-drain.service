@@ -4,7 +4,7 @@ Before=shutdown.target
 After=nomad.service
 
 [Service]
-ExecStart=/bin/true
+ExecStart=/usr/bin/nomad node-drain -disable -self
 ExecStop=/usr/bin/nomad-node-drain
 RemainAfterExit=yes
 
