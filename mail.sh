@@ -9,7 +9,7 @@ DOMAIN=$5
 cat << EOF > stacks/${STACK}/message.txt
 Dear ${STACK},
 
-A personal training environment for the Scalable Container Scheduling Open Kitchen has been created for your pleasure.
+A personal training environment for the Hands-on HashiCorp Nomad Meetup has been created for your pleasure.
 This mail contains the necessary hostname information and credentials to let you access your environment.
 All you need is an SSH client. Optionally a local Nomad binary can be used to query the Nomad cluster or submit jobs from your local machine.
 
@@ -29,11 +29,11 @@ All server nodes also expose HTTP endpoints for Nomad and Consul, E.g.
 * http://nomad-01.${DOMAIN}:4646/v1/nodes
 * http://nomad-01.${DOMAIN}:8500/ui/
 
-NB. The environment will be destroyed after the Open Kitchen, so if you want to save your work do so before leaving.
+NB. The environment will be destroyed after the meetup, so if you want to save your work do so before leaving.
 
 Best regards,
 
-Erik Veld, Bastiaan Bakker
+Erik Veld, Bastiaan Bakker, Mark van Holsteijn
 EOF
 
 makemime -j                                                           \
@@ -42,7 +42,7 @@ makemime -j                                                           \
             -a "Mime-Version: 1.0"                                    \
             -a "From: <${FROM}>"                                      \
             -a "To: <${TO}>"                                          \
-            -a "Subject: Nomad Open Kitchen training environment"     \
+            -a "Subject: Hands-on HashiCorp Nomad Meetup training environment"     \
             \(                                                        \
               -c "text/plain; charset=iso-8859-1"                     \
               stacks/${STACK}/message.txt                             \
