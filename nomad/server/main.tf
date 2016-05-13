@@ -1,8 +1,8 @@
 #
 # The Nomad server nodes.
 #
-resource "template_file" "startup_script_template" {
-  template = "${file(\"nomad/server/startup_script.sh.tpl\")}"
+resource "template_file" "user_data" {
+  template = "${file(\"nomad/server/user-data.tpl\")}"
   vars {
     stack = "${var.stack}"
     loggly_token = "${var.loggly_token}"
@@ -36,9 +36,8 @@ resource "google_compute_instance" "server_instance" {
 
   metadata = {
     ssh-keys = "user:${var.ssh_key}"
+    user-data = "${template_file.user_data.rendered}"
   }
-
-  metadata_startup_script = "${template_file.startup_script_template.rendered}"
 }
 
 #

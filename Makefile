@@ -69,7 +69,7 @@ copy-jobs:
 	scp -r -i stacks/$(STACK)/ssh-key jobs/ user@$(HOSTFQDN):
 
 ssh:
-	ssh -i stacks/$(STACK)/ssh-key user@$(HOSTFQDN) || true
+	ssh -i stacks/$(STACK)/ssh-key core@$(HOSTFQDN) || true
 
 check:
 	NOMAD_ADDR=http://$(HOSTFQDN):4646 nomad node-status -allocs

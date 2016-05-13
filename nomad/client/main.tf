@@ -30,11 +30,11 @@ resource "google_compute_instance_group_manager" "nomad_client_group" {
   base_instance_name = "${format("%s-farm-%02d", var.stack, count.index + 1)}"
 }
 
-resource "template_file" "startup_script_template" {
-  template = "${file(\"nomad/client/startup_script.sh.tpl\")}"
+resource "template_file" "user_data" {
+  template = "${file(\"nomad/client/user-data.tpl\")}"
   vars {
     stack = "${var.stack}"
-    loggly_token= "${var.loggly_token}"
+    loggly_token = "${var.loggly_token}"
   }
 }
 
@@ -66,7 +66,7 @@ resource "google_compute_instance_template" "nomad_client" {
   }
 
   metadata {
-    startup-script = "${template_file.startup_script_template.rendered}"
     ssh-keys = "user:${var.ssh_key}"
+    user-data = "${template_file.user_data.rendered}"
   }
 }
