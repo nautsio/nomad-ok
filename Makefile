@@ -18,7 +18,7 @@ endif
 ifeq ($(STACK),common)
 	TF_FLAGS+=-target=module.network
 else
-	TF_FLAGS+=-target=module.nomad_server -target=module.nomad_client
+	TF_FLAGS+=-target=module.nomad_server -target=module.nomad_client -target=module.vault_server
 endif
 
 TF_FLAGS+=$(TF_DIR)

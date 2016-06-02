@@ -47,3 +47,24 @@ module "nomad_server" {
   disk_image = "${var.disk_image}"
   network = "${var.network_name}"
 }
+
+#
+# Create a cluster of Vault server nodes.
+#
+module "vault_server" {
+  source = "./vault/server"
+
+  stack = "${var.stack}"
+  ssh_key = "${var.ssh_key}"
+  loggly_token= "${var.loggly_token}"
+
+  register_hostnames = "1"
+  external_dns_zone = "${var.external_domain.zone}"
+  external_dns_name = "${format("%s.%s", var.stack, var.external_domain.domain)}"
+
+  zones = "${var.zones}"
+  cluster_size = "${var.vault_server.cluster_size}"
+  machine_type = "${var.vault_server.machine_type}"
+  disk_image = "${var.disk_image}"
+  network = "${var.network_name}"
+}

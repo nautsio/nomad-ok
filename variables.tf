@@ -24,8 +24,8 @@ variable "zones" {
 # DNS records are.
 variable "external_domain" {
   default = {
-    domain = "gce.nauts.io."
-    zone = "gce-nauts-io"
+    domain = "hashicontest.io."
+    zone = "hashicontest-io"
   }
 }
 
@@ -65,5 +65,12 @@ variable "nomad_server" {
   default = {
     "machine_type" = "f1-micro"
     "cluster_size" = 3
+  }
+}
+
+variable "vault_server" {
+  default = {
+    "machine_type" = "f1-micro"
+    "cluster_size" = 1
   }
 }

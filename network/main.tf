@@ -13,7 +13,7 @@ resource "google_compute_firewall" "allow-from-everywhere" {
 
     allow {
         protocol = "tcp"
-        ports = ["22", "4646", "8500"]
+        ports = ["22", "4646", "8200", "8500"]
     }
 
     allow {
