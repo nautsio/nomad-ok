@@ -1,5 +1,5 @@
 # Top Level Domain under which to create A records for external addresses
-TLD=gce.nauts.io
+TLD=hashicontest.io
 
 # Project in GCE in which to create the infrastructure
 PROJECT=innovation-day-nomad
